@@ -1,0 +1,5 @@
+# Never share the file that holds the API key.
+.env
+
+# Python cache files.
+__pycache__/
