@@ -115,14 +115,14 @@ for iterations in range(MAX_ITERATIONS):
         temperature=0,
     )
     message = response.choices[0].message
-    
+    #messages = list holding whole convo. message = last reply from model
     #if theres no tool call then print and break
     if not message.tool_calls:
         print(message.content)
         finished = True
         break
     messages.append(message)
-
+    
     for tool_call in message.tool_calls:
         # Run the function with the arguments the model chose.
         arguments = json.loads(tool_call.function.arguments)
