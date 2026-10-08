@@ -8,7 +8,7 @@ from openai import OpenAI
 MODEL = "nvidia/nemotron-3-super-120b-a12b"
 SYSTEM_PROMPT = "You are a helpful assistant. Answer clearly and concisely."
 
-
+# This file used claude, without the loop. The final step C is in step_c.py
 # The tool: an ordinary Python function that returns fake weather data.
 def get_weather(city):
     fake_weather = {
