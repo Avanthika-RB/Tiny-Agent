@@ -1,0 +1,10 @@
+[
+  {"email": "priya.menon@example.com",   "name": "Priya Menon",   "team": "Supply Chain Ops", "laptop": "Dell Latitude 7440",  "os": "Windows 11", "location": "Santa Clara", "vpn_enabled": true},
+  {"email": "james.okafor@example.com",  "name": "James Okafor",  "team": "Logistics",        "laptop": "MacBook Pro 14 M3",   "os": "macOS 15",   "location": "Austin",      "vpn_enabled": true},
+  {"email": "mei.lin@example.com",       "name": "Mei Lin",       "team": "Finance Ops",      "laptop": "Lenovo ThinkPad X1", "os": "Windows 11", "location": "Taipei",      "vpn_enabled": true},
+  {"email": "carlos.ruiz@example.com",   "name": "Carlos Ruiz",   "team": "Warehouse",        "laptop": "Dell Latitude 5540",  "os": "Windows 10", "location": "Austin",      "vpn_enabled": false},
+  {"email": "aisha.khan@example.com",    "name": "Aisha Khan",    "team": "Planning",         "laptop": "MacBook Air M2",      "os": "macOS 14",   "location": "Bangalore",   "vpn_enabled": true},
+  {"email": "tom.becker@example.com",    "name": "Tom Becker",    "team": "Supply Chain Ops", "laptop": "Dell Latitude 7440",  "os": "Windows 11", "location": "Munich",      "vpn_enabled": true},
+  {"email": "sofia.rossi@example.com",   "name": "Sofia Rossi",   "team": "Procurement",      "laptop": "HP EliteBook 840",    "os": "Windows 11", "location": "Santa Clara", "vpn_enabled": true},
+  {"email": "daniel.park@example.com",   "name": "Daniel Park",   "team": "Logistics",        "laptop": "MacBook Pro 16 M3",   "os": "macOS 15",   "location": "Seoul",       "vpn_enabled": false}
+]

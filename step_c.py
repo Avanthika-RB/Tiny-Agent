@@ -7,10 +7,11 @@ from openai import OpenAI
 
 MODEL = "nvidia/nemotron-3-super-120b-a12b"
 SYSTEM_PROMPT = "You are a helpful assistant. Answer clearly and concisely."
-
+##SYSTEM_PROMPT = "You are a helpful assistant. Answer clearly and concisely. You also have a tool called get_time(city) that returns the local time in a city."
 
 # The tool: an ordinary Python function that returns fake weather data.
 def get_weather(city):
+    ##raise ConnectionError("weather service is down")
     fake_weather = {
         "paris": "18C and cloudy",
         "tokyo": "24C and sunny",
