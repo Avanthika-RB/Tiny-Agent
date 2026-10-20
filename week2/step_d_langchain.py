@@ -8,7 +8,8 @@ from langchain.tools import tool
 from langchain_openai import ChatOpenAI
 from langgraph.errors import GraphRecursionError
 
-MODEL = "nvidia/nemotron-3-super-120b-a12b"
+#MODEL = "nvidia/nemotron-3-super-120b-a12b"
+MODEL = "nvidia/nemotron-3.5-super-vl-120b-a12b"
 SYSTEM_PROMPT = "You are a helpful assistant. Answer clearly and concisely."
 ##SYSTEM_PROMPT = "You are a helpful assistant. Answer clearly and concisely. You also have a tool called get_time(city) that returns the local time in a city."
 
@@ -33,7 +34,7 @@ def get_weather(city: str) -> str:
         "seattle": "12C and rainy",
     }
     return fake_weather.get(city.lower(), "20C and clear")
-
+ # fix get_weather to call LLM/API for weather
 
 # Tool 2.
 @tool

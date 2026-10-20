@@ -5,7 +5,8 @@ import sys
 from dotenv import load_dotenv
 from openai import OpenAI
 
-MODEL = "nvidia/nemotron-3-super-120b-a12b"
+#MODEL = "nvidia/nemotron-3-super-120b-a12b"
+MODEL = "nvidia/nemotron-3.5-super-vl-120b-a12b"
 SYSTEM_PROMPT = "You are a helpful assistant. Answer clearly and concisely."
 
 

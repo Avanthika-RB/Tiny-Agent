@@ -13,7 +13,8 @@ from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.errors import GraphRecursionError
 
-MODEL = "nvidia/nemotron-3-super-120b-a12b"
+#MODEL = "nvidia/nemotron-3-super-120b-a12b"
+MODEL = "nvidia/nemotron-3.5-super-vl-120b-a12b"
 RECURSION_LIMIT = 15
 
 # The data files live next to this script, so it works from any folder.
@@ -36,7 +37,7 @@ Rules:
 5. Ticket priority must be low, medium, or high.
 6. If the user says they already tried something that matches the known fix (even in different words), do not repeat the fix or ask if they tried it. Go straight to offering a ticket.
 Keep replies short and friendly."""
-
+# give example to LLM system prompt, similar to step D and tools descriptions
 
 def load_json(path):
     with open(path, encoding="utf-8") as f:
@@ -117,7 +118,7 @@ def create_ticket(employee_email: str, summary: str, priority: str) -> str:
 
     tickets = load_json(TICKETS_FILE)
     # The code makes the id, never the model: TKT-1001, TKT-1002, ...
-    ticket_id = f"TKT-{1001 + len(tickets)}"
+    ticket_id = f"TKT-{1001 + len(tickets)}" #have a timestamp with the date and ticket details, more dynamic 
     tickets.append(
         {
             "id": ticket_id,
