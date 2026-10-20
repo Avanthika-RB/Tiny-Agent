@@ -1,0 +1,6 @@
+[
+  {"id": "OUT-101", "location": "Austin",    "service": "Office Wi-Fi",        "status": "active",   "started": "2026-10-20T08:15:00", "eta": "2026-10-20T12:00:00", "message": "Wi-Fi is down on floors 2 and 3 in the Austin office. Network team is on site. Use a wired connection or hotspot until noon."},
+  {"id": "OUT-102", "location": "Bangalore", "service": "VPN gateway",         "status": "active",   "started": "2026-10-20T06:00:00", "eta": "2026-10-20T10:30:00", "message": "The Bangalore VPN gateway is being replaced. Expect VPN drops until 10:30 local time. No action needed from users."},
+  {"id": "OUT-099", "location": "Munich",    "service": "Printer fleet",       "status": "resolved", "started": "2026-10-18T09:00:00", "eta": "2026-10-18T11:00:00", "message": "Printer server restart. Resolved."},
+  {"id": "OUT-100", "location": "Santa Clara","service": "Shared drives",      "status": "resolved", "started": "2026-10-19T14:00:00", "eta": "2026-10-19T15:00:00", "message": "Storage maintenance. Resolved."}
+]
