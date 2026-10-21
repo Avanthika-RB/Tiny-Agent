@@ -25,7 +25,8 @@ from typing_extensions import TypedDict
 from tools import create_ticket, lookup_employee, search_known_issues
 
 #MODEL = "nvidia/nemotron-3-super-120b-a12b"
-MODEL = "nvidia/nemotron-3.5-super-vl-120b-a12b"
+#MODEL = "nvidia/nemotron-3.5-super-vl-120b-a12b"
+MODEL = "nvidia/nemotron-3.5-lightning-30b-a3b"
 RECURSION_LIMIT = 15
 
 SYSTEM_PROMPT = """You are an IT helpdesk triage assistant for a company's Ops team.

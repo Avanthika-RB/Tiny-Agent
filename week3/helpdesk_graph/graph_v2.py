@@ -38,7 +38,8 @@ from tools import (
     reset_password,
 )
 
-MODEL = "nvidia/nemotron-3.5-super-vl-120b-a12b"
+#MODEL = "nvidia/nemotron-3.5-super-vl-120b-a12b"
+MODEL = "nvidia/nemotron-3.5-lightning-30b-a3b"
 RECURSION_LIMIT = 25
 MAX_EMAIL_ATTEMPTS = 2
 

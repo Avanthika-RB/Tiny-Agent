@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "TKT-1001",
+    "employee_email": "priya.menon@example.com",
+    "summary": "Laptop won't turn on for Priya Menon",
+    "priority": "medium",
+    "status": "open",
+    "created_at": "2026-10-21T12:13:34"
+  }
+]
