@@ -6,3 +6,6 @@ __pycache__/
 
 # Virtual environments.
 .venv/
+
+# LangGraph checkpoint database (saved conversations).
+checkpoints.db*
