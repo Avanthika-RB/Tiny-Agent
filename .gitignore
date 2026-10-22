@@ -9,3 +9,6 @@ __pycache__/
 
 # LangGraph checkpoint database (saved conversations).
 checkpoints.db*
+
+# LangGraph Studio (langgraph dev) local data.
+.langgraph_api/

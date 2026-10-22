@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "helpdesk": "./graph_v5.py:graph"
+  },
+  "env": "../../.env"
+}
