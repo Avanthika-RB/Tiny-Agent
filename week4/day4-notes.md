@@ -12,15 +12,15 @@
 
 ## fixed_200
 
-- 
-- 
+- Every 200 characters is its own chunk
+- half of a word can be in the next chunk if its cut off
 
 ## recursive_500
 
-- 
-- 
+- New chunk after heading
+- Repeat/overlap with the ending of chunk 1 and chunk 2
 
 ## markdown_headers
 
-- 
-- 
+- Header is on each chunk
+- Then continues the paragraphs with next chunk
