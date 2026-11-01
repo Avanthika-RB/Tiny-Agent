@@ -12,3 +12,7 @@ checkpoints.db*
 
 # LangGraph Studio (langgraph dev) local data.
 .langgraph_api/
+
+# Week 4 pipeline intermediate files (rebuilt by rag/ingest.py).
+week4/rag/build/
+week4/chroma_db/

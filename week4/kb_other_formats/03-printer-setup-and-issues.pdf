@@ -1,0 +1,79 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Length 3001 >>
+stream
+BT /F1 14 Tf 50 740 Td (Printer Setup and Issues) Tj ET
+BT /F1 14 Tf 50 712 Td (Finding your printer) Tj ET
+BT /F1 10 Tf 50 688 Td (Every office printer has a label on the front with its name and IP address. Printer names) Tj ET
+BT /F1 10 Tf 50 672 Td (follow the pattern SITE-FLOOR-NUMBER, for example AUS-02-03 is the third printer on the) Tj ET
+BT /F1 10 Tf 50 656 Td (second floor in Austin. Always add printers by IP address rather than by name. Name-based) Tj ET
+BT /F1 10 Tf 50 640 Td (discovery depends on a directory service that is often slow and sometimes lists printers) Tj ET
+BT /F1 10 Tf 50 624 Td (that have been retired.) Tj ET
+BT /F1 14 Tf 50 596 Td (Adding a printer) Tj ET
+BT /F1 14 Tf 50 568 Td (Windows) Tj ET
+BT /F1 10 Tf 50 544 Td (1. Open Settings, then Bluetooth and devices, then Printers and scanners.) Tj ET
+BT /F1 10 Tf 50 528 Td (2. Click Add device, wait ten seconds, then click Add manually.) Tj ET
+BT /F1 10 Tf 50 512 Td (3. Choose Add a printer using an IP address or hostname.) Tj ET
+BT /F1 10 Tf 50 496 Td (4. Enter the IP address from the label. Leave the port name as suggested.) Tj ET
+BT /F1 10 Tf 50 480 Td (5. When asked for a driver, choose the generic PCL6 driver. Do not download a manufacturer) Tj ET
+BT /F1 10 Tf 50 464 Td (driver; the generic one is faster and is the only one the print server supports.) Tj ET
+BT /F1 10 Tf 50 448 Td (6. Print a test page.) Tj ET
+BT /F1 14 Tf 50 420 Td (macOS) Tj ET
+BT /F1 10 Tf 50 396 Td (1. Open System Settings, then Printers and Scanners.) Tj ET
+BT /F1 10 Tf 50 380 Td (2. Click Add Printer, Scanner, or Fax.) Tj ET
+BT /F1 10 Tf 50 364 Td (3. Select the IP tab.) Tj ET
+BT /F1 10 Tf 50 348 Td (4. Enter the IP address. Protocol should be IPP. Leave Queue empty.) Tj ET
+BT /F1 10 Tf 50 332 Td (5. For Use, pick Generic PostScript Printer.) Tj ET
+BT /F1 10 Tf 50 316 Td (6. Click Add and print a test page.) Tj ET
+BT /F1 14 Tf 50 288 Td (Common problems) Tj ET
+BT /F1 14 Tf 50 260 Td (Printer shows offline) Tj ET
+BT /F1 10 Tf 50 236 Td (Remove the printer and re-add it using the IP address. This fixes the problem in nine) Tj ET
+BT /F1 10 Tf 50 220 Td (cases out of ten. If the printer is offline for everyone, check the outage board before) Tj ET
+BT /F1 10 Tf 50 204 Td (filing a ticket; the printer may be under maintenance.) Tj ET
+BT /F1 14 Tf 50 176 Td (Jobs stuck in the queue) Tj ET
+BT /F1 10 Tf 50 152 Td (Open the print queue, cancel all documents, then turn the printer off and on at the power) Tj ET
+BT /F1 10 Tf 50 136 Td (switch. Wait for it to finish warming up before sending anything new. On Windows, if the) Tj ET
+BT /F1 10 Tf 50 120 Td (queue will not clear, restart the Print Spooler service.) Tj ET
+BT /F1 14 Tf 50 92 Td (Prints are blank or streaked) Tj ET
+BT /F1 10 Tf 50 68 Td (This is a hardware issue. Do not try to fix it yourself. Note the printer name and file a) Tj ET
+BT /F1 10 Tf 50 52 Td (ticket with priority low. Facilities replaces toner and drums on a schedule and will pull) Tj ET
+endstream
+endobj
+3 0 obj
+<< /Length 238 >>
+stream
+BT /F1 10 Tf 50 744 Td (it forward if a ticket is open.) Tj ET
+BT /F1 14 Tf 50 716 Td (Printing from a personal device) Tj ET
+BT /F1 10 Tf 50 692 Td (Not supported. Email the document to yourself and print from your company laptop.) Tj ET
+endstream
+endobj
+4 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 6 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 3 0 R >>
+endobj
+6 0 obj
+<< /Type /Pages /Kids [4 0 R 5 0 R] /Count 2 >>
+endobj
+7 0 obj
+<< /Type /Catalog /Pages 6 0 R >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000003132 00000 n 
+0000003421 00000 n 
+0000003547 00000 n 
+0000003673 00000 n 
+0000003736 00000 n 
+trailer
+<< /Size 8 /Root 7 0 R >>
+startxref
+3785
+%%EOF
