@@ -13,6 +13,11 @@ so you can run them one at a time and look at what each produced:
     Add --strategy NAME to chunk/embed/store/all to do only one strategy, e.g. --strategy fixed_200
 
     python rag/ingest.py show recursive_500 kb/03     print one article's chunks (to compare with chunkviz)
+    python rag/ingest.py first3 kb/01                first 3 chunks from fixed_200, recursive_500, markdown_headers
+
+Strategies: fixed_200, fixed_500_overlap, recursive_500 (Day 3),
+            markdown_headers, markdown_headers_noprefix, semantic (Day 4).
+The semantic strategy calls the embedding model while chunking, so its chunk stage needs the API.
 
 Every Document, at every stage, has the same shape:
     {"text": "...", "metadata": {"source": "kb/03-printer-setup-and-issues.md", "format": "md", "title": "..."}}
@@ -23,6 +28,14 @@ import json
 import sys
 import time
 from pathlib import Path
+
+import chromadb
+from bs4 import BeautifulSoup
+from dotenv import find_dotenv, load_dotenv
+from langchain_experimental.text_splitter import SemanticChunker
+from langchain_nvidia_ai_endpoints import NVIDIAEmbeddings
+from langchain_text_splitters import CharacterTextSplitter, MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
+from pypdf import PdfReader
 
 WEEK4 = Path(__file__).resolve().parent.parent
 SOURCE_DIRS = [WEEK4 / "kb", WEEK4 / "kb_other_formats"]
@@ -61,8 +74,6 @@ def load_html(path):
     """HTML -> markdown-style text. <h1>..<h3> become #..###, <li> become '1.' or '-' items,
     <p> become paragraphs. <head>, <style> and <script> are dropped. Each element's text is
     kept exactly as written in the file, line breaks and all."""
-    from bs4 import BeautifulSoup
-
     soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
     title = soup.title.get_text() if soup.title else path.stem
     for tag in soup(["head", "style", "script"]):
@@ -100,8 +111,6 @@ def load_html(path):
 def load_pdf(path):
     """PDF -> plain text, page by page. A PDF has no heading markup, so headings come out
     as ordinary lines. That is a real limit of PDF, not something cleaning can fully undo."""
-    from pypdf import PdfReader
-
     pages = [page.extract_text() or "" for page in PdfReader(str(path)).pages]
     text = "\n".join(pages)
     return make_doc(path, "pdf", text, first_heading(text))
@@ -201,7 +210,6 @@ def split_with(splitter, docs, strategy):
 
 
 def chunk_fixed_200(docs):
-    from langchain_text_splitters import CharacterTextSplitter
     # separator="" makes it a true fixed-size window: cut every 200 characters, wherever that lands.
     # (With the default separator "\n\n" it would only cut between paragraphs, and keep long
     #  paragraphs whole, so it would not really be fixed-size.)
@@ -209,21 +217,63 @@ def chunk_fixed_200(docs):
 
 
 def chunk_fixed_500_overlap(docs):
-    from langchain_text_splitters import CharacterTextSplitter
     return split_with(CharacterTextSplitter(separator="", chunk_size=500, chunk_overlap=100), docs, "fixed_500_overlap")
 
 
 def chunk_recursive_500(docs):
-    from langchain_text_splitters import RecursiveCharacterTextSplitter
     # Tries to cut at "\n\n" first, then "\n", then " ", then anywhere, so pieces end at natural breaks.
     return split_with(RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100), docs, "recursive_500")
+
+
+HEADERS = [("#", "h1"), ("##", "h2"), ("###", "h3")]
+
+
+def chunk_markdown(docs, strategy, prefix):
+    """Day 4. Step 1: MarkdownHeaderTextSplitter cuts the document at every #, ## and ### heading,
+    and moves the heading text into metadata (h1, h2, h3). Step 2: any section still longer
+    than 500 characters is cut again with the recursive splitter (500 / 100).
+    The header path (e.g. "VPN Access Guide > Regional gateways") always goes into metadata.
+    prefix=True ALSO writes it at the top of the chunk text, so it is part of what gets embedded."""
+    by_header = MarkdownHeaderTextSplitter(headers_to_split_on=HEADERS)
+    too_long = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
+    chunks = []
+    for d in docs:
+        index = 0
+        for section in by_header.split_text(d["text"]):
+            path = " > ".join(section.metadata[key] for _, key in HEADERS if key in section.metadata)
+            body = section.page_content.replace("  \n", "\n")   # the splitter joins lines with "  \n"
+            for piece in too_long.split_text(body):
+                text = f"{path}\n\n{piece}" if prefix and path else piece
+                chunks.append({"text": text, "metadata": {**d["metadata"], "chunk_index": index,
+                                                          "strategy": strategy, "header_path": path}})
+                index += 1
+    return chunks
+
+
+def chunk_markdown_headers(docs):
+    return chunk_markdown(docs, "markdown_headers", prefix=True)
+
+
+def chunk_markdown_headers_noprefix(docs):
+    return chunk_markdown(docs, "markdown_headers_noprefix", prefix=False)
+
+
+def chunk_semantic(docs):
+    """Day 4. SemanticChunker splits the text into sentences, embeds EVERY sentence, and cuts
+    where the meaning jumps: wherever the distance between neighbouring sentences is above the
+    95th percentile of all those distances. That needs one embedding per sentence, so it is the
+    slowest strategy by far, and the chunk sizes vary a lot."""
+    splitter = SemanticChunker(get_embeddings(), breakpoint_threshold_type="percentile")
+    return split_with(splitter, docs, "semantic")
 
 
 STRATEGIES = {
     "fixed_200": chunk_fixed_200,
     "fixed_500_overlap": chunk_fixed_500_overlap,
     "recursive_500": chunk_recursive_500,
-    # Day 4 adds: markdown_headers, markdown_headers_noprefix, semantic
+    "markdown_headers": chunk_markdown_headers,
+    "markdown_headers_noprefix": chunk_markdown_headers_noprefix,
+    "semantic": chunk_semantic,
 }
 
 
@@ -237,28 +287,53 @@ def stage_chunk(names):
     for name in names:
         start = time.perf_counter()
         chunks = STRATEGIES[name](docs)
+        seconds = time.perf_counter() - start
         s = stats(chunks)
         save(f"chunks_{name}.json", chunks)
-        print(f"  {name:<20} {s['chunks']:>4} chunks  avg {s['avg']:6.1f}  min {s['min']:>4}  max {s['max']:>4}  "
-              f"({time.perf_counter() - start:.2f}s)")
+        record_time(name, "chunk", seconds)
+        print(f"  {name:<26} {s['chunks']:>4} chunks  avg {s['avg']:6.1f}  min {s['min']:>4}  max {s['max']:>4}  "
+              f"({seconds:.2f}s)")
+        if name == "semantic":
+            print_distribution(chunks)
+
+
+def print_distribution(chunks):
+    """How many chunks fall in each size range, as a text bar chart."""
+    buckets = [(0, 100), (100, 250), (250, 500), (500, 1000), (1000, 2000), (2000, 10**6)]
+    sizes = [len(c["text"]) for c in chunks]
+    print("     size distribution:")
+    for low, high in buckets:
+        n = sum(low <= x < high for x in sizes)
+        label = f"{low}-{high}" if high < 10**6 else f"{low}+"
+        print(f"     {label:>10} chars  {n:>3}  {'#' * n}")
+
+
+def record_time(name, stage, seconds):
+    """Keep chunk and embed timings in build/timing.json so store can report the full ingest time."""
+    path = BUILD / "timing.json"
+    timing = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    timing.setdefault(name, {})[stage] = seconds
+    save("timing.json", timing)
 
 
 # ===========================================================================
 # STAGE 4: EMBED. Passage mode (embed_documents) for everything we store.
 # ===========================================================================
-def stage_embed(names):
-    from dotenv import find_dotenv, load_dotenv
-    from langchain_nvidia_ai_endpoints import NVIDIAEmbeddings
-
+def get_embeddings():
     load_dotenv(find_dotenv(usecwd=True))
-    emb = NVIDIAEmbeddings(model=EMBED_MODEL, truncate="END")
+    return NVIDIAEmbeddings(model=EMBED_MODEL, truncate="END")
+
+
+def stage_embed(names):
+    emb = get_embeddings()
     for name in names:
         chunks = load(f"chunks_{name}.json")
         start = time.perf_counter()
         vectors = emb.embed_documents([c["text"] for c in chunks])   # the library sends these in batches
         seconds = time.perf_counter() - start
         save(f"vectors_{name}.json", {"model": EMBED_MODEL, "seconds": seconds, "vectors": vectors})
-        print(f"  {name:<20} {len(vectors):>4} vectors x {len(vectors[0])} dims  ({seconds:.1f}s)")
+        record_time(name, "embed", seconds)
+        print(f"  {name:<26} {len(vectors):>4} vectors x {len(vectors[0])} dims  ({seconds:.1f}s)")
 
 
 # ===========================================================================
@@ -266,8 +341,6 @@ def stage_embed(names):
 # (Day 5 replaces "rebuild from scratch" with hashing and incremental updates.)
 # ===========================================================================
 def stage_store(names):
-    import chromadb
-
     client = chromadb.PersistentClient(path=str(CHROMA_PATH))
     existing = {c.name for c in client.list_collections()}
     rows = []
@@ -287,12 +360,14 @@ def stage_store(names):
             metadatas=[c["metadata"] for c in chunks],
         )
         s = stats(chunks)
-        rows.append((name, s, col.count(), embedded["seconds"] + time.perf_counter() - start))
+        timing = json.loads((BUILD / "timing.json").read_text(encoding="utf-8")).get(name, {})
+        total = timing.get("chunk", 0) + embedded["seconds"] + time.perf_counter() - start
+        rows.append((name, s, col.count(), total))
     print(f"\n| Collection | Chunks | Avg chars | Min | Max | Ingest time (s) |")
     print(f"|---|---|---|---|---|---|")
     for name, s, count, seconds in rows:
         print(f"| {name} | {count} | {s['avg']:.0f} | {s['min']} | {s['max']} | {seconds:.1f} |")
-    print("\n(Ingest time = embedding + storing. Paste this table into results.md.)")
+    print("\n(Ingest time = chunking + embedding + storing.)")
 
 
 # ===========================================================================
@@ -318,14 +393,29 @@ def show(strategy, file_part):
         raise SystemExit(f"'{file_part}' matches {len(sources)} files: {sources}. Be more specific.")
     print(f"{strategy}: {len(chunks)} chunks from {sources[0]}\n")
     for c in chunks:
-        print(f"----- chunk {c['metadata']['chunk_index']} ({len(c['text'])} chars) -----")
+        path = c["metadata"].get("header_path")
+        print(f"----- chunk {c['metadata']['chunk_index']} ({len(c['text'])} chars)"
+              + (f"  header_path: {path}" if path else "") + " -----")
         print(c["text"])
+
+
+def first3(file_part):
+    """For day4-notes.md: the first 3 chunks of one article from three strategies, one after another."""
+    for strategy in ["fixed_200", "recursive_500", "markdown_headers"]:
+        chunks = [c for c in load(f"chunks_{strategy}.json") if file_part in c["metadata"]["source"]]
+        print(f"\n{'=' * 70}\n{strategy}  ({chunks[0]['metadata']['source']})\n{'=' * 70}")
+        for c in chunks[:3]:
+            print(f"--- chunk {c['metadata']['chunk_index']} ({len(c['text'])} chars) ---")
+            print(c["text"] + "\n")
 
 
 def main():
     args = sys.argv[1:]
     if len(args) == 3 and args[0] == "show":
         show(args[1], args[2])
+        return
+    if len(args) == 2 and args[0] == "first3":
+        first3(args[1])
         return
     if not args or args[0] not in ("load", "clean", "chunk", "embed", "store", "all"):
         print(__doc__)

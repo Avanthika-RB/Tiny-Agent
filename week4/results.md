@@ -27,3 +27,14 @@ Fill in your PREDICTION column before running anything.
 | markdown_headers | | | | | |
 | markdown_headers_noprefix | | | | | |
 | semantic | | | | | |
+
+
+after day 4
+| Collection | Chunks | Avg chars | Min | Max | Ingest time (s) |
+|---|---|---|---|---|---|
+| fixed_200 | 106 | 194 | 65 | 200 | 2.0 |
+| fixed_500_overlap | 55 | 458 | 114 | 500 | 1.4 |
+| recursive_500 | 64 | 339 | 31 | 498 | 1.4 |
+| markdown_headers | 63 | 359 | 119 | 548 | 1.7 |
+| markdown_headers_noprefix | 63 | 305 | 81 | 498 | 1.5 |
+| semantic | 30 | 685 | 47 | 2258 | 7.0 |
