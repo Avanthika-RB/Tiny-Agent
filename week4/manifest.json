@@ -1,0 +1,782 @@
+{
+  "embedding_model": "nvidia/nemotron-3.5-embed-1b",
+  "files": {
+    "kb/01-vpn-access-guide.md": {
+      "collections": {
+        "fixed_200": {
+          "file_hash": "ecb76f5855cc1ed74d31f025ca1657778bf7c2de4fd452c880087aa470ed4d4d",
+          "chunks": 15,
+          "hashes": [
+            "f4b5556a3d017edadeba0060066ef323ed7c6fb384fcfb3082a78f0eaafdeacd",
+            "61b18cb810c322d82dad672d066ae2348c11eb860954bb7ad6d71ad55d424770",
+            "626f5c7a9669b3042d70913f79b704cc657a71a47918ac4535d101c545eb7a60",
+            "f71baf60dc334d6d9a7aaa3975592c33e3ba06e391f4a64a65541ded04d235fa",
+            "e565d3aaafcf2fb670281d5fe793ef6de0e560e256a0f6967c78e9d408b8cdf7",
+            "8915b751d9acd9ea3649086905024af4a4d80cbfee4231882f9c167f51ff87fc",
+            "80aeb845840370143cb4adc16819b9689174e08c0b71df782697e56020cf33a3",
+            "c871db337788f20a250a7dbd50262b0cae96e836c3b0fd243a0b5b07f9593286",
+            "ca570f2c16560a3536ae7e60ca9c38807e834a0c8490e015239be22097a59060",
+            "ce38a92387156df5503c594beee1529f7c20f8441ff5b833ccc6d9bd233d152b",
+            "c7760d943e82441be83c977e6c5b710e5bab435b39750d1388b4b5e67d35b3b8",
+            "fa6b1a532c31e69cbb9a44de45ff9fbb7128f256c211a19885202788733ec62e",
+            "3e57fc0907cf4c4fa8f68b86e867812d0ef8f09bde5227d18f4eb1c8b89fce1f",
+            "36775c0b85d8b51eed7c63014370f5f8b2e9fb779c2c125832cc571540b59f83",
+            "e4e275ec10a1edd24138a8f332ac43703ebe2380a1716b9eee9727523d0e4995"
+          ]
+        },
+        "fixed_500_overlap": {
+          "file_hash": "ecb76f5855cc1ed74d31f025ca1657778bf7c2de4fd452c880087aa470ed4d4d",
+          "chunks": 8,
+          "hashes": [
+            "0f89be8dacc29c714dbb9b279b08b67f4bd39bb5baaa253d5edbc68139a717ef",
+            "aabb698afb12c9776d8fce2e6518948c79d821138fd19d3bf171cf961992ee22",
+            "84a124c81b6258e732614469deeb1d6495382f7b64291198b7e6cfe4fd26f432",
+            "27c914beac09dac830c03841c9c0a6ca89672094311ae4cd8575472ac33ad67d",
+            "b7718dd882b4c6c5d55282ddeb9c1d215adf73a4ed3f2c5257685acd96dae050",
+            "4837c813c01813613a6b111a5de04e94860a5cfa9a1bdaaa70ebd7a1bc4503ff",
+            "282f50d9cd1802414333145d5074691be8b1b9231d20c39d048e428324ca0e14",
+            "e4e275ec10a1edd24138a8f332ac43703ebe2380a1716b9eee9727523d0e4995"
+          ]
+        },
+        "recursive_500": {
+          "file_hash": "ecb76f5855cc1ed74d31f025ca1657778bf7c2de4fd452c880087aa470ed4d4d",
+          "chunks": 11,
+          "hashes": [
+            "08c7bf5928973aff6dcf8165ff348be0141d10a6d050d2ac17541f5badff7417",
+            "9e606dbe5e5bbd76eed79edf2dc1c2ae3adea5bb38189c799e1edeeabca6ce92",
+            "af0de9836f51723fe497af0b7d60d8070b99aea90fcd216f79e5d65c3462bcfe",
+            "0ef82493abc17ed8c6a36198d41fa81debbf1fa73ac7e1e690fed72819c7a5bb",
+            "2658a42424426fb29026b69eed9960a8209b4b84b9e8e5d5630e44a2f40a1a34",
+            "a3e27e9ced41256489b0df72265420c91f5214b065e414b3f3f1e03b82fef8b8",
+            "bd504a7a3c4cb9c54761978ecc83117562badcec15f777c4e0b9e48473dfa0d9",
+            "812bdd4b73db0162408b964584c5c072f7f739e78d3e38ab829fed31e2ede686",
+            "f6568d8e75d66fb96bbd3d3fdca249c8f7a07c900068b2b96060f68535d5e99d",
+            "6ff7536c0dbcd216becd10a926d03ca7b82e0e212bab76d20bcbc47da219d2e2",
+            "01e424b521a9b455ce2474e7ef181556b06249047769e62e1e7abb2b8f3a4444"
+          ]
+        },
+        "markdown_headers": {
+          "file_hash": "ecb76f5855cc1ed74d31f025ca1657778bf7c2de4fd452c880087aa470ed4d4d",
+          "chunks": 10,
+          "hashes": [
+            "6c442300ff16614cd66e60b72a7380e967feb91a30e9141bfe8d7ab0bbe4bd94",
+            "4b7f3b95a6bf0630ecaed66eb9cf26117a20e8265fd4ea273ce5a82e13c8721a",
+            "2d027dcf4927a1343f36d0fc45ba1f9548af719336e28643bb191b5686318260",
+            "423931ad1653da7e61f574019cb8ed525b13ba00c85811897a4d926dd4252f90",
+            "42182be80b8d74a7023957bdad1dffc89b278d08f98ebf3c8b72a05ffaef537c",
+            "419025d2df6f71b970b8bc04d6e739bf9b10d22fbb6e1f7b4d6a6523a6a11165",
+            "f6dd156f2fee3e13d152cc0ae20c93ab664fe1017c8fbd64a5a38de7a475263a",
+            "8198a31882812ee8dbc2ade7724f13d19988510abd96329b95b7d2c1f998d60c",
+            "25e514f281d88f1eed45ad44a4ac32de96a90c23c4ad47d2e4423ad182f5e36d",
+            "ff55ea2b8e3829bc21c17c51980c9c20f1269836610e42be4457284759c0b473"
+          ]
+        },
+        "markdown_headers_noprefix": {
+          "file_hash": "ecb76f5855cc1ed74d31f025ca1657778bf7c2de4fd452c880087aa470ed4d4d",
+          "chunks": 10,
+          "hashes": [
+            "9e606dbe5e5bbd76eed79edf2dc1c2ae3adea5bb38189c799e1edeeabca6ce92",
+            "af0de9836f51723fe497af0b7d60d8070b99aea90fcd216f79e5d65c3462bcfe",
+            "109766f4fd25861a944e75d5ad6591b372ed22b8c15bf8c8993a2b1f53b5968b",
+            "2658a42424426fb29026b69eed9960a8209b4b84b9e8e5d5630e44a2f40a1a34",
+            "a3e27e9ced41256489b0df72265420c91f5214b065e414b3f3f1e03b82fef8b8",
+            "d55bca14874a5544297c3db733f175898d0d41c3a77586ab2bb990da5242719d",
+            "3f91880b3ce7f715bf91dbc53218d9e58ea0b8648ea957a14a09238b4827bd93",
+            "3ccb8a6bf5dbd5ce24703e5661233eed0d695849b25f4e2b03b4fe3457305ecf",
+            "1b54bfc4999d96c687841c1e34e183683604537fe6ee641c48de625e970dfc41",
+            "dbd1926846929fac8647c9bfde69aef2458cc8b9b54c174f32d8b190ae28465d"
+          ]
+        },
+        "semantic": {
+          "file_hash": "ecb76f5855cc1ed74d31f025ca1657778bf7c2de4fd452c880087aa470ed4d4d",
+          "chunks": 3,
+          "hashes": [
+            "b6a3b516448e3ce2e0b309382b5c3d68054162618ac5b936ab63ecf7ae0060ff",
+            "471905b6b8bff75a63341661d1d6edfd78f33af2f601778a5d51f46068f6a51b",
+            "5dd410f5ff1054b7a45485b46536f5eed8d1b3a7ea9ebf5282a97bbb3fededcf"
+          ]
+        }
+      },
+      "file_hash": "ecb76f5855cc1ed74d31f025ca1657778bf7c2de4fd452c880087aa470ed4d4d",
+      "format": "md",
+      "embedding_model": "nvidia/nemotron-3.5-embed-1b",
+      "ingested_at": "2026-11-01T16:10:59"
+    },
+    "kb/02-password-and-account-security.md": {
+      "collections": {
+        "fixed_200": {
+          "file_hash": "b08ed81380bb864ae12e7702270a3c12dcafea275ffa1d9e0c5df24484e96720",
+          "chunks": 12,
+          "hashes": [
+            "2decb50aa3fe6b502ae267841a3b2c62b930d3fca01e989ca09581f622029b82",
+            "8cf74b7af70cca035c6832470bc2ba6a7a526e52c4a8ca864a8db403ef498e24",
+            "26e1165e7af835ff4e4f22133fffe5bf86b7125e8a2d220f2af73acf8eec164a",
+            "56f86d0374c420d3c8b6cd5b14bf0326cca34dcc6992d036cac1a646615e9c0a",
+            "2a6bedff0452f3a8d9d188fc65026b5cdfbd4db5704686bbcf52dc0bfae17133",
+            "e3f0ce1789109b2646f9fd8e7e5f2ef82b0419f7378214ccf0dd0a17d6e5d23c",
+            "4efdde50938235631b2770f8edfdb31062e76f01acecfd1dbda3e3e56ff6ad09",
+            "fa4744043049f5b9b9eafef2c3552c9b90b8ce8d145c4075ce43a2c3c69720f4",
+            "07f4a69b128099424913243a43b90ac24b6dfd8c9892fd299de24f57479c19ed",
+            "db1ca40e2bea7beb2a94f4763ad4f12bd43180fc271d1623a076b47213788133",
+            "3a022de819ed9cb224d89bca7f6cbe73f4cc3f2e26c2d976fe012e76f8da3aba",
+            "6011e452b7ccf6e934864b0690b2b2f5923f646e20774ab4e3e77476f6f16be3"
+          ]
+        },
+        "fixed_500_overlap": {
+          "file_hash": "b08ed81380bb864ae12e7702270a3c12dcafea275ffa1d9e0c5df24484e96720",
+          "chunks": 6,
+          "hashes": [
+            "2b3befa312133dc0dd833507a7f0c97a0c264a213609cb9e5cd674dc47b6e3cb",
+            "096b42acd936ef81f29c7852ffaa04a9a0ed36e35e6affc65aab850dfd931b47",
+            "16c2472b6a98aba7d4c1911983c1d6cb8a70f31209e4473a719959cbdfd1370f",
+            "23d0921690162e55d2f052d4e58c831a2c71e94237ea039beef65b36e3a4dc06",
+            "ab97e1827c074f4c7c194827e34aac564a5a559d159de2d35fc9b26f228e614b",
+            "3f7455958eba1928098288eac5a249623cbb9e449d0366565ad2b845da5f33e5"
+          ]
+        },
+        "recursive_500": {
+          "file_hash": "b08ed81380bb864ae12e7702270a3c12dcafea275ffa1d9e0c5df24484e96720",
+          "chunks": 6,
+          "hashes": [
+            "7f87658d0696bf5b3a310b7d71d952ade7165adbc020c31adf3b5d8e62d45db4",
+            "2267a1c412cc1271469a3626aab4c0810cbd32bc1fcb387e0e2f9517cf73cb41",
+            "df73eb6493fd7357f66f7de91b17481932063ec343a702b372e0b2bf2a05be4a",
+            "db7071dc8a177d9df7f61bc9c6ed0342e69695f2a05250c154d6c60321df0878",
+            "2581cd18cc040782678668e782181486089a382f9a66042a796918045c3bcb54",
+            "855f06883b2c48caa45800837c01415a11db0bcde294765ddb8b300b6b2e857a"
+          ]
+        },
+        "markdown_headers": {
+          "file_hash": "b08ed81380bb864ae12e7702270a3c12dcafea275ffa1d9e0c5df24484e96720",
+          "chunks": 6,
+          "hashes": [
+            "a358a9c0749c50e295fff88f50e52c23c9be64cfd7d8a4eeb4fa9b33c16fc57e",
+            "beb44c99af575b6fe573bc35311520be2e7e0dc96854aa7c9c6da8b8b63de5ba",
+            "899f4b6fa5f1cd6b0352f6b85951a3a9b6255a5327633e904f80f315456ab3e3",
+            "cb8d0f88da32aca84bf5402751cf3d69d6766b3a9a90391e8f53fddf490ba811",
+            "7f9dfb011b7fbac98bdddd88b20fb687b508955e96438cb5adfe9740b9ec35e1",
+            "0f79b5391e40308db5860bd5eef0c7b083abf53d00706d8877aee3f3eb3d145f"
+          ]
+        },
+        "markdown_headers_noprefix": {
+          "file_hash": "b08ed81380bb864ae12e7702270a3c12dcafea275ffa1d9e0c5df24484e96720",
+          "chunks": 6,
+          "hashes": [
+            "b317961172ae6133c7f4831de4fe19778fec8ddd41b5ed304437072191753b71",
+            "4b5455b200e281c8dfd393903e84b6a44fee1b561084c09fcbc60e4137c090bc",
+            "0d5f952fd4bc7823f24c637c57d4b816a9f42473a9081b0192b9f5bb873b4d8c",
+            "33102b3f0674f2db4df61bbdbd45d150c87fc6404e023343452d4aeda06c7b25",
+            "389cd6e43ddc906555576b902211c9be4f641ff8983abc80aef7ee64d2c5a1be",
+            "1b28e42240b1603e0611b192bdad9d49581a677a03bcecf6dd2f429393c79758"
+          ]
+        },
+        "semantic": {
+          "file_hash": "b08ed81380bb864ae12e7702270a3c12dcafea275ffa1d9e0c5df24484e96720",
+          "chunks": 3,
+          "hashes": [
+            "511f0604d14dfc7d0f5a87822a1343dbe3ac23f96505ad979bc7c7b4d35c6bf0",
+            "018da3f750d08c4dc42f22d04d96fc4db2d954ab21222ede53ac119768e05cad",
+            "bfc4778772b38082a2d957010341df8c1ca1b031ad5875cb21a5b8d3f9475c82"
+          ]
+        }
+      },
+      "file_hash": "b08ed81380bb864ae12e7702270a3c12dcafea275ffa1d9e0c5df24484e96720",
+      "format": "md",
+      "embedding_model": "nvidia/nemotron-3.5-embed-1b",
+      "ingested_at": "2026-11-01T16:16:05"
+    },
+    "kb/03-printer-setup-and-issues.md": {
+      "collections": {
+        "fixed_200": {
+          "file_hash": "268c956194d357efdcb1052f178a21a671076bdf5b8b9b565cc0d48ca3fc85c1",
+          "chunks": 11,
+          "hashes": [
+            "ca458bc919d4a6ff917f7b1bf6939a82bebb6126247c8ca3263d7361c00334cf",
+            "e4d6b5982495d8a7e6053c1b557519aec758de5600e2c326317b42bcdf0247e2",
+            "fc60f9742fe5fa4452f5da837f3207467601a11157bb3c543874d9653e49f1df",
+            "41de03a2c43ba7203321021051de7765a28993d9dd02f797bae6f99c427f6ac2",
+            "956d7a387f078abae655222568fa86c1fa47f1b78bf7b878d20a6b07f3139e0c",
+            "4b02e44348a7c5c781ff5bbbc142a18ecc7867b2b06f4f3be53ec013bc9bc9aa",
+            "87c682d41769b242aa0e294dfef1facf85fa4c50075f5a88b934518d6ddef19f",
+            "d7698fdb14dc9085c7008c5b9bbcab13f2500331220829c3a49917abe3885a66",
+            "3da8fd7ed7a1ff9bf98f024eae77806d86a64dbb17b44f17cebf14fe66596ce5",
+            "682248057f723b20c8ab5cc74e88a7893bd4beaf1b8fcb5ceef2041c9ab2d0d6",
+            "e5bf432452c4da375c3dacaf45a6b6020123a6fc2c899b7d4685928be8db44ea"
+          ]
+        },
+        "fixed_500_overlap": {
+          "file_hash": "268c956194d357efdcb1052f178a21a671076bdf5b8b9b565cc0d48ca3fc85c1",
+          "chunks": 6,
+          "hashes": [
+            "6e679fcd8c72b05335c66a0101a7cf4def43470e1a7370c72b89f46705b8131a",
+            "7e04fb9d00de1ccc5c4e7bd66a9295b64c2a51771f77e522fde5f1bb8d62ec76",
+            "da9147dba69963c152ef0a8ba706b321b3ed5524b05054ad4010163d61530d9f",
+            "954429c64b805d842f02c202f0d9505e44c4011915137a61d62bc6d456fb073c",
+            "e447244ed78fa92dd6562d0255cc0093de21d958a9e470b1c1598aa9cbf577f4",
+            "e5bf432452c4da375c3dacaf45a6b6020123a6fc2c899b7d4685928be8db44ea"
+          ]
+        },
+        "recursive_500": {
+          "file_hash": "268c956194d357efdcb1052f178a21a671076bdf5b8b9b565cc0d48ca3fc85c1",
+          "chunks": 6,
+          "hashes": [
+            "4a4bc548f4747b312a2be22802f4c484f30d8ed86911ad6a9c9b2556ec538ed6",
+            "7bbead0b806fcffbb2da43072d4ca5356946bb82b46e58eb92e07585a0997e1d",
+            "f5ab4319cbbca25104fe8a18d47174ce30175e9ff5dcd59c348eb7b8e9f6e787",
+            "51933a25c09f1b7bcddd56306541c07379f2102b70d79c36f1d930d3fba701cb",
+            "23c8f8ee73e3899418886e829cafe4007b5f98e4cd24941103253af0c0b77bef",
+            "9d34b073eeef24a293f5484ef2874cb426d43fd0e02850ee0f3bb42999e9d0aa"
+          ]
+        },
+        "markdown_headers": {
+          "file_hash": "268c956194d357efdcb1052f178a21a671076bdf5b8b9b565cc0d48ca3fc85c1",
+          "chunks": 7,
+          "hashes": [
+            "a5b8f7c6956c34cc6ad5a3de2fdf77359aa632db9c691ad37fd96ac7b56ae85b",
+            "6d55120dbcc8c353cea8f7a41636b5ea1634a7ac2f597a3ffd69cda8b50e2317",
+            "5810dca045c903e6a19d8f270313173290029bf1c6728836edb3531af8190b3f",
+            "0ad7f5b2344cea3a54087936e5b64129e821b7afa10ae784d2eb106bb24a5ca6",
+            "83a89ae239226234c1adffed9029e9eef9f290d1a2c71ec2f2d0bb9b64c7170e",
+            "188c40fd9f262992af2d34ae8525483ac590fc427c6acf98bfc188729aa49bb6",
+            "6a985e535a4f030cc822dddd449e77add184db277fbbf5bf40f786cad80f11b2"
+          ]
+        },
+        "markdown_headers_noprefix": {
+          "file_hash": "268c956194d357efdcb1052f178a21a671076bdf5b8b9b565cc0d48ca3fc85c1",
+          "chunks": 7,
+          "hashes": [
+            "892584249692a4d5962da412abb50cd72c7d49f696034344c53136a5a8799936",
+            "17b692a5c3a9d7708327cd2a2d29354b9849d4f23bd8261c19d274ed3a4336e6",
+            "5b3a50e550f62582744cabf8be9a811a806060431bef740a11d8b4072a7a571a",
+            "b0f6e71700605b91f40a7b53eab9cd5b02a240eaf64c6acdf2fb4696fff4535b",
+            "7826f26c65b5fd9d830944510bdf07413d0b33b34777fe48c4f18daf48c70884",
+            "58e94e6500861f995579ba4e2c8ddcd953e6ce5186db3bbda64da2e01d05340a",
+            "41f312ca9c99bb20021ff589273c5a884bafbf6d7c74b113bcafc72aa2202847"
+          ]
+        },
+        "semantic": {
+          "file_hash": "268c956194d357efdcb1052f178a21a671076bdf5b8b9b565cc0d48ca3fc85c1",
+          "chunks": 4,
+          "hashes": [
+            "e2c5c744151a8650ae30574f5dcfbd6f759f6476c29087d9b87c990d85c63151",
+            "9a1495a18027d3978816ca02b9860ad203d9185dbdfbbf34ba3bccedac00077b",
+            "92a10e3eb25eec97577f2d0cf8f4bea5245eb0d722b3ed484ed0e770c6ff0044",
+            "95d3a42649565096e9592a7fdc96c6122b972e1673b69636131141211e943d94"
+          ]
+        }
+      },
+      "file_hash": "268c956194d357efdcb1052f178a21a671076bdf5b8b9b565cc0d48ca3fc85c1",
+      "format": "md",
+      "embedding_model": "nvidia/nemotron-3.5-embed-1b",
+      "ingested_at": "2026-11-01T16:11:48"
+    },
+    "kb/04-laptop-performance-and-updates.md": {
+      "collections": {
+        "fixed_200": {
+          "file_hash": "f87d662e3351e27043bd67c34642c739f5137bb843cd04f14b4ae20b2a7c590a",
+          "chunks": 11,
+          "hashes": [
+            "d6d7fd6ddd0572710c435423f0ec6ef9dbd703b27928f0d798a12c3ab8505d37",
+            "16cd150b49d594e8e865ce9c5089e8927428369129203cdd0a98bad96c958a7f",
+            "fb183da68c485a18ce685455b228a1ec3014c9a60e78ba10256fe27acd193619",
+            "13b6d9acb6a2b4ac854f01844484697e7f45ecb0fcc6e88cc9929462f73cbc6a",
+            "ee33f4ec8f43b0f8fb7ed3876aac0c82549ea41c791907748177eaad7a6543df",
+            "40ef4c873705ac8459e5cc3a2216f17ec6ee0c15cc266f9e02b06ea1a48197ed",
+            "392c5c274885ee3c6729df7c38cd79a9dbc4853ea45e1cbbc15db09ac8ebc1d9",
+            "9ab5d0eafcee032eb35b617f2061de4bc4688699c16d708a1bd9bc2a93dd6633",
+            "d6fde903ad3f4d3ad0e535c40e7d3ba6e3dfc30f2924880ad3dad5099590792f",
+            "acbfe67f8c13f0c5a70869a5f12efc5c3a023c9aef4dfbe90e4e0c4523527f7c",
+            "37604d3ca6cdd04707270ca1ce0602c67c4a2b5591d17b1b195cfd6bcbd33a74"
+          ]
+        },
+        "fixed_500_overlap": {
+          "file_hash": "f87d662e3351e27043bd67c34642c739f5137bb843cd04f14b4ae20b2a7c590a",
+          "chunks": 6,
+          "hashes": [
+            "ea244f86ce8c75bc9b8bbd804ebdc9eac4fbdf3077029d5175f555162efaf595",
+            "c499d58ef92b38123117f9dd4b978cf3fa3793cb0288443c5ec0f119c37d4069",
+            "f40d5d6f786a1a3f44e9da4cc72c614b86fee30834c4ce1cf376199dd9c8b2e3",
+            "fb5044e2b3a679e0b30d56a8226f9bd674bf42a6bf7f4f177a0eeb344253b695",
+            "a79ce2db39ca8b68f368126647a2a938f43db064291f2f102b5e12430631cb03",
+            "37604d3ca6cdd04707270ca1ce0602c67c4a2b5591d17b1b195cfd6bcbd33a74"
+          ]
+        },
+        "recursive_500": {
+          "file_hash": "f87d662e3351e27043bd67c34642c739f5137bb843cd04f14b4ae20b2a7c590a",
+          "chunks": 7,
+          "hashes": [
+            "25649dfba76e73647569e89efc35fbb0d9dc169695eddf720055b73d42d7a295",
+            "a38cf04d7d0d2552477353052da428ddc8fc735384a8da835b700eed7caa1581",
+            "0faaeb46e8225494b4c7527d54c8867330b9571ea6b2eda777650202e9461e76",
+            "20a2e8d3481c83bf60b044154a78c9d018964866cae49c17c2f703b6a0ab5cd3",
+            "e6a6e6217b09cd2af3275a3f52dede7840f514cf994cbc2bf419d8b59080bd40",
+            "2d6d6c508c534e639c4990e1e37688f1dca6876e7e974f7a9dfa2dbcba26c0da",
+            "2fe137cf100d823b749a4304268af35c1f2604b3cdc14ebcce4361f72e10d68a"
+          ]
+        },
+        "markdown_headers": {
+          "file_hash": "f87d662e3351e27043bd67c34642c739f5137bb843cd04f14b4ae20b2a7c590a",
+          "chunks": 6,
+          "hashes": [
+            "0cd223ba39f636a49c366c111a178e505d46931c58754f931f636740de3dd821",
+            "737b593cd27bd7229a989e098d0922795149c9dcdcaa8d411f91b29302ea1eba",
+            "b2ba3a11446748560f0f2c4e6b09b1a896198ada425037ad7ab36f2421ead8be",
+            "2107de942db8204ded663a2aab46abfe01ad7faedc4a6dfe5b3f993ac163fcd8",
+            "a84ed3fcfe5ddbe2cf10f70ae87cccade78758cb5c96e4533326414d4ac3c6ae",
+            "772e9af67da2487b13f88e26f479fb2344b9618c0cb3233ec37cc111fe8d5d38"
+          ]
+        },
+        "markdown_headers_noprefix": {
+          "file_hash": "f87d662e3351e27043bd67c34642c739f5137bb843cd04f14b4ae20b2a7c590a",
+          "chunks": 6,
+          "hashes": [
+            "70b090879bf0f2a6a918003a9682e520832822aa311fe444ad0ac2892fd1a00d",
+            "a38cf04d7d0d2552477353052da428ddc8fc735384a8da835b700eed7caa1581",
+            "20a2e8d3481c83bf60b044154a78c9d018964866cae49c17c2f703b6a0ab5cd3",
+            "bbe8e0c425fd8f8d8deb61d39a556d98a4bdbb456a38ebbf47072e14320ce1e1",
+            "cab39cd8fe4de1e655765f84f3e96fb91dadfb3b2d91efeca05ebbbe857025da",
+            "e1605042a0d2cd02e2a16e674765becc42e9018a32e95c0572895cff4620ddb2"
+          ]
+        },
+        "semantic": {
+          "file_hash": "f87d662e3351e27043bd67c34642c739f5137bb843cd04f14b4ae20b2a7c590a",
+          "chunks": 3,
+          "hashes": [
+            "2b00f2080d82f7cc16e3a80d648fe5f1de1dd932c25cef3d4fb78aa1438d0329",
+            "ed117e094a1db278828a39d93442816ce5e5f997888fd8bacff140c6f0cfda0f",
+            "4cec7328346f6d002827ca67bc078b20ff441eb06e1f7537fd2a4de99613371e"
+          ]
+        }
+      },
+      "file_hash": "f87d662e3351e27043bd67c34642c739f5137bb843cd04f14b4ae20b2a7c590a",
+      "format": "md",
+      "embedding_model": "nvidia/nemotron-3.5-embed-1b",
+      "ingested_at": "2026-11-01T16:11:49"
+    },
+    "kb/05-collaboration-tools.md": {
+      "collections": {
+        "fixed_200": {
+          "file_hash": "be15e29b91fa92bb1156669e8e29688b0f25df090a298679daf21d04e17ae294",
+          "chunks": 13,
+          "hashes": [
+            "17602f22c02ffdb737ac136e366c7bcf10224f0382940d2d7b633ae09ff58849",
+            "b41c2ba65638ba27bd0f13ac38c29f7749b8db0b2b51507ebfaf0b66e3dfdf57",
+            "f01a73bb89e072f118fb9a06cc695641868b9e36b9cfbf0698b53832caafb9df",
+            "2cedf8d1222f63b11313c67e4bb82e849829eb1ba64781c1c0b6539c60feb3b9",
+            "1adc165ad0fa7e9a9ed7c1c017738d1b582c668de62986658118229ea777366a",
+            "a040f2f6a8d63dac42e11aed5b719ce6480c5943060450b129953225ded5327f",
+            "3a156b2755e89e15cc7898fb201f79a9887386b9c9f3254a7e32bf7ebe065ac0",
+            "cabf7ad4640e106976cfe6743afba628b8a9841a184bf52375a640a2afb82a5e",
+            "8487eaecb5119837e2b69e0c0a49f46d77c418f7e64246113504dec1b2f3994d",
+            "4a55224fe17e95c6a79336ec223b75182e76d8e214992f8fdec68fc202689a21",
+            "c9e358af93cb3ff959638644bc6722e08369955646ca3b0cd01891f104913df1",
+            "e16d1cd7713d5febe39ed70a484e4eed3cd46394bbd6837879dd8ffb105d410c",
+            "2091f36498c5e4d7b7b8331297bc5b723c09c51a4de95b83e6dae4c0be3b7ac2"
+          ]
+        },
+        "fixed_500_overlap": {
+          "file_hash": "be15e29b91fa92bb1156669e8e29688b0f25df090a298679daf21d04e17ae294",
+          "chunks": 6,
+          "hashes": [
+            "900e8f25e8218929c4f9b367948ac65cf6944edb0c2f8a1b984a70d438d239c6",
+            "9c2a93ee375980547006e8cfb2433ce8956adfdb4e8ce04c6e79c705d8011772",
+            "96574b8513a4e2f42414e6817abd2f2f73ae9c88bb289680bf1eae38aa271ed1",
+            "bc2afa5c816611db9693d480d70a8ff3df93e45d431d189da40e5877e64f31ba",
+            "b23e8c3a19fce13f85d98bb3fdcef8d73918e045353c844542a660eeca42290f",
+            "8764fbd5b16d6baeb85ee700eabc89b311963b3c31a037eae8847285e46ffd48"
+          ]
+        },
+        "recursive_500": {
+          "file_hash": "be15e29b91fa92bb1156669e8e29688b0f25df090a298679daf21d04e17ae294",
+          "chunks": 8,
+          "hashes": [
+            "efe3c77bc7e00fb95995fc5f1047277b7266638303ff1fc8f61c3b096eeb0305",
+            "ee000a1d915ae4752fddae7f0e09945bfdd84e4f4a0f9215eb507276828daec7",
+            "37c7d9749db757085e4f5ad9c35435e46f9e419448d504b0b4cf97590a7ab970",
+            "1b3e1f72fa1dac87ffa103add877d385767bb962186457ea66b205ef313db03d",
+            "cc05735f001b7badea0583a3cfe852e6c946fef46601349c5fbb87b676d25537",
+            "72f89a2aedf3e3c4e2f56eee96e5ab84eb8f817fd34b6e93aaf551a17d6e561d",
+            "b8abf9d40f97c60299db1234a2e304e37d39d233c6cca82d53c0ab9c39535220",
+            "438268adbb63fad07e6f3da6d86b9280acd50d042fe26ebde7b84b2172f4a3cf"
+          ]
+        },
+        "markdown_headers": {
+          "file_hash": "be15e29b91fa92bb1156669e8e29688b0f25df090a298679daf21d04e17ae294",
+          "chunks": 7,
+          "hashes": [
+            "85da2a3ff2f64b92d609fd25ef4b13c4c3c21ea6ab10959dd99b4d40a270cc4e",
+            "f76d447a13174090d095dc0abb272eb9346db9ee7eaada03f43636bcbe594810",
+            "3a247c4721ef5204fc9acedfe873b81f0b0dfb649683c35bfbd9c5fb7522b3f1",
+            "114407a67588af6cfc298efc8f15dde048b4c655ea0c5d34d1e24131f4094289",
+            "8c944cc5d1f67ef2b94119742be550e945b77a78e470db23f7391fe5cbb4df62",
+            "986ab4665975b1afa5b7684e15faa3a260d3572cb7a3d515431a51e1a9bbb614",
+            "52621913975af1a59980f39b847c01110845f8aa236feaa68e08912beeb84114"
+          ]
+        },
+        "markdown_headers_noprefix": {
+          "file_hash": "be15e29b91fa92bb1156669e8e29688b0f25df090a298679daf21d04e17ae294",
+          "chunks": 7,
+          "hashes": [
+            "974f7e224bf013e9d820668386f5d8080c5ae618e71eff0285bb1a9a8eac5254",
+            "3fd6b739f07a7f8aa9233a7fdac22497219857935bafce24e2926563630580d0",
+            "886357e24ef2bd68480e076a70d6e58310ccbf58e2548d73e9d8bc65eb564222",
+            "63e9f26929d9364c642bc1946c59c154471a9e3996c19146446d6b93bb63b7eb",
+            "cd3761b9a5431979f7298d51339be40256b33777930f6a33101b3a93144f4f53",
+            "f2a38c40ece6b3a4ab8581e8273f3f2d981fb79010a27dccf5e2f14e1cec2bf6",
+            "1fd7ee676182745e3cab6177175aa980a907cb11a265c691cacef7b11ba4d83b"
+          ]
+        },
+        "semantic": {
+          "file_hash": "be15e29b91fa92bb1156669e8e29688b0f25df090a298679daf21d04e17ae294",
+          "chunks": 3,
+          "hashes": [
+            "c8084dd1bade6d6c315e66239ab3a536616f54c76504d1052c1bd2c321b6ef4f",
+            "a026a8970a4f87fc68a5bd13ceed69fd37fa302ac27dabb417b53ad2e8f84cb9",
+            "4af650a774aa0f5f91df3b6570f4c8f116bf3bd58cd20e1f6318c78892197472"
+          ]
+        }
+      },
+      "file_hash": "be15e29b91fa92bb1156669e8e29688b0f25df090a298679daf21d04e17ae294",
+      "format": "md",
+      "embedding_model": "nvidia/nemotron-3.5-embed-1b",
+      "ingested_at": "2026-11-01T16:11:50"
+    },
+    "kb_other_formats/03-printer-setup-and-issues.html": {
+      "collections": {
+        "fixed_200": {
+          "file_hash": "dc8b9cfcd012de4530f3020709beb649cffbdf5868bf315f15c308ca67cc0df7",
+          "chunks": 11,
+          "hashes": [
+            "ca458bc919d4a6ff917f7b1bf6939a82bebb6126247c8ca3263d7361c00334cf",
+            "e4d6b5982495d8a7e6053c1b557519aec758de5600e2c326317b42bcdf0247e2",
+            "fc60f9742fe5fa4452f5da837f3207467601a11157bb3c543874d9653e49f1df",
+            "41de03a2c43ba7203321021051de7765a28993d9dd02f797bae6f99c427f6ac2",
+            "956d7a387f078abae655222568fa86c1fa47f1b78bf7b878d20a6b07f3139e0c",
+            "4b02e44348a7c5c781ff5bbbc142a18ecc7867b2b06f4f3be53ec013bc9bc9aa",
+            "87c682d41769b242aa0e294dfef1facf85fa4c50075f5a88b934518d6ddef19f",
+            "d7698fdb14dc9085c7008c5b9bbcab13f2500331220829c3a49917abe3885a66",
+            "3da8fd7ed7a1ff9bf98f024eae77806d86a64dbb17b44f17cebf14fe66596ce5",
+            "682248057f723b20c8ab5cc74e88a7893bd4beaf1b8fcb5ceef2041c9ab2d0d6",
+            "e5bf432452c4da375c3dacaf45a6b6020123a6fc2c899b7d4685928be8db44ea"
+          ]
+        },
+        "fixed_500_overlap": {
+          "file_hash": "dc8b9cfcd012de4530f3020709beb649cffbdf5868bf315f15c308ca67cc0df7",
+          "chunks": 6,
+          "hashes": [
+            "6e679fcd8c72b05335c66a0101a7cf4def43470e1a7370c72b89f46705b8131a",
+            "7e04fb9d00de1ccc5c4e7bd66a9295b64c2a51771f77e522fde5f1bb8d62ec76",
+            "da9147dba69963c152ef0a8ba706b321b3ed5524b05054ad4010163d61530d9f",
+            "954429c64b805d842f02c202f0d9505e44c4011915137a61d62bc6d456fb073c",
+            "e447244ed78fa92dd6562d0255cc0093de21d958a9e470b1c1598aa9cbf577f4",
+            "e5bf432452c4da375c3dacaf45a6b6020123a6fc2c899b7d4685928be8db44ea"
+          ]
+        },
+        "recursive_500": {
+          "file_hash": "dc8b9cfcd012de4530f3020709beb649cffbdf5868bf315f15c308ca67cc0df7",
+          "chunks": 6,
+          "hashes": [
+            "4a4bc548f4747b312a2be22802f4c484f30d8ed86911ad6a9c9b2556ec538ed6",
+            "7bbead0b806fcffbb2da43072d4ca5356946bb82b46e58eb92e07585a0997e1d",
+            "f5ab4319cbbca25104fe8a18d47174ce30175e9ff5dcd59c348eb7b8e9f6e787",
+            "51933a25c09f1b7bcddd56306541c07379f2102b70d79c36f1d930d3fba701cb",
+            "23c8f8ee73e3899418886e829cafe4007b5f98e4cd24941103253af0c0b77bef",
+            "9d34b073eeef24a293f5484ef2874cb426d43fd0e02850ee0f3bb42999e9d0aa"
+          ]
+        },
+        "markdown_headers": {
+          "file_hash": "dc8b9cfcd012de4530f3020709beb649cffbdf5868bf315f15c308ca67cc0df7",
+          "chunks": 7,
+          "hashes": [
+            "a5b8f7c6956c34cc6ad5a3de2fdf77359aa632db9c691ad37fd96ac7b56ae85b",
+            "6d55120dbcc8c353cea8f7a41636b5ea1634a7ac2f597a3ffd69cda8b50e2317",
+            "5810dca045c903e6a19d8f270313173290029bf1c6728836edb3531af8190b3f",
+            "0ad7f5b2344cea3a54087936e5b64129e821b7afa10ae784d2eb106bb24a5ca6",
+            "83a89ae239226234c1adffed9029e9eef9f290d1a2c71ec2f2d0bb9b64c7170e",
+            "188c40fd9f262992af2d34ae8525483ac590fc427c6acf98bfc188729aa49bb6",
+            "6a985e535a4f030cc822dddd449e77add184db277fbbf5bf40f786cad80f11b2"
+          ]
+        },
+        "markdown_headers_noprefix": {
+          "file_hash": "dc8b9cfcd012de4530f3020709beb649cffbdf5868bf315f15c308ca67cc0df7",
+          "chunks": 7,
+          "hashes": [
+            "892584249692a4d5962da412abb50cd72c7d49f696034344c53136a5a8799936",
+            "17b692a5c3a9d7708327cd2a2d29354b9849d4f23bd8261c19d274ed3a4336e6",
+            "5b3a50e550f62582744cabf8be9a811a806060431bef740a11d8b4072a7a571a",
+            "b0f6e71700605b91f40a7b53eab9cd5b02a240eaf64c6acdf2fb4696fff4535b",
+            "7826f26c65b5fd9d830944510bdf07413d0b33b34777fe48c4f18daf48c70884",
+            "58e94e6500861f995579ba4e2c8ddcd953e6ce5186db3bbda64da2e01d05340a",
+            "41f312ca9c99bb20021ff589273c5a884bafbf6d7c74b113bcafc72aa2202847"
+          ]
+        },
+        "semantic": {
+          "file_hash": "dc8b9cfcd012de4530f3020709beb649cffbdf5868bf315f15c308ca67cc0df7",
+          "chunks": 4,
+          "hashes": [
+            "e2c5c744151a8650ae30574f5dcfbd6f759f6476c29087d9b87c990d85c63151",
+            "9a1495a18027d3978816ca02b9860ad203d9185dbdfbbf34ba3bccedac00077b",
+            "92a10e3eb25eec97577f2d0cf8f4bea5245eb0d722b3ed484ed0e770c6ff0044",
+            "95d3a42649565096e9592a7fdc96c6122b972e1673b69636131141211e943d94"
+          ]
+        }
+      },
+      "file_hash": "dc8b9cfcd012de4530f3020709beb649cffbdf5868bf315f15c308ca67cc0df7",
+      "format": "html",
+      "embedding_model": "nvidia/nemotron-3.5-embed-1b",
+      "ingested_at": "2026-11-01T16:11:52"
+    },
+    "kb_other_formats/03-printer-setup-and-issues.pdf": {
+      "collections": {
+        "fixed_200": {
+          "file_hash": "fd502501fffdb59bf4cc048ce323498170f7aa34eeb7ebb2726ab891801a5189",
+          "chunks": 11,
+          "hashes": [
+            "1c8889fb357134ab6a8f90bd884e184af0e3d215b9782ad941d3aa0d94fd86ee",
+            "1ce9f6085a9846b87b2f115b22905597e187e9fb88741dd833068db58145cfe1",
+            "880548739b9a69c18ce23bc152f5474ca3d695bd44de340e43d85da309fbbe26",
+            "cfb7e34e1e6f2f45873871355cb34335ee5a33460b2b4a5b153dcd6795fd8ee7",
+            "5116077029f093ea3bcfe90640e2ec189a5e27b30e46ab66262e47bdc25739f5",
+            "69f48310958d4e30b37e15eec90bc0bcebf2f12d1a4958884ee6498db4e5ceaf",
+            "8fdff92b82cb6af19bd511bfad76e257f9a34f9c229feeb407ad591b1621d509",
+            "be3d3b6f4156faa02be193ef625f15369fb53fc603feea4473ce912ca3e1307f",
+            "aa75e02c1cd0843a3ef9ce95e65b2dbc180ca49596aa2a7b716cb5928f51b6b1",
+            "b1f8e7de7b9183188c26a98317391d3925a3ad1be89ca5023b79153d6f730615",
+            "da6f5c7eb1fe73e3c62f5dc3d14df8dfafe672aca1443b1c3f587e5daabe255a"
+          ]
+        },
+        "fixed_500_overlap": {
+          "file_hash": "fd502501fffdb59bf4cc048ce323498170f7aa34eeb7ebb2726ab891801a5189",
+          "chunks": 5,
+          "hashes": [
+            "89f9999ce1cee7966cd9a2f4e4533b7c3179e0f7da7385c2a583b8bacf480d2d",
+            "7926fe35ed67041b608483e226e96127a02e27e5ac4dc07cdbbe9ec7b9c0d3b6",
+            "ddb8d7d0b5b3e2299e1d852b43120dd5dad6474e33cad380eb065e5fde4c1bb3",
+            "db46393987f9a3962b60bc0a8bfe9a69fb3afc8a2e93be80781f9acbace6dfa9",
+            "5b9cffee50f273c0a5c3c6242aa4fb8bf3acc0de8f2f5c6f897a291c51cd7fe0"
+          ]
+        },
+        "recursive_500": {
+          "file_hash": "fd502501fffdb59bf4cc048ce323498170f7aa34eeb7ebb2726ab891801a5189",
+          "chunks": 6,
+          "hashes": [
+            "2ed180e761b51c1a2ba76ed60267206c038dd8bfc6ca1415cffcc61f3f5096b7",
+            "39f078f81344990746615cd52720c5e994d96d621e418c2974d829b572679309",
+            "b0562d9e36ce284764554708f9fae79499c4f583dafca872b062e1857723c4d7",
+            "57b62c570a55a52ee59a648ef3020fcbdd5e94136deb156778df4d312c7c1355",
+            "c8d0c56295a9441e9e3660488b1dec04b4622b1b15070305539949bf81dc99ec",
+            "7ab853e119666e84b9912c9e7ae6c9d743fa171361808461c9c5c9a72647c405"
+          ]
+        },
+        "markdown_headers": {
+          "file_hash": "fd502501fffdb59bf4cc048ce323498170f7aa34eeb7ebb2726ab891801a5189",
+          "chunks": 6,
+          "hashes": [
+            "2ed180e761b51c1a2ba76ed60267206c038dd8bfc6ca1415cffcc61f3f5096b7",
+            "39f078f81344990746615cd52720c5e994d96d621e418c2974d829b572679309",
+            "b0562d9e36ce284764554708f9fae79499c4f583dafca872b062e1857723c4d7",
+            "57b62c570a55a52ee59a648ef3020fcbdd5e94136deb156778df4d312c7c1355",
+            "c8d0c56295a9441e9e3660488b1dec04b4622b1b15070305539949bf81dc99ec",
+            "7ab853e119666e84b9912c9e7ae6c9d743fa171361808461c9c5c9a72647c405"
+          ]
+        },
+        "markdown_headers_noprefix": {
+          "file_hash": "fd502501fffdb59bf4cc048ce323498170f7aa34eeb7ebb2726ab891801a5189",
+          "chunks": 6,
+          "hashes": [
+            "2ed180e761b51c1a2ba76ed60267206c038dd8bfc6ca1415cffcc61f3f5096b7",
+            "39f078f81344990746615cd52720c5e994d96d621e418c2974d829b572679309",
+            "b0562d9e36ce284764554708f9fae79499c4f583dafca872b062e1857723c4d7",
+            "57b62c570a55a52ee59a648ef3020fcbdd5e94136deb156778df4d312c7c1355",
+            "c8d0c56295a9441e9e3660488b1dec04b4622b1b15070305539949bf81dc99ec",
+            "7ab853e119666e84b9912c9e7ae6c9d743fa171361808461c9c5c9a72647c405"
+          ]
+        },
+        "semantic": {
+          "file_hash": "fd502501fffdb59bf4cc048ce323498170f7aa34eeb7ebb2726ab891801a5189",
+          "chunks": 4,
+          "hashes": [
+            "4ce008ce21be080eebc778d6caaae7dbef9f14a19d1eb5acc0231435afe593ff",
+            "85e26776c1fb2409a3b4baeb53772ffc32330e116a67c052bf42bf73bb1b953e",
+            "2645bb7a80fbacfd3d09e29ebfbfed95815abacdf6e08a3b92836d4874eaebc1",
+            "e146072736988d9aad3d283d2db2572f2eaff9a960994e07efe707e7cc1dffb8"
+          ]
+        }
+      },
+      "file_hash": "fd502501fffdb59bf4cc048ce323498170f7aa34eeb7ebb2726ab891801a5189",
+      "format": "pdf",
+      "embedding_model": "nvidia/nemotron-3.5-embed-1b",
+      "ingested_at": "2026-11-01T16:11:54"
+    },
+    "kb/06-software-requests-and-policy.md": {
+      "collections": {
+        "fixed_200": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 11,
+          "hashes": [
+            "c18db921ccbe291b51bb21601f0e7c12f4777a4ab5d0f169233cc732880d8117",
+            "54959964846ae3b784f75115b532b92a0651bb79e1295d4b32ccd515c2774885",
+            "1cfc7e0f4753babca4e1a591384a27301e1262a0d4c1b00829da17ab4cc39540",
+            "bbcbc2400e71952ccd69b5e1bb90900c92e73a5efeee3b1bca591fb4676bfb07",
+            "4bcea98c7fe594f0ae964ab6bc86d578df79d903460ea33f230c41e400e62083",
+            "6d1447303804076664955e8b5c206c16e6a4a6a22a5f9cf40b552ecc399fabeb",
+            "42c753efec33a440126f621f4e2c12c06159efeeab2c7c335292114dd5d37507",
+            "70304dd005d3bb3ea4e03c534fa60eec5f43fa631963383722a056ae26695d11",
+            "2174c7304962f791e2596486f48a88cc7b12464ce269e4add0b895473bbcf42d",
+            "315eb3783e01bbb7e60c5181e3feef02b83cf56f48186b37414ffb3330c8f134",
+            "788e71c49605a5ade74afbedb866a60e4958812a26cfbac8134326091f074ab3"
+          ]
+        },
+        "fixed_500_overlap": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 6,
+          "hashes": [
+            "8e6889741701276f23821082a8658fa423ee54711c0ca5c1890fd3b7c03e7a01",
+            "d6250892ed3064ebbf50507127194ba0c405326988bf95b46e743d91add91b30",
+            "8ad470bdcb9631b1753ca22ce608cc59b46d938aec1727b2f116146e3ae3e7a6",
+            "b8f44e5a126c1d779fd7c6a275c1d438aeb36d9132f73e54e41ae69725b49f72",
+            "0269a6a3e03832a573449675f0950c1ef41250b272a8a44a434a77f224f90dd4",
+            "788e71c49605a5ade74afbedb866a60e4958812a26cfbac8134326091f074ab3"
+          ]
+        },
+        "recursive_500": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 7,
+          "hashes": [
+            "ed2c351ffc1e7eb692e702824f3082e327edc2b165b7b4d67ca2fe31a16e7e4e",
+            "aa7b246a0fc500ac6347f5b8dfbdce6acef19e1fd27f172db99257b4f7de1de8",
+            "c1910af75d1c032896da0c6559f19eafcf8585af564b763b942805b8124b2857",
+            "9a1a0709d2682debdbf7e188432e376e7f65ba1e8865f5eb98e2de7429df2272",
+            "5bcbb31c66638d1ff6e35c7e87802a7474a3f64ff9c308ecd0b1862f478cbb92",
+            "6bef2661aa4b3a869e7890086ecbc464ee8e2ce8c68f344d3bedb8b7fa9b267c",
+            "d99ff28e75659f09cec7646c093e43d077d078e1ba0e17b5de7560195e49b2b0"
+          ]
+        },
+        "markdown_headers": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 7,
+          "hashes": [
+            "83409b04f85aa5cc3270ee6b6c72ea3dc2067270ab6d77915ad95d9f0d870eac",
+            "a681fff9b806f4f954450fbc36a064bd68d2094da9dd04b4fa262a7389911cfb",
+            "191710c19102dea7f4fdc9a3018622c4c47a1ac47d49fa2d4d33479fe1d03205",
+            "788e3942da59d4665706b6a5a783bdc710b578a2b44fb919738fe5200edef33e",
+            "30f4ddbc79d0985fef6eb59450e299ef47572b8774f0fdac5157eac57d5386a4",
+            "691301312a4db7aba46f6bc125c902e33322c76739f65279edea953d5122e446",
+            "dae7cb7cd86dea5fb63c8b3b20c9bc8cd7f0106cc7d2bf67087931e97794b685"
+          ]
+        },
+        "markdown_headers_noprefix": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 7,
+          "hashes": [
+            "d87b4fb3b1f2206cdfb69fbd6468ca4fd4b133f2a0c4a763eeb32732fa9650e7",
+            "aa7b246a0fc500ac6347f5b8dfbdce6acef19e1fd27f172db99257b4f7de1de8",
+            "c1910af75d1c032896da0c6559f19eafcf8585af564b763b942805b8124b2857",
+            "37d79a2f221a137bf9b4f7e764c40d53a617d75100e7f92c6ab8e502b5faeb48",
+            "0150e7763a0050917b0d036976feb793769bb62c41285c44a13d9297ce9f3963",
+            "b89014d7be4df25f514bbb300e753f8de180ed5d5e1be0932e7b96c90a4dcb4d",
+            "f8aaf4d21834456a281803fbc765833da9ddca859eaabe2260debc1361e2ff7b"
+          ]
+        },
+        "semantic": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 3,
+          "hashes": [
+            "4f139537b500b47a916a64a169e599fb6d0784d12c15700c51563e774c0e698b",
+            "6d942b62f4eb3b22cd0cddf4a0a8b6735a4b4e75f1c8ab956e086a2b42dc3c31",
+            "e8a97d74a86e5303ea4167ac1c9ac9ba0ef3edca519f06934041ff8b475c07d7"
+          ]
+        }
+      },
+      "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+      "format": "md",
+      "embedding_model": "nvidia/nemotron-3.5-embed-1b",
+      "ingested_at": "2026-11-01T16:18:03"
+    },
+    "kb_other_formats/06-software-requests-and-policy.txt": {
+      "collections": {
+        "fixed_200": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 11,
+          "hashes": [
+            "c18db921ccbe291b51bb21601f0e7c12f4777a4ab5d0f169233cc732880d8117",
+            "54959964846ae3b784f75115b532b92a0651bb79e1295d4b32ccd515c2774885",
+            "1cfc7e0f4753babca4e1a591384a27301e1262a0d4c1b00829da17ab4cc39540",
+            "bbcbc2400e71952ccd69b5e1bb90900c92e73a5efeee3b1bca591fb4676bfb07",
+            "4bcea98c7fe594f0ae964ab6bc86d578df79d903460ea33f230c41e400e62083",
+            "6d1447303804076664955e8b5c206c16e6a4a6a22a5f9cf40b552ecc399fabeb",
+            "42c753efec33a440126f621f4e2c12c06159efeeab2c7c335292114dd5d37507",
+            "70304dd005d3bb3ea4e03c534fa60eec5f43fa631963383722a056ae26695d11",
+            "2174c7304962f791e2596486f48a88cc7b12464ce269e4add0b895473bbcf42d",
+            "315eb3783e01bbb7e60c5181e3feef02b83cf56f48186b37414ffb3330c8f134",
+            "788e71c49605a5ade74afbedb866a60e4958812a26cfbac8134326091f074ab3"
+          ]
+        },
+        "fixed_500_overlap": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 6,
+          "hashes": [
+            "8e6889741701276f23821082a8658fa423ee54711c0ca5c1890fd3b7c03e7a01",
+            "d6250892ed3064ebbf50507127194ba0c405326988bf95b46e743d91add91b30",
+            "8ad470bdcb9631b1753ca22ce608cc59b46d938aec1727b2f116146e3ae3e7a6",
+            "b8f44e5a126c1d779fd7c6a275c1d438aeb36d9132f73e54e41ae69725b49f72",
+            "0269a6a3e03832a573449675f0950c1ef41250b272a8a44a434a77f224f90dd4",
+            "788e71c49605a5ade74afbedb866a60e4958812a26cfbac8134326091f074ab3"
+          ]
+        },
+        "recursive_500": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 7,
+          "hashes": [
+            "ed2c351ffc1e7eb692e702824f3082e327edc2b165b7b4d67ca2fe31a16e7e4e",
+            "aa7b246a0fc500ac6347f5b8dfbdce6acef19e1fd27f172db99257b4f7de1de8",
+            "c1910af75d1c032896da0c6559f19eafcf8585af564b763b942805b8124b2857",
+            "9a1a0709d2682debdbf7e188432e376e7f65ba1e8865f5eb98e2de7429df2272",
+            "5bcbb31c66638d1ff6e35c7e87802a7474a3f64ff9c308ecd0b1862f478cbb92",
+            "6bef2661aa4b3a869e7890086ecbc464ee8e2ce8c68f344d3bedb8b7fa9b267c",
+            "d99ff28e75659f09cec7646c093e43d077d078e1ba0e17b5de7560195e49b2b0"
+          ]
+        },
+        "markdown_headers": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 7,
+          "hashes": [
+            "83409b04f85aa5cc3270ee6b6c72ea3dc2067270ab6d77915ad95d9f0d870eac",
+            "a681fff9b806f4f954450fbc36a064bd68d2094da9dd04b4fa262a7389911cfb",
+            "191710c19102dea7f4fdc9a3018622c4c47a1ac47d49fa2d4d33479fe1d03205",
+            "788e3942da59d4665706b6a5a783bdc710b578a2b44fb919738fe5200edef33e",
+            "30f4ddbc79d0985fef6eb59450e299ef47572b8774f0fdac5157eac57d5386a4",
+            "691301312a4db7aba46f6bc125c902e33322c76739f65279edea953d5122e446",
+            "dae7cb7cd86dea5fb63c8b3b20c9bc8cd7f0106cc7d2bf67087931e97794b685"
+          ]
+        },
+        "markdown_headers_noprefix": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 7,
+          "hashes": [
+            "d87b4fb3b1f2206cdfb69fbd6468ca4fd4b133f2a0c4a763eeb32732fa9650e7",
+            "aa7b246a0fc500ac6347f5b8dfbdce6acef19e1fd27f172db99257b4f7de1de8",
+            "c1910af75d1c032896da0c6559f19eafcf8585af564b763b942805b8124b2857",
+            "37d79a2f221a137bf9b4f7e764c40d53a617d75100e7f92c6ab8e502b5faeb48",
+            "0150e7763a0050917b0d036976feb793769bb62c41285c44a13d9297ce9f3963",
+            "b89014d7be4df25f514bbb300e753f8de180ed5d5e1be0932e7b96c90a4dcb4d",
+            "f8aaf4d21834456a281803fbc765833da9ddca859eaabe2260debc1361e2ff7b"
+          ]
+        },
+        "semantic": {
+          "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+          "chunks": 3,
+          "hashes": [
+            "4f139537b500b47a916a64a169e599fb6d0784d12c15700c51563e774c0e698b",
+            "6d942b62f4eb3b22cd0cddf4a0a8b6735a4b4e75f1c8ab956e086a2b42dc3c31",
+            "e8a97d74a86e5303ea4167ac1c9ac9ba0ef3edca519f06934041ff8b475c07d7"
+          ]
+        }
+      },
+      "file_hash": "26b82ee22d29e1e7a96b4cf99d6c74533b829d81671f596c933e7b572c2b9ec5",
+      "format": "txt",
+      "embedding_model": "nvidia/nemotron-3.5-embed-1b",
+      "ingested_at": "2026-11-01T16:18:03"
+    }
+  }
+}

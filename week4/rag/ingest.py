@@ -1,37 +1,50 @@
-"""Week 4 ingestion pipeline: load -> clean -> chunk -> embed -> store.
+"""Week 4 ingestion pipeline: load -> clean -> chunk -> hash -> embed -> store.
 
-Run from the week4 folder. Each stage reads the previous stage's output from rag/build/,
-so you can run them one at a time and look at what each produced:
+Run from the week4 folder.
 
+The pipeline (Day 5):
+    python rag/ingest.py ingest              load, clean, chunk, hash, embed and store ONLY what changed
+    python rag/ingest.py ingest --dry-run    print what would change, touch nothing
+    python rag/ingest.py rebuild             delete the collections and manifest.json, ingest from scratch
+    Add --strategy NAME to ingest or rebuild to do only one strategy, e.g. --strategy fixed_200
+
+Looking at individual stages (they save to rag/build/ and do not touch Chroma):
     python rag/ingest.py load      read kb/ and kb_other_formats/ into Documents  -> build/loaded.json
     python rag/ingest.py clean     clean every Document (prints before/after HTML)  -> build/cleaned.json
     python rag/ingest.py chunk     split with every strategy, print chunk stats     -> build/chunks_<strategy>.json
-    python rag/ingest.py embed     embed every chunk (passage mode)                 -> build/vectors_<strategy>.json
-    python rag/ingest.py store     write each strategy to its own Chroma collection, print stats
-    python rag/ingest.py all       all five stages in order
-
-    Add --strategy NAME to chunk/embed/store/all to do only one strategy, e.g. --strategy fixed_200
-
     python rag/ingest.py show recursive_500 kb/03     print one article's chunks (to compare with chunkviz)
     python rag/ingest.py first3 kb/01                first 3 chunks from fixed_200, recursive_500, markdown_headers
 
 Strategies: fixed_200, fixed_500_overlap, recursive_500 (Day 3),
             markdown_headers, markdown_headers_noprefix, semantic (Day 4).
-The semantic strategy calls the embedding model while chunking, so its chunk stage needs the API.
 
-Every Document, at every stage, has the same shape:
+How ingest decides what to do (Day 5):
+  - Every chunk's id in Chroma is the sha256 hash of its normalised text, so identical text is
+    stored once, even if it comes from two files (the HTML and markdown printer articles).
+  - manifest.json records, per source file: its file hash, and per collection the chunk count,
+    the chunk hashes, the embedding model and when it was ingested.
+  - A file whose hash has not changed is skipped without chunking or embedding anything.
+  - A changed file is re-chunked; only chunks with new hashes are embedded. Chunks the file no
+    longer has are deleted, unless another file still has them.
+  - A file deleted from disk has its chunks removed (same rule).
+
+Every Document has the same shape:
     {"text": "...", "metadata": {"source": "kb/03-printer-setup-and-issues.md", "format": "md", "title": "..."}}
-Every chunk adds "chunk_index" and "strategy" to that metadata.
+Every chunk adds "chunk_index", "strategy" and "hash" (and "header_path" for the markdown strategies).
 """
 
+import hashlib
 import json
+import random
 import sys
 import time
+from datetime import datetime
 from pathlib import Path
 
 import chromadb
 from bs4 import BeautifulSoup
 from dotenv import find_dotenv, load_dotenv
+from langchain_core.embeddings import Embeddings
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_nvidia_ai_endpoints import NVIDIAEmbeddings
 from langchain_text_splitters import CharacterTextSplitter, MarkdownHeaderTextSplitter, RecursiveCharacterTextSplitter
@@ -119,15 +132,18 @@ def load_pdf(path):
 LOADERS = {".md": load_markdown, ".txt": load_text, ".html": load_html, ".pdf": load_pdf}
 
 
-def stage_load():
+def load_all_documents():
     docs = []
     for folder in SOURCE_DIRS:
         for path in sorted(folder.iterdir()):
             loader = LOADERS.get(path.suffix.lower())
-            if loader is None:
-                print(f"  skipped (no loader): {path.name}")
-                continue
-            docs.append(loader(path))
+            if loader is not None:
+                docs.append(loader(path))
+    return docs
+
+
+def stage_load():
+    docs = load_all_documents()
     for d in docs:
         m = d["metadata"]
         print(f"  {m['format']:<4} {len(d['text']):>5} chars  {m['source']}  ({m['title']})")
@@ -317,57 +333,222 @@ def record_time(name, stage, seconds):
 
 
 # ===========================================================================
-# STAGE 4: EMBED. Passage mode (embed_documents) for everything we store.
+# STAGE 4: EMBED. Passage mode, in batches, retrying when the API says "slow down" (429).
 # ===========================================================================
+BATCH_SIZE = 32       # texts per API call
+MAX_TRIES = 5         # give up after this many tries of one batch
+
+
+class RetryingEmbeddings(Embeddings):
+    """NVIDIAEmbeddings with two protections against API limits:
+      - batching: texts are sent BATCH_SIZE at a time, never all at once;
+      - backoff: if a call fails with 429 Too Many Requests, wait and try again,
+        doubling the wait each time (1s, 2s, 4s, 8s), plus a little randomness.
+    SemanticChunker uses this object too, so its many sentence embeddings are protected as well."""
+
+    def __init__(self):
+        load_dotenv(find_dotenv(usecwd=True))
+        self.inner = NVIDIAEmbeddings(model=EMBED_MODEL, truncate="END")
+
+    def embed_documents(self, texts):
+        vectors = []
+        for start in range(0, len(texts), BATCH_SIZE):
+            batch = texts[start:start + BATCH_SIZE]
+            vectors.extend(with_backoff(lambda: self.inner.embed_documents(batch)))
+        return vectors
+
+    def embed_query(self, text):
+        return with_backoff(lambda: self.inner.embed_query(text))
+
+
+def with_backoff(call):
+    for attempt in range(1, MAX_TRIES + 1):
+        try:
+            return call()
+        except Exception as error:
+            rate_limited = "429" in str(error) or "Too Many Requests" in str(error)
+            if not rate_limited or attempt == MAX_TRIES:
+                raise
+            wait = 2 ** (attempt - 1) + random.random()
+            print(f"      (rate limited, waiting {wait:.1f}s, then try {attempt + 1} of {MAX_TRIES})")
+            time.sleep(wait)
+
+
+_embeddings = None
+
+
 def get_embeddings():
-    load_dotenv(find_dotenv(usecwd=True))
-    return NVIDIAEmbeddings(model=EMBED_MODEL, truncate="END")
-
-
-def stage_embed(names):
-    emb = get_embeddings()
-    for name in names:
-        chunks = load(f"chunks_{name}.json")
-        start = time.perf_counter()
-        vectors = emb.embed_documents([c["text"] for c in chunks])   # the library sends these in batches
-        seconds = time.perf_counter() - start
-        save(f"vectors_{name}.json", {"model": EMBED_MODEL, "seconds": seconds, "vectors": vectors})
-        record_time(name, "embed", seconds)
-        print(f"  {name:<26} {len(vectors):>4} vectors x {len(vectors[0])} dims  ({seconds:.1f}s)")
+    """One shared RetryingEmbeddings object for the whole run."""
+    global _embeddings
+    if _embeddings is None:
+        _embeddings = RetryingEmbeddings()
+    return _embeddings
 
 
 # ===========================================================================
-# STAGE 5: STORE. One Chroma collection per strategy, rebuilt from scratch each run.
-# (Day 5 replaces "rebuild from scratch" with hashing and incremental updates.)
+# STAGE 5: INGEST. Hash every chunk, compare with the manifest, and only embed and
+# store what changed. Running it twice in a row changes nothing the second time.
 # ===========================================================================
-def stage_store(names):
+MANIFEST_PATH = WEEK4 / "manifest.json"
+
+
+def chunk_hash(text):
+    """Content hash of a chunk: sha256 of its text, lowercased with all whitespace collapsed.
+    The same text always gives the same hash, whichever file it came from. It is used as the
+    Chroma id, so a chunk that is already stored can never be stored twice."""
+    normalised = " ".join(text.lower().split())
+    return hashlib.sha256(normalised.encode("utf-8")).hexdigest()
+
+
+def file_hash(source):
+    """Hash of the raw file on disk. If it is the same as last time, the file has not changed."""
+    return hashlib.sha256((WEEK4 / source).read_bytes()).hexdigest()
+
+
+def load_manifest():
+    if MANIFEST_PATH.exists():
+        return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+    return {"embedding_model": EMBED_MODEL, "files": {}}
+
+
+def save_manifest(manifest):
+    MANIFEST_PATH.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
+
+
+def stage_ingest(names, dry_run=False):
+    started = time.perf_counter()
+    manifest = load_manifest()
+    if manifest["files"] and manifest["embedding_model"] != EMBED_MODEL:
+        raise SystemExit("The embedding model changed since the last ingest. Run: python rag/ingest.py rebuild")
+
+    # Load and clean every file (cheap), then hash the raw files to see which changed.
+    docs = {d["metadata"]["source"]: {"text": clean_text(d["text"]), "metadata": d["metadata"]}
+            for d in load_all_documents()}
+    hash_now = {source: file_hash(source) for source in docs}
+    removed_files = [s for s in manifest["files"] if s not in docs]
+
     client = chromadb.PersistentClient(path=str(CHROMA_PATH))
-    existing = {c.name for c in client.list_collections()}
+    existing_collections = {c.name for c in client.list_collections()}
+    if dry_run:
+        print("DRY RUN: nothing will be embedded, written to Chroma, or saved to manifest.json.\n")
+
     rows = []
     for name in names:
-        chunks = load(f"chunks_{name}.json")
-        embedded = load(f"vectors_{name}.json")
-        start = time.perf_counter()
-        if name in existing:
-            client.delete_collection(name)
-        col = client.create_collection(
-            name, metadata={"hnsw:space": "cosine", "embedding_model": embedded["model"]}, embedding_function=None
-        )
-        col.add(
-            ids=[f"{c['metadata']['source']}#{c['metadata']['chunk_index']}" for c in chunks],
-            embeddings=embedded["vectors"],
-            documents=[c["text"] for c in chunks],
-            metadatas=[c["metadata"] for c in chunks],
-        )
-        s = stats(chunks)
-        timing = json.loads((BUILD / "timing.json").read_text(encoding="utf-8")).get(name, {})
-        total = timing.get("chunk", 0) + embedded["seconds"] + time.perf_counter() - start
-        rows.append((name, s, col.count(), total))
-    print(f"\n| Collection | Chunks | Avg chars | Min | Max | Ingest time (s) |")
+        counts = {"added": 0, "updated": 0, "deleted": 0, "skipped": 0}
+        if name in existing_collections:
+            col = client.get_collection(name)
+            stored = set(col.get(include=[])["ids"])
+        else:
+            col = None if dry_run else client.create_collection(
+                name, metadata={"hnsw:space": "cosine", "embedding_model": EMBED_MODEL}, embedding_function=None)
+            stored = set()
+
+        # Who uses each hash right now, according to the manifest: {hash: {source, ...}}
+        users = {}
+        for source, entry in manifest["files"].items():
+            for h in entry.get("collections", {}).get(name, {}).get("hashes", []):
+                users.setdefault(h, set()).add(source)
+        maybe_unused = set()   # hashes some file stopped using; deleted at the end if nobody uses them
+
+        for source, doc in docs.items():
+            previous = manifest["files"].get(source, {}).get("collections", {}).get(name)
+            if previous and previous["file_hash"] == hash_now[source]:
+                counts["skipped"] += len(previous["hashes"])      # unchanged file: no chunking, no embedding
+                continue
+
+            # Changed or new file: chunk it and hash every chunk.
+            new = {}
+            for c in STRATEGIES[name]([doc]):
+                h = chunk_hash(c["text"])
+                c["metadata"]["hash"] = h
+                new.setdefault(h, c)            # identical chunks inside one file collapse to one
+            old_hashes = previous["hashes"] if previous else []
+
+            to_add = [c for h, c in new.items() if h not in stored]
+            already = [h for h in new if h in stored]
+            moved = [h for h in already if h in old_hashes and old_hashes.index(h) != list(new).index(h)]
+            file_counts = {"added": len(to_add), "updated": len(moved), "deleted": 0,
+                           "skipped": len(already) - len(moved)}
+
+            if to_add and not dry_run:
+                vectors = get_embeddings().embed_documents([c["text"] for c in to_add])
+                col.add(ids=[c["metadata"]["hash"] for c in to_add], embeddings=vectors,
+                        documents=[c["text"] for c in to_add], metadatas=[c["metadata"] for c in to_add])
+            if moved and not dry_run:
+                col.update(ids=moved, metadatas=[new[h]["metadata"] for h in moved])
+            stored.update(new)
+
+            for h in set(old_hashes) - set(new):
+                users.get(h, set()).discard(source)
+                maybe_unused.add(h)
+            for h in new:
+                users.setdefault(h, set()).add(source)
+
+            for key in counts:
+                counts[key] += file_counts[key]
+            print(f"  {name:<26} {source:<55} +{file_counts['added']} added  ~{file_counts['updated']} updated  "
+                  f"={file_counts['skipped']} already stored")
+            if not dry_run:
+                entry = manifest["files"].setdefault(source, {"collections": {}})
+                entry.update({"file_hash": hash_now[source], "format": doc["metadata"]["format"],
+                              "embedding_model": EMBED_MODEL,
+                              "ingested_at": datetime.now().isoformat(timespec="seconds")})
+                entry["collections"][name] = {"file_hash": hash_now[source], "chunks": len(new),
+                                              "hashes": list(new)}
+
+        # Files that were deleted from disk: everything they used is now possibly unused.
+        for source in removed_files:
+            for h in manifest["files"][source].get("collections", {}).get(name, {}).get("hashes", []):
+                users.get(h, set()).discard(source)
+                maybe_unused.add(h)
+
+        # Delete chunks nobody uses any more. A chunk another file still uses (the .txt copy of
+        # the software article, say) stays, and its metadata is pointed at that other file.
+        to_delete = [h for h in maybe_unused if not users.get(h) and h in stored]
+        to_repoint = [h for h in maybe_unused if users.get(h) and h in stored]
+        if to_delete and not dry_run:
+            col.delete(ids=to_delete)
+        if to_repoint and not dry_run:
+            current = col.get(ids=to_repoint, include=["metadatas"])
+            for h, meta in zip(current["ids"], current["metadatas"]):
+                if meta["source"] not in users[h]:
+                    new_source = sorted(users[h])[0]
+                    index = manifest["files"][new_source]["collections"][name]["hashes"].index(h)
+                    col.update(ids=[h], metadatas=[{**meta, **docs[new_source]["metadata"], "chunk_index": index}])
+                    counts["updated"] += 1
+        counts["deleted"] += len(to_delete)
+        if to_delete:
+            print(f"  {name:<26} {'(chunks no file uses any more)':<55} -{len(to_delete)} deleted")
+
+        size = (col.count() if col else 0) if not dry_run else len(stored) - len(to_delete)
+        rows.append((name, counts, size))
+
+    if not dry_run:
+        for source in removed_files:
+            del manifest["files"][source]
+        manifest["embedding_model"] = EMBED_MODEL
+        save_manifest(manifest)
+
+    print(f"\n| Collection | Added | Updated | Deleted | Skipped | Chunks in collection |")
     print(f"|---|---|---|---|---|---|")
-    for name, s, count, seconds in rows:
-        print(f"| {name} | {count} | {s['avg']:.0f} | {s['min']} | {s['max']} | {seconds:.1f} |")
-    print("\n(Ingest time = chunking + embedding + storing.)")
+    for name, c, size in rows:
+        print(f"| {name} | {c['added']} | {c['updated']} | {c['deleted']} | {c['skipped']} | {size} |")
+    changes = sum(c["added"] + c["updated"] + c["deleted"] for _, c, _ in rows)
+    verb = "would change" if dry_run else "changed"
+    print(f"\n{changes} chunks {verb}. Took {time.perf_counter() - started:.1f}s."
+          + ("" if dry_run else f" Manifest: {MANIFEST_PATH.name}"))
+
+
+def rebuild(names):
+    """Start clean: delete the collections and the manifest, then ingest everything."""
+    client = chromadb.PersistentClient(path=str(CHROMA_PATH))
+    for c in client.list_collections():
+        if c.name in names:
+            client.delete_collection(c.name)
+    if MANIFEST_PATH.exists():
+        MANIFEST_PATH.unlink()
+    print(f"Deleted {len(names)} collections and manifest.json. Ingesting from scratch...\n")
+    stage_ingest(names)
 
 
 # ===========================================================================
@@ -417,7 +598,7 @@ def main():
     if len(args) == 2 and args[0] == "first3":
         first3(args[1])
         return
-    if not args or args[0] not in ("load", "clean", "chunk", "embed", "store", "all"):
+    if not args or args[0] not in ("load", "clean", "chunk", "ingest", "rebuild", "all"):
         print(__doc__)
         return
     stage = args[0]
@@ -427,16 +608,16 @@ def main():
         if names[0] not in STRATEGIES:
             raise SystemExit(f"Unknown strategy. Choose from: {', '.join(STRATEGIES)}")
 
-    if stage in ("load", "all"):
-        print("== load =="); stage_load()
-    if stage in ("clean", "all"):
-        print("\n== clean =="); stage_clean()
-    if stage in ("chunk", "all"):
-        print("\n== chunk =="); stage_chunk(names)
-    if stage in ("embed", "all"):
-        print("\n== embed =="); stage_embed(names)
-    if stage in ("store", "all"):
-        print("\n== store =="); stage_store(names)
+    if stage == "load":
+        stage_load()
+    elif stage == "clean":
+        stage_clean()
+    elif stage == "chunk":
+        stage_chunk(names)
+    elif stage in ("ingest", "all"):
+        stage_ingest(names, dry_run="--dry-run" in args)
+    elif stage == "rebuild":
+        rebuild(names)
 
 
 if __name__ == "__main__":
