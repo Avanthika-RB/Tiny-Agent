@@ -16,3 +16,6 @@ checkpoints.db*
 # Week 4 pipeline intermediate files (rebuilt by rag/ingest.py).
 week4/rag/build/
 week4/chroma_db/
+
+# Week 5 cached question embeddings (rebuilt by rag/evaluate.py).
+week5/rag/cache/

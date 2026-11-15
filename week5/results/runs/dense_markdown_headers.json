@@ -1,0 +1,2318 @@
+{
+ "name": "dense_markdown_headers",
+ "summary": {
+  "all": {
+   "hit@3": 1.0,
+   "hit@5": 1.0,
+   "recall@3": 1.0,
+   "recall@5": 1.0,
+   "MRR": 1.0,
+   "nDCG@3": 0.9985781261939952,
+   "nDCG@5": 0.9985781261939952,
+   "p50 ms": 1.3439999893307686,
+   "p95 ms": 1.8412900622934096,
+   "n": 35
+  },
+  "tuning": {
+   "hit@3": 1.0,
+   "hit@5": 1.0,
+   "recall@3": 1.0,
+   "recall@5": 1.0,
+   "MRR": 1.0,
+   "nDCG@3": 0.9983411472263278,
+   "nDCG@5": 0.9983411472263278,
+   "p50 ms": 1.3683999422937632,
+   "p95 ms": 1.8973651109263303,
+   "n": 30
+  },
+  "held_out": {
+   "hit@3": 1.0,
+   "hit@5": 1.0,
+   "recall@3": 1.0,
+   "recall@5": 1.0,
+   "MRR": 1.0,
+   "nDCG@3": 1.0,
+   "nDCG@5": 1.0,
+   "p50 ms": 1.2554996646940708,
+   "p95 ms": 1.3549400493502617,
+   "n": 5
+  },
+  "by_kind": {
+   "context": {
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0,
+    "p50 ms": 1.2779501266777515,
+    "p95 ms": 2.099700039252639,
+    "n": 6
+   },
+   "exact_token": {
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0,
+    "p50 ms": 1.3139001093804836,
+    "p95 ms": 1.7354799434542656,
+    "n": 5
+   },
+   "fact": {
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0,
+    "p50 ms": 1.3703000731766224,
+    "p95 ms": 1.8829400651156902,
+    "n": 9
+   },
+   "paraphrase": {
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0,
+    "p50 ms": 1.3411499094218016,
+    "p95 ms": 1.4606997137889266,
+    "n": 8
+   },
+   "procedure": {
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 0.9928906309699765,
+    "nDCG@5": 0.9928906309699765,
+    "p50 ms": 1.2869001366198063,
+    "p95 ms": 1.6959398984909058,
+    "n": 7
+   }
+  }
+ },
+ "questions": [
+  {
+   "qid": 1,
+   "kind": "exact_token",
+   "question": "What error code appears when you try to install the VPN client on a personal laptop?",
+   "held_out": false,
+   "ms": 1.3139001093804836,
+   "gold": {
+    "01/Policy": 2,
+    "01/Connecting for the first time": 1
+   },
+   "labels": [
+    "01/Policy",
+    "01/Connecting for the first time",
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Policy",
+     "text": "VPN Access Guide > Policy\n\nPersonal devices may not connect to the VPN. The client checks for a device certificate that is only installed on company-managed laptops. Attempting to install the client on a personal machine will fail at step 3 above with error code 1103.",
+     "label": "01/Policy",
+     "distance": 0.2890748977661133
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Connecting for the first time",
+     "text": "VPN Access Guide > Connecting for the first time\n\n1. Open the VPN client from the Start menu on Windows or the Applications folder on macOS.\n2. Enter the gateway address shown on your onboarding card. Do not use a gateway from another region; it will connect but be slow.\n3. Sign in with your work email and password.\n4. Approve the push notification on your registered phone. If you do not receive it within 30 seconds, open the authenticator app and use the six-digit code instead.",
+     "label": "01/Connecting for the first time",
+     "distance": 0.6083657741546631
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > VPN disconnects every few minutes",
+     "text": "VPN Access Guide > Troubleshooting > VPN disconnects every few minutes\n\nThis is almost always a protocol issue on home networks. Open the VPN client, go to Settings, then Connection, and switch the protocol from UDP to TCP. Reconnect. If it still drops, restart the laptop once. If the problem continues on a wired connection too, file a ticket and include the time of the last three disconnects.",
+     "label": null,
+     "distance": 0.6213275194168091
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nThe corporate VPN gives employees secure access to internal systems when working outside the office. All laptops issued after January 2025 ship with the VPN client preinstalled. Older laptops may need a manual install from the Software Center. VPN access is enabled by default for employees in Supply Chain Ops, Logistics, Finance Ops, Planning, and Procurement. Warehouse staff do not have VPN enabled by default because their tools are available on the local network only; they can request access",
+     "label": null,
+     "distance": 0.6266399621963501
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > Authentication loop",
+     "text": "VPN Access Guide > Troubleshooting > Authentication loop\n\nIf the client keeps asking for your password after you have entered it correctly, your account may be locked. Use the self-service password portal to unlock it, wait five minutes, then try again.",
+     "label": null,
+     "distance": 0.6577342748641968
+    }
+   ]
+  },
+  {
+   "qid": 2,
+   "kind": "context",
+   "question": "Which VPN gateway should someone based in Bangalore use?",
+   "held_out": false,
+   "ms": 1.3863001950085163,
+   "gold": {
+    "01/Regional gateways": 2
+   },
+   "labels": [
+    "01/Regional gateways",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Regional gateways",
+     "text": "VPN Access Guide > Regional gateways\n\n| Region | Gateway | Protocol default | Notes |\n|---|---|---|---|\n| Americas | vpn-us.example.com | UDP | Highest capacity |\n| Europe | vpn-eu.example.com | UDP | Maintenance window Sundays 02:00 to 04:00 CET |\n| India | vpn-in.example.com | TCP | TCP default because of ISP filtering |\n| APAC | vpn-apac.example.com | UDP | Serves Taipei and Seoul |",
+     "label": "01/Regional gateways",
+     "distance": 0.4980587959289551
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Connecting for the first time",
+     "text": "VPN Access Guide > Connecting for the first time\n\n1. Open the VPN client from the Start menu on Windows or the Applications folder on macOS.\n2. Enter the gateway address shown on your onboarding card. Do not use a gateway from another region; it will connect but be slow.\n3. Sign in with your work email and password.\n4. Approve the push notification on your registered phone. If you do not receive it within 30 seconds, open the authenticator app and use the six-digit code instead.",
+     "label": null,
+     "distance": 0.6720420122146606
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nby default because their tools are available on the local network only; they can request access through a ticket with manager approval.",
+     "label": null,
+     "distance": 0.7192878127098083
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nThe VPN uses split tunnelling. Traffic to internal addresses goes through the tunnel; everything else uses your normal internet connection. This is why video calls still work when the VPN is slow, and why you cannot reach shared drives when the VPN is disconnected.",
+     "label": null,
+     "distance": 0.7357925176620483
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nThe corporate VPN gives employees secure access to internal systems when working outside the office. All laptops issued after January 2025 ship with the VPN client preinstalled. Older laptops may need a manual install from the Software Center. VPN access is enabled by default for employees in Supply Chain Ops, Logistics, Finance Ops, Planning, and Procurement. Warehouse staff do not have VPN enabled by default because their tools are available on the local network only; they can request access",
+     "label": null,
+     "distance": 0.7372873425483704
+    }
+   ]
+  },
+  {
+   "qid": 3,
+   "kind": "context",
+   "question": "Why is the India VPN gateway on TCP by default?",
+   "held_out": false,
+   "ms": 1.27030024304986,
+   "gold": {
+    "01/Regional gateways": 2
+   },
+   "labels": [
+    "01/Regional gateways",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Regional gateways",
+     "text": "VPN Access Guide > Regional gateways\n\n| Region | Gateway | Protocol default | Notes |\n|---|---|---|---|\n| Americas | vpn-us.example.com | UDP | Highest capacity |\n| Europe | vpn-eu.example.com | UDP | Maintenance window Sundays 02:00 to 04:00 CET |\n| India | vpn-in.example.com | TCP | TCP default because of ISP filtering |\n| APAC | vpn-apac.example.com | UDP | Serves Taipei and Seoul |",
+     "label": "01/Regional gateways",
+     "distance": 0.4297252893447876
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nby default because their tools are available on the local network only; they can request access through a ticket with manager approval.",
+     "label": null,
+     "distance": 0.6832985877990723
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nThe VPN uses split tunnelling. Traffic to internal addresses goes through the tunnel; everything else uses your normal internet connection. This is why video calls still work when the VPN is slow, and why you cannot reach shared drives when the VPN is disconnected.",
+     "label": null,
+     "distance": 0.691838800907135
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Connecting for the first time",
+     "text": "VPN Access Guide > Connecting for the first time\n\n1. Open the VPN client from the Start menu on Windows or the Applications folder on macOS.\n2. Enter the gateway address shown on your onboarding card. Do not use a gateway from another region; it will connect but be slow.\n3. Sign in with your work email and password.\n4. Approve the push notification on your registered phone. If you do not receive it within 30 seconds, open the authenticator app and use the six-digit code instead.",
+     "label": null,
+     "distance": 0.7206577062606812
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nThe corporate VPN gives employees secure access to internal systems when working outside the office. All laptops issued after January 2025 ship with the VPN client preinstalled. Older laptops may need a manual install from the Software Center. VPN access is enabled by default for employees in Supply Chain Ops, Logistics, Finance Ops, Planning, and Procurement. Warehouse staff do not have VPN enabled by default because their tools are available on the local network only; they can request access",
+     "label": null,
+     "distance": 0.7416435480117798
+    }
+   ]
+  },
+  {
+   "qid": 4,
+   "kind": "procedure",
+   "question": "My VPN keeps dropping every couple of minutes at home. What do I change?",
+   "held_out": false,
+   "ms": 1.2396001257002354,
+   "gold": {
+    "01/VPN disconnects every few minutes": 2,
+    "01/Troubleshooting": 1
+   },
+   "labels": [
+    "01/VPN disconnects every few minutes",
+    null,
+    "01/Troubleshooting",
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 0.9502344167898356,
+    "nDCG@5": 0.9502344167898356
+   },
+   "top": [
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > VPN disconnects every few minutes",
+     "text": "VPN Access Guide > Troubleshooting > VPN disconnects every few minutes\n\nThis is almost always a protocol issue on home networks. Open the VPN client, go to Settings, then Connection, and switch the protocol from UDP to TCP. Reconnect. If it still drops, restart the laptop once. If the problem continues on a wired connection too, file a ticket and include the time of the last three disconnects.",
+     "label": "01/VPN disconnects every few minutes",
+     "distance": 0.270484983921051
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nThe VPN uses split tunnelling. Traffic to internal addresses goes through the tunnel; everything else uses your normal internet connection. This is why video calls still work when the VPN is slow, and why you cannot reach shared drives when the VPN is disconnected.",
+     "label": null,
+     "distance": 0.6440197825431824
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > Connected but cannot reach shared drives",
+     "text": "VPN Access Guide > Troubleshooting > Connected but cannot reach shared drives\n\nConfirm the status shows Connected and not Connecting. Then open File Explorer and reconnect the drive. Shared drives are only reachable while the VPN is up or when you are in the office. If the drive letter is missing entirely, see the Shared Drive article.",
+     "label": "01/Troubleshooting",
+     "distance": 0.6627548933029175
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Connecting for the first time",
+     "text": "VPN Access Guide > Connecting for the first time\n\n5. Wait for the status to show Connected. The first connection downloads a configuration profile and can take up to two minutes.",
+     "label": null,
+     "distance": 0.6665869355201721
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Connecting for the first time",
+     "text": "VPN Access Guide > Connecting for the first time\n\n1. Open the VPN client from the Start menu on Windows or the Applications folder on macOS.\n2. Enter the gateway address shown on your onboarding card. Do not use a gateway from another region; it will connect but be slow.\n3. Sign in with your work email and password.\n4. Approve the push notification on your registered phone. If you do not receive it within 30 seconds, open the authenticator app and use the six-digit code instead.",
+     "label": null,
+     "distance": 0.6826173067092896
+    }
+   ]
+  },
+  {
+   "qid": 5,
+   "kind": "paraphrase",
+   "question": "Does the VPN route all my internet traffic through the office?",
+   "held_out": false,
+   "ms": 1.3382998295128345,
+   "gold": {
+    "01/Overview": 2
+   },
+   "labels": [
+    "01/Overview",
+    "01/Overview",
+    "01/Overview",
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nThe VPN uses split tunnelling. Traffic to internal addresses goes through the tunnel; everything else uses your normal internet connection. This is why video calls still work when the VPN is slow, and why you cannot reach shared drives when the VPN is disconnected.",
+     "label": "01/Overview",
+     "distance": 0.4768397808074951
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nThe corporate VPN gives employees secure access to internal systems when working outside the office. All laptops issued after January 2025 ship with the VPN client preinstalled. Older laptops may need a manual install from the Software Center. VPN access is enabled by default for employees in Supply Chain Ops, Logistics, Finance Ops, Planning, and Procurement. Warehouse staff do not have VPN enabled by default because their tools are available on the local network only; they can request access",
+     "label": "01/Overview",
+     "distance": 0.6525813341140747
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nby default because their tools are available on the local network only; they can request access through a ticket with manager approval.",
+     "label": "01/Overview",
+     "distance": 0.6744198799133301
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Connecting for the first time",
+     "text": "VPN Access Guide > Connecting for the first time\n\n1. Open the VPN client from the Start menu on Windows or the Applications folder on macOS.\n2. Enter the gateway address shown on your onboarding card. Do not use a gateway from another region; it will connect but be slow.\n3. Sign in with your work email and password.\n4. Approve the push notification on your registered phone. If you do not receive it within 30 seconds, open the authenticator app and use the six-digit code instead.",
+     "label": null,
+     "distance": 0.6864976286888123
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > Connected but cannot reach shared drives",
+     "text": "VPN Access Guide > Troubleshooting > Connected but cannot reach shared drives\n\nConfirm the status shows Connected and not Connecting. Then open File Explorer and reconnect the drive. Shared drives are only reachable while the VPN is up or when you are in the office. If the drive letter is missing entirely, see the Shared Drive article.",
+     "label": null,
+     "distance": 0.6919276714324951
+    }
+   ]
+  },
+  {
+   "qid": 6,
+   "kind": "fact",
+   "question": "Can warehouse staff use the VPN?",
+   "held_out": false,
+   "ms": 1.2236000038683414,
+   "gold": {
+    "01/Overview": 2
+   },
+   "labels": [
+    "01/Overview",
+    "01/Overview",
+    "01/Overview",
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nThe corporate VPN gives employees secure access to internal systems when working outside the office. All laptops issued after January 2025 ship with the VPN client preinstalled. Older laptops may need a manual install from the Software Center. VPN access is enabled by default for employees in Supply Chain Ops, Logistics, Finance Ops, Planning, and Procurement. Warehouse staff do not have VPN enabled by default because their tools are available on the local network only; they can request access",
+     "label": "01/Overview",
+     "distance": 0.38558459281921387
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nby default because their tools are available on the local network only; they can request access through a ticket with manager approval.",
+     "label": "01/Overview",
+     "distance": 0.6019700169563293
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nThe VPN uses split tunnelling. Traffic to internal addresses goes through the tunnel; everything else uses your normal internet connection. This is why video calls still work when the VPN is slow, and why you cannot reach shared drives when the VPN is disconnected.",
+     "label": "01/Overview",
+     "distance": 0.6223350167274475
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Policy",
+     "text": "VPN Access Guide > Policy\n\nPersonal devices may not connect to the VPN. The client checks for a device certificate that is only installed on company-managed laptops. Attempting to install the client on a personal machine will fail at step 3 above with error code 1103.",
+     "label": null,
+     "distance": 0.6287119388580322
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Connecting for the first time",
+     "text": "VPN Access Guide > Connecting for the first time\n\n1. Open the VPN client from the Start menu on Windows or the Applications folder on macOS.\n2. Enter the gateway address shown on your onboarding card. Do not use a gateway from another region; it will connect but be slow.\n3. Sign in with your work email and password.\n4. Approve the push notification on your registered phone. If you do not receive it within 30 seconds, open the authenticator app and use the six-digit code instead.",
+     "label": null,
+     "distance": 0.6319668292999268
+    }
+   ]
+  },
+  {
+   "qid": 7,
+   "kind": "fact",
+   "question": "How long is a password valid before it expires?",
+   "held_out": false,
+   "ms": 1.4102999120950699,
+   "gold": {
+    "02/Password rules": 2
+   },
+   "labels": [
+    "02/Password rules",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Password rules",
+     "text": "Password and Account Security > Password rules\n\nPasswords must be at least 14 characters and contain three of the four categories: uppercase, lowercase, digits, symbols. Passwords expire every 180 days. You will receive reminder emails at 14, 7, and 1 day before expiry. A password cannot match any of your previous 12 passwords. Passphrases such as four unrelated words are allowed and encouraged because they are easier to remember and harder to guess than short complex strings.",
+     "label": "02/Password rules",
+     "distance": 0.4434463381767273
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On Windows",
+     "text": "Password and Account Security > Changing your password > On Windows\n\n1. Press Ctrl+Alt+Delete.\n2. Choose Change a password.\n3. Enter the old password, then the new password twice.\n4. Lock and unlock the laptop once so cached credentials refresh. If you skip this step, Outlook and Teams will keep prompting with the old password for up to an hour.",
+     "label": null,
+     "distance": 0.6216477155685425
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Locked account",
+     "text": "Password and Account Security > Locked account\n\nAn account locks after five failed sign-in attempts within 15 minutes. The lock clears automatically after 30 minutes. If you need access sooner, go to the self-service password portal, choose Unlock account, and enter the one-time code sent to your registered phone. If your registered phone is not available, the helpdesk can unlock your account after verifying your identity with your employee id and manager's name.",
+     "label": null,
+     "distance": 0.662421464920044
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Phishing",
+     "text": "Password and Account Security > Phishing\n\nNever enter your password on a page you reached from an email link. The real sign-in page always shows the company logo and the address ends in example.com. Report suspicious emails with the Report Phishing button in Outlook. Do not forward them. If you did enter your password on a suspicious page, change it immediately using the steps above and inform the security team the same day.",
+     "label": null,
+     "distance": 0.7187556028366089
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On macOS",
+     "text": "Password and Account Security > Changing your password > On macOS\n\n1. Open System Settings, then Users and Groups.\n2. Click Change Password next to your account.\n3. Enter the old and new passwords.\n4. Open Keychain Access and update the saved entries for Outlook and the VPN client, otherwise they will keep failing silently.",
+     "label": null,
+     "distance": 0.7368464469909668
+    }
+   ]
+  },
+  {
+   "qid": 8,
+   "kind": "paraphrase",
+   "question": "How many old passwords are remembered so you cannot reuse them?",
+   "held_out": false,
+   "ms": 1.210200134664774,
+   "gold": {
+    "02/Password rules": 2
+   },
+   "labels": [
+    "02/Password rules",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Password rules",
+     "text": "Password and Account Security > Password rules\n\nPasswords must be at least 14 characters and contain three of the four categories: uppercase, lowercase, digits, symbols. Passwords expire every 180 days. You will receive reminder emails at 14, 7, and 1 day before expiry. A password cannot match any of your previous 12 passwords. Passphrases such as four unrelated words are allowed and encouraged because they are easier to remember and harder to guess than short complex strings.",
+     "label": "02/Password rules",
+     "distance": 0.5100588798522949
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On Windows",
+     "text": "Password and Account Security > Changing your password > On Windows\n\n1. Press Ctrl+Alt+Delete.\n2. Choose Change a password.\n3. Enter the old password, then the new password twice.\n4. Lock and unlock the laptop once so cached credentials refresh. If you skip this step, Outlook and Teams will keep prompting with the old password for up to an hour.",
+     "label": null,
+     "distance": 0.6015914082527161
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On macOS",
+     "text": "Password and Account Security > Changing your password > On macOS\n\n1. Open System Settings, then Users and Groups.\n2. Click Change Password next to your account.\n3. Enter the old and new passwords.\n4. Open Keychain Access and update the saved entries for Outlook and the VPN client, otherwise they will keep failing silently.",
+     "label": null,
+     "distance": 0.6885068416595459
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Locked account",
+     "text": "Password and Account Security > Locked account\n\nAn account locks after five failed sign-in attempts within 15 minutes. The lock clears automatically after 30 minutes. If you need access sooner, go to the self-service password portal, choose Unlock account, and enter the one-time code sent to your registered phone. If your registered phone is not available, the helpdesk can unlock your account after verifying your identity with your employee id and manager's name.",
+     "label": null,
+     "distance": 0.7337754964828491
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Phishing",
+     "text": "Password and Account Security > Phishing\n\nNever enter your password on a page you reached from an email link. The real sign-in page always shows the company logo and the address ends in example.com. Report suspicious emails with the Report Phishing button in Outlook. Do not forward them. If you did enter your password on a suspicious page, change it immediately using the steps above and inform the security team the same day.",
+     "label": null,
+     "distance": 0.7546108365058899
+    }
+   ]
+  },
+  {
+   "qid": 9,
+   "kind": "procedure",
+   "question": "Steps to change my password on a Mac, including the keychain part",
+   "held_out": false,
+   "ms": 1.7740000039339066,
+   "gold": {
+    "02/On macOS": 2,
+    "02/Changing your password": 1
+   },
+   "labels": [
+    "02/On macOS",
+    "02/Changing your password",
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On macOS",
+     "text": "Password and Account Security > Changing your password > On macOS\n\n1. Open System Settings, then Users and Groups.\n2. Click Change Password next to your account.\n3. Enter the old and new passwords.\n4. Open Keychain Access and update the saved entries for Outlook and the VPN client, otherwise they will keep failing silently.",
+     "label": "02/On macOS",
+     "distance": 0.25739777088165283
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On Windows",
+     "text": "Password and Account Security > Changing your password > On Windows\n\n1. Press Ctrl+Alt+Delete.\n2. Choose Change a password.\n3. Enter the old password, then the new password twice.\n4. Lock and unlock the laptop once so cached credentials refresh. If you skip this step, Outlook and Teams will keep prompting with the old password for up to an hour.",
+     "label": "02/Changing your password",
+     "distance": 0.5506396293640137
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Keeps asking for password",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Keeps asking for password\n\nClose Outlook. On Windows, open Credential Manager, choose Windows Credentials, and remove every entry that starts with MicrosoftOffice. Reopen Outlook and sign in once. On macOS, open Keychain Access and delete the entries for Exchange, then reopen Outlook. If you changed your password recently and skipped the lock-and-unlock step, that is the cause.",
+     "label": null,
+     "distance": 0.6568208336830139
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Phishing",
+     "text": "Password and Account Security > Phishing\n\nNever enter your password on a page you reached from an email link. The real sign-in page always shows the company logo and the address ends in example.com. Report suspicious emails with the Report Phishing button in Outlook. Do not forward them. If you did enter your password on a suspicious page, change it immediately using the steps above and inform the security team the same day.",
+     "label": null,
+     "distance": 0.6961636543273926
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Multi-factor authentication",
+     "text": "Password and Account Security > Multi-factor authentication\n\nMFA is mandatory for VPN, email, and all cloud applications. The authenticator app is the preferred method. SMS codes are available as a fallback but are slower and less secure. If you change phones, re-register the authenticator app before you wipe the old device. If you have already wiped it, the helpdesk must reset your MFA, which requires a video call for identity verification and takes about 20 minutes.",
+     "label": null,
+     "distance": 0.6988974213600159
+    }
+   ]
+  },
+  {
+   "qid": 10,
+   "kind": "paraphrase",
+   "question": "Outlook keeps asking for my password since I changed it yesterday. Why?",
+   "held_out": false,
+   "ms": 1.2214002199470997,
+   "gold": {
+    "05/Keeps asking for password": 2,
+    "02/On Windows": 1
+   },
+   "labels": [
+    "05/Keeps asking for password",
+    "02/On Windows",
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Keeps asking for password",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Keeps asking for password\n\nClose Outlook. On Windows, open Credential Manager, choose Windows Credentials, and remove every entry that starts with MicrosoftOffice. Reopen Outlook and sign in once. On macOS, open Keychain Access and delete the entries for Exchange, then reopen Outlook. If you changed your password recently and skipped the lock-and-unlock step, that is the cause.",
+     "label": "05/Keeps asking for password",
+     "distance": 0.3062955141067505
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On Windows",
+     "text": "Password and Account Security > Changing your password > On Windows\n\n1. Press Ctrl+Alt+Delete.\n2. Choose Change a password.\n3. Enter the old password, then the new password twice.\n4. Lock and unlock the laptop once so cached credentials refresh. If you skip this step, Outlook and Teams will keep prompting with the old password for up to an hour.",
+     "label": "02/On Windows",
+     "distance": 0.4096764922142029
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On macOS",
+     "text": "Password and Account Security > Changing your password > On macOS\n\n1. Open System Settings, then Users and Groups.\n2. Click Change Password next to your account.\n3. Enter the old and new passwords.\n4. Open Keychain Access and update the saved entries for Outlook and the VPN client, otherwise they will keep failing silently.",
+     "label": null,
+     "distance": 0.4488236904144287
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Phishing",
+     "text": "Password and Account Security > Phishing\n\nNever enter your password on a page you reached from an email link. The real sign-in page always shows the company logo and the address ends in example.com. Report suspicious emails with the Report Phishing button in Outlook. Do not forward them. If you did enter your password on a suspicious page, change it immediately using the steps above and inform the security team the same day.",
+     "label": null,
+     "distance": 0.5483285188674927
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > Authentication loop",
+     "text": "VPN Access Guide > Troubleshooting > Authentication loop\n\nIf the client keeps asking for your password after you have entered it correctly, your account may be locked. Use the self-service password portal to unlock it, wait five minutes, then try again.",
+     "label": null,
+     "distance": 0.6476085186004639
+    }
+   ]
+  },
+  {
+   "qid": 11,
+   "kind": "fact",
+   "question": "After how many failed logins does the account lock, and for how long?",
+   "held_out": false,
+   "ms": 1.3681999407708645,
+   "gold": {
+    "02/Locked account": 2
+   },
+   "labels": [
+    "02/Locked account",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Locked account",
+     "text": "Password and Account Security > Locked account\n\nAn account locks after five failed sign-in attempts within 15 minutes. The lock clears automatically after 30 minutes. If you need access sooner, go to the self-service password portal, choose Unlock account, and enter the one-time code sent to your registered phone. If your registered phone is not available, the helpdesk can unlock your account after verifying your identity with your employee id and manager's name.",
+     "label": "02/Locked account",
+     "distance": 0.3500825762748718
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > Authentication loop",
+     "text": "VPN Access Guide > Troubleshooting > Authentication loop\n\nIf the client keeps asking for your password after you have entered it correctly, your account may be locked. Use the self-service password portal to unlock it, wait five minutes, then try again.",
+     "label": null,
+     "distance": 0.617316484451294
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Password rules",
+     "text": "Password and Account Security > Password rules\n\nPasswords must be at least 14 characters and contain three of the four categories: uppercase, lowercase, digits, symbols. Passwords expire every 180 days. You will receive reminder emails at 14, 7, and 1 day before expiry. A password cannot match any of your previous 12 passwords. Passphrases such as four unrelated words are allowed and encouraged because they are easier to remember and harder to guess than short complex strings.",
+     "label": null,
+     "distance": 0.6257642507553101
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On Windows",
+     "text": "Password and Account Security > Changing your password > On Windows\n\n1. Press Ctrl+Alt+Delete.\n2. Choose Change a password.\n3. Enter the old password, then the new password twice.\n4. Lock and unlock the laptop once so cached credentials refresh. If you skip this step, Outlook and Teams will keep prompting with the old password for up to an hour.",
+     "label": null,
+     "distance": 0.6957712173461914
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Multi-factor authentication",
+     "text": "Password and Account Security > Multi-factor authentication\n\nMFA is mandatory for VPN, email, and all cloud applications. The authenticator app is the preferred method. SMS codes are available as a fallback but are slower and less secure. If you change phones, re-register the authenticator app before you wipe the old device. If you have already wiped it, the helpdesk must reset your MFA, which requires a video call for identity verification and takes about 20 minutes.",
+     "label": null,
+     "distance": 0.7151707410812378
+    }
+   ]
+  },
+  {
+   "qid": 12,
+   "kind": "procedure",
+   "question": "I got a new phone and already wiped the old one. How do I get MFA working?",
+   "held_out": false,
+   "ms": 1.2869001366198063,
+   "gold": {
+    "02/Multi-factor authentication": 2
+   },
+   "labels": [
+    "02/Multi-factor authentication",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Multi-factor authentication",
+     "text": "Password and Account Security > Multi-factor authentication\n\nMFA is mandatory for VPN, email, and all cloud applications. The authenticator app is the preferred method. SMS codes are available as a fallback but are slower and less secure. If you change phones, re-register the authenticator app before you wipe the old device. If you have already wiped it, the helpdesk must reset your MFA, which requires a video call for identity verification and takes about 20 minutes.",
+     "label": "02/Multi-factor authentication",
+     "distance": 0.3954472541809082
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Locked account",
+     "text": "Password and Account Security > Locked account\n\nAn account locks after five failed sign-in attempts within 15 minutes. The lock clears automatically after 30 minutes. If you need access sooner, go to the self-service password portal, choose Unlock account, and enter the one-time code sent to your registered phone. If your registered phone is not available, the helpdesk can unlock your account after verifying your identity with your employee id and manager's name.",
+     "label": null,
+     "distance": 0.720963716506958
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On Windows",
+     "text": "Password and Account Security > Changing your password > On Windows\n\n1. Press Ctrl+Alt+Delete.\n2. Choose Change a password.\n3. Enter the old password, then the new password twice.\n4. Lock and unlock the laptop once so cached credentials refresh. If you skip this step, Outlook and Teams will keep prompting with the old password for up to an hour.",
+     "label": null,
+     "distance": 0.7251980304718018
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Connecting for the first time",
+     "text": "VPN Access Guide > Connecting for the first time\n\n1. Open the VPN client from the Start menu on Windows or the Applications folder on macOS.\n2. Enter the gateway address shown on your onboarding card. Do not use a gateway from another region; it will connect but be slow.\n3. Sign in with your work email and password.\n4. Approve the push notification on your registered phone. If you do not receive it within 30 seconds, open the authenticator app and use the six-digit code instead.",
+     "label": null,
+     "distance": 0.7393219470977783
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On macOS",
+     "text": "Password and Account Security > Changing your password > On macOS\n\n1. Open System Settings, then Users and Groups.\n2. Click Change Password next to your account.\n3. Enter the old and new passwords.\n4. Open Keychain Access and update the saved entries for Outlook and the VPN client, otherwise they will keep failing silently.",
+     "label": null,
+     "distance": 0.7498241066932678
+    }
+   ]
+  },
+  {
+   "qid": 13,
+   "kind": "procedure",
+   "question": "What should I do if I typed my password into a phishing page?",
+   "held_out": false,
+   "ms": 1.225100364536047,
+   "gold": {
+    "02/Phishing": 2
+   },
+   "labels": [
+    "02/Phishing",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Phishing",
+     "text": "Password and Account Security > Phishing\n\nNever enter your password on a page you reached from an email link. The real sign-in page always shows the company logo and the address ends in example.com. Report suspicious emails with the Report Phishing button in Outlook. Do not forward them. If you did enter your password on a suspicious page, change it immediately using the steps above and inform the security team the same day.",
+     "label": "02/Phishing",
+     "distance": 0.33742189407348633
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Locked account",
+     "text": "Password and Account Security > Locked account\n\nAn account locks after five failed sign-in attempts within 15 minutes. The lock clears automatically after 30 minutes. If you need access sooner, go to the self-service password portal, choose Unlock account, and enter the one-time code sent to your registered phone. If your registered phone is not available, the helpdesk can unlock your account after verifying your identity with your employee id and manager's name.",
+     "label": null,
+     "distance": 0.6632736921310425
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > Authentication loop",
+     "text": "VPN Access Guide > Troubleshooting > Authentication loop\n\nIf the client keeps asking for your password after you have entered it correctly, your account may be locked. Use the self-service password portal to unlock it, wait five minutes, then try again.",
+     "label": null,
+     "distance": 0.6708728671073914
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Password rules",
+     "text": "Password and Account Security > Password rules\n\nPasswords must be at least 14 characters and contain three of the four categories: uppercase, lowercase, digits, symbols. Passwords expire every 180 days. You will receive reminder emails at 14, 7, and 1 day before expiry. A password cannot match any of your previous 12 passwords. Passphrases such as four unrelated words are allowed and encouraged because they are easier to remember and harder to guess than short complex strings.",
+     "label": null,
+     "distance": 0.6729456782341003
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On Windows",
+     "text": "Password and Account Security > Changing your password > On Windows\n\n1. Press Ctrl+Alt+Delete.\n2. Choose Change a password.\n3. Enter the old password, then the new password twice.\n4. Lock and unlock the laptop once so cached credentials refresh. If you skip this step, Outlook and Teams will keep prompting with the old password for up to an hour.",
+     "label": null,
+     "distance": 0.6869513392448425
+    }
+   ]
+  },
+  {
+   "qid": 14,
+   "kind": "exact_token",
+   "question": "What driver do I pick when adding a printer on Windows?",
+   "held_out": false,
+   "ms": 1.7417999915778637,
+   "gold": {
+    "03/Windows": 2,
+    "03/Adding a printer": 1
+   },
+   "labels": [
+    "03/Windows",
+    "03/Adding a printer",
+    null,
+    "03/Adding a printer",
+    "03/Adding a printer"
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Adding a printer > Windows",
+     "text": "Printer Setup and Issues > Adding a printer > Windows\n\n1. Open Settings, then Bluetooth and devices, then Printers and scanners.\n2. Click Add device, wait ten seconds, then click Add manually.\n3. Choose Add a printer using an IP address or hostname.\n4. Enter the IP address from the label. Leave the port name as suggested.\n5. When asked for a driver, choose the generic PCL6 driver. Do not download a manufacturer driver; the generic one is faster and is the only one the print server supports.\n6. Print a test page.",
+     "label": "03/Windows",
+     "distance": 0.3609985113143921
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "1. Open Settings, then Bluetooth and devices, then Printers and scanners.\n2. Click Add device, wait ten seconds, then click Add manually.\n3. Choose Add a printer using an IP address or hostname.\n4. Enter the IP address from the label. Leave the port name as suggested.\n5. When asked for a driver, choose the generic PCL6 driver. Do not download a manufacturer driver; the generic one is faster and is the only one the print server supports.\n6. Print a test page. macOS",
+     "label": "03/Adding a printer",
+     "distance": 0.505027174949646
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "Printer Setup and Issues Finding your printer Every office printer has a label on the front with its name and IP address. Printer names follow the pattern SITE-FLOOR-NUMBER, for example AUS-02-03 is the third printer on the second floor in Austin. Always add printers by IP address rather than by name. Name-based discovery depends on a directory service that is often slow and sometimes lists printers that have been retired. Adding a printer Windows",
+     "label": null,
+     "distance": 0.5381667017936707
+    },
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Adding a printer > macOS",
+     "text": "Printer Setup and Issues > Adding a printer > macOS\n\n1. Open System Settings, then Printers and Scanners.\n2. Click Add Printer, Scanner, or Fax.\n3. Select the IP tab.\n4. Enter the IP address. Protocol should be IPP. Leave Queue empty.\n5. For Use, pick Generic PostScript Printer.\n6. Click Add and print a test page.",
+     "label": "03/Adding a printer",
+     "distance": 0.5483076572418213
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "6. Print a test page. macOS\n1. Open System Settings, then Printers and Scanners.\n2. Click Add Printer, Scanner, or Fax.\n3. Select the IP tab.\n4. Enter the IP address. Protocol should be IPP. Leave Queue empty.\n5. For Use, pick Generic PostScript Printer.",
+     "label": "03/Adding a printer",
+     "distance": 0.6079211235046387
+    }
+   ]
+  },
+  {
+   "qid": 15,
+   "kind": "exact_token",
+   "question": "Which protocol do I choose for a printer on macOS?",
+   "held_out": false,
+   "ms": 1.7101997509598732,
+   "gold": {
+    "03/macOS": 2
+   },
+   "labels": [
+    "03/macOS",
+    "03/macOS",
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Adding a printer > macOS",
+     "text": "Printer Setup and Issues > Adding a printer > macOS\n\n1. Open System Settings, then Printers and Scanners.\n2. Click Add Printer, Scanner, or Fax.\n3. Select the IP tab.\n4. Enter the IP address. Protocol should be IPP. Leave Queue empty.\n5. For Use, pick Generic PostScript Printer.\n6. Click Add and print a test page.",
+     "label": "03/macOS",
+     "distance": 0.37462854385375977
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "6. Print a test page. macOS\n1. Open System Settings, then Printers and Scanners.\n2. Click Add Printer, Scanner, or Fax.\n3. Select the IP tab.\n4. Enter the IP address. Protocol should be IPP. Leave Queue empty.\n5. For Use, pick Generic PostScript Printer.",
+     "label": "03/macOS",
+     "distance": 0.4048987030982971
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "1. Open Settings, then Bluetooth and devices, then Printers and scanners.\n2. Click Add device, wait ten seconds, then click Add manually.\n3. Choose Add a printer using an IP address or hostname.\n4. Enter the IP address from the label. Leave the port name as suggested.\n5. When asked for a driver, choose the generic PCL6 driver. Do not download a manufacturer driver; the generic one is faster and is the only one the print server supports.\n6. Print a test page. macOS",
+     "label": null,
+     "distance": 0.4121682047843933
+    },
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Adding a printer > Windows",
+     "text": "Printer Setup and Issues > Adding a printer > Windows\n\n1. Open Settings, then Bluetooth and devices, then Printers and scanners.\n2. Click Add device, wait ten seconds, then click Add manually.\n3. Choose Add a printer using an IP address or hostname.\n4. Enter the IP address from the label. Leave the port name as suggested.\n5. When asked for a driver, choose the generic PCL6 driver. Do not download a manufacturer driver; the generic one is faster and is the only one the print server supports.\n6. Print a test page.",
+     "label": null,
+     "distance": 0.5704665184020996
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "Printer Setup and Issues Finding your printer Every office printer has a label on the front with its name and IP address. Printer names follow the pattern SITE-FLOOR-NUMBER, for example AUS-02-03 is the third printer on the second floor in Austin. Always add printers by IP address rather than by name. Name-based discovery depends on a directory service that is often slow and sometimes lists printers that have been retired. Adding a printer Windows",
+     "label": null,
+     "distance": 0.6239622235298157
+    }
+   ]
+  },
+  {
+   "qid": 16,
+   "kind": "context",
+   "question": "What does the printer name AUS-02-03 mean?",
+   "held_out": false,
+   "ms": 2.337499987334013,
+   "gold": {
+    "03/Finding your printer": 2
+   },
+   "labels": [
+    "03/Finding your printer",
+    "03/Finding your printer",
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "Printer Setup and Issues Finding your printer Every office printer has a label on the front with its name and IP address. Printer names follow the pattern SITE-FLOOR-NUMBER, for example AUS-02-03 is the third printer on the second floor in Austin. Always add printers by IP address rather than by name. Name-based discovery depends on a directory service that is often slow and sometimes lists printers that have been retired. Adding a printer Windows",
+     "label": "03/Finding your printer",
+     "distance": 0.5799764394760132
+    },
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Finding your printer",
+     "text": "Printer Setup and Issues > Finding your printer\n\nEvery office printer has a label on the front with its name and IP address. Printer names follow the pattern SITE-FLOOR-NUMBER, for example AUS-02-03 is the third printer on the second floor in Austin. Always add printers by IP address rather than by name. Name-based discovery depends on a directory service that is often slow and sometimes lists printers that have been retired.",
+     "label": "03/Finding your printer",
+     "distance": 0.5879995226860046
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "on at the power switch. Wait for it to finish warming up before sending anything new. On Windows, if the queue will not clear, restart the Print Spooler service. Prints are blank or streaked This is a hardware issue. Do not try to fix it yourself. Note the printer name and file a ticket with priority low. Facilities replaces toner and drums on a schedule and will pull it forward if a ticket is open. Printing from a personal device Not supported. Email the document to yourself and print from",
+     "label": null,
+     "distance": 0.7723623514175415
+    },
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Common problems > Prints are blank or streaked",
+     "text": "Printer Setup and Issues > Common problems > Prints are blank or streaked\n\nThis is a hardware issue. Do not try to fix it yourself. Note the printer name and file a ticket with priority low. Facilities replaces toner and drums on a schedule and will pull it forward if a ticket is open.",
+     "label": null,
+     "distance": 0.7751916646957397
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "6. Click Add and print a test page. Common problems Printer shows offline Remove the printer and re-add it using the IP address. This fixes the problem in nine cases out of ten. If the printer is offline for everyone, check the outage board before filing a ticket; the printer may be under maintenance. Jobs stuck in the queue Open the print queue, cancel all documents, then turn the printer off and on at the power switch. Wait for it to finish warming up before sending anything new. On Windows,",
+     "label": null,
+     "distance": 0.784869372844696
+    }
+   ]
+  },
+  {
+   "qid": 17,
+   "kind": "procedure",
+   "question": "The printer says offline for me. Quickest fix?",
+   "held_out": false,
+   "ms": 1.5137996524572372,
+   "gold": {
+    "03/Printer shows offline": 2
+   },
+   "labels": [
+    "03/Printer shows offline",
+    "03/Printer shows offline",
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Common problems > Printer shows offline",
+     "text": "Printer Setup and Issues > Common problems > Printer shows offline\n\nRemove the printer and re-add it using the IP address. This fixes the problem in nine cases out of ten. If the printer is offline for everyone, check the outage board before filing a ticket; the printer may be under maintenance.",
+     "label": "03/Printer shows offline",
+     "distance": 0.3082943558692932
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "6. Click Add and print a test page. Common problems Printer shows offline Remove the printer and re-add it using the IP address. This fixes the problem in nine cases out of ten. If the printer is offline for everyone, check the outage board before filing a ticket; the printer may be under maintenance. Jobs stuck in the queue Open the print queue, cancel all documents, then turn the printer off and on at the power switch. Wait for it to finish warming up before sending anything new. On Windows,",
+     "label": "03/Printer shows offline",
+     "distance": 0.3462520241737366
+    },
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Common problems > Jobs stuck in the queue",
+     "text": "Printer Setup and Issues > Common problems > Jobs stuck in the queue\n\nOpen the print queue, cancel all documents, then turn the printer off and on at the power switch. Wait for it to finish warming up before sending anything new. On Windows, if the queue will not clear, restart the Print Spooler service.",
+     "label": null,
+     "distance": 0.5515607595443726
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "on at the power switch. Wait for it to finish warming up before sending anything new. On Windows, if the queue will not clear, restart the Print Spooler service. Prints are blank or streaked This is a hardware issue. Do not try to fix it yourself. Note the printer name and file a ticket with priority low. Facilities replaces toner and drums on a schedule and will pull it forward if a ticket is open. Printing from a personal device Not supported. Email the document to yourself and print from",
+     "label": null,
+     "distance": 0.5519269704818726
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "Printer Setup and Issues Finding your printer Every office printer has a label on the front with its name and IP address. Printer names follow the pattern SITE-FLOOR-NUMBER, for example AUS-02-03 is the third printer on the second floor in Austin. Always add printers by IP address rather than by name. Name-based discovery depends on a directory service that is often slow and sometimes lists printers that have been retired. Adding a printer Windows",
+     "label": null,
+     "distance": 0.5638210773468018
+    }
+   ]
+  },
+  {
+   "qid": 18,
+   "kind": "paraphrase",
+   "question": "My prints come out with streaks. Should I try to fix the printer?",
+   "held_out": false,
+   "ms": 1.3824999332427979,
+   "gold": {
+    "03/Prints are blank or streaked": 2
+   },
+   "labels": [
+    "03/Prints are blank or streaked",
+    "03/Prints are blank or streaked",
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Common problems > Prints are blank or streaked",
+     "text": "Printer Setup and Issues > Common problems > Prints are blank or streaked\n\nThis is a hardware issue. Do not try to fix it yourself. Note the printer name and file a ticket with priority low. Facilities replaces toner and drums on a schedule and will pull it forward if a ticket is open.",
+     "label": "03/Prints are blank or streaked",
+     "distance": 0.41151607036590576
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "on at the power switch. Wait for it to finish warming up before sending anything new. On Windows, if the queue will not clear, restart the Print Spooler service. Prints are blank or streaked This is a hardware issue. Do not try to fix it yourself. Note the printer name and file a ticket with priority low. Facilities replaces toner and drums on a schedule and will pull it forward if a ticket is open. Printing from a personal device Not supported. Email the document to yourself and print from",
+     "label": "03/Prints are blank or streaked",
+     "distance": 0.4813130497932434
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "6. Click Add and print a test page. Common problems Printer shows offline Remove the printer and re-add it using the IP address. This fixes the problem in nine cases out of ten. If the printer is offline for everyone, check the outage board before filing a ticket; the printer may be under maintenance. Jobs stuck in the queue Open the print queue, cancel all documents, then turn the printer off and on at the power switch. Wait for it to finish warming up before sending anything new. On Windows,",
+     "label": null,
+     "distance": 0.6127440929412842
+    },
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Common problems > Printer shows offline",
+     "text": "Printer Setup and Issues > Common problems > Printer shows offline\n\nRemove the printer and re-add it using the IP address. This fixes the problem in nine cases out of ten. If the printer is offline for everyone, check the outage board before filing a ticket; the printer may be under maintenance.",
+     "label": null,
+     "distance": 0.6339724659919739
+    },
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Common problems > Jobs stuck in the queue",
+     "text": "Printer Setup and Issues > Common problems > Jobs stuck in the queue\n\nOpen the print queue, cancel all documents, then turn the printer off and on at the power switch. Wait for it to finish warming up before sending anything new. On Windows, if the queue will not clear, restart the Print Spooler service.",
+     "label": null,
+     "distance": 0.6740352511405945
+    }
+   ]
+  },
+  {
+   "qid": 19,
+   "kind": "fact",
+   "question": "Can I print from my personal phone?",
+   "held_out": false,
+   "ms": 1.5711002051830292,
+   "gold": {
+    "03/Printing from a personal device": 2
+   },
+   "labels": [
+    "03/Printing from a personal device",
+    "03/Printing from a personal device",
+    null,
+    "03/Printing from a personal device",
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Printing from a personal device",
+     "text": "Printer Setup and Issues > Printing from a personal device\n\nNot supported. Email the document to yourself and print from your company laptop.",
+     "label": "03/Printing from a personal device",
+     "distance": 0.4303128123283386
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "open. Printing from a personal device Not supported. Email the document to yourself and print from your company laptop.",
+     "label": "03/Printing from a personal device",
+     "distance": 0.44328057765960693
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "1. Open Settings, then Bluetooth and devices, then Printers and scanners.\n2. Click Add device, wait ten seconds, then click Add manually.\n3. Choose Add a printer using an IP address or hostname.\n4. Enter the IP address from the label. Leave the port name as suggested.\n5. When asked for a driver, choose the generic PCL6 driver. Do not download a manufacturer driver; the generic one is faster and is the only one the print server supports.\n6. Print a test page. macOS",
+     "label": null,
+     "distance": 0.6084339618682861
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "on at the power switch. Wait for it to finish warming up before sending anything new. On Windows, if the queue will not clear, restart the Print Spooler service. Prints are blank or streaked This is a hardware issue. Do not try to fix it yourself. Note the printer name and file a ticket with priority low. Facilities replaces toner and drums on a schedule and will pull it forward if a ticket is open. Printing from a personal device Not supported. Email the document to yourself and print from",
+     "label": "03/Printing from a personal device",
+     "distance": 0.6343812942504883
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "6. Print a test page. macOS\n1. Open System Settings, then Printers and Scanners.\n2. Click Add Printer, Scanner, or Fax.\n3. Select the IP tab.\n4. Enter the IP address. Protocol should be IPP. Leave Queue empty.\n5. For Use, pick Generic PostScript Printer.",
+     "label": null,
+     "distance": 0.6586230397224426
+    }
+   ]
+  },
+  {
+   "qid": 20,
+   "kind": "fact",
+   "question": "When are OS updates pushed and how long do I have to restart?",
+   "held_out": false,
+   "ms": 1.709899865090847,
+   "gold": {
+    "04/Update policy": 2
+   },
+   "labels": [
+    "04/Update policy",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Update policy",
+     "text": "Laptop Performance and Updates > Update policy\n\nOperating system updates are pushed on the second Tuesday of each month. You will see a notification with a seven-day window to restart at a convenient time. After seven days the laptop restarts automatically outside working hours. Security patches rated critical may be pushed outside this schedule with a 24-hour window.",
+     "label": "04/Update policy",
+     "distance": 0.3768575191497803
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Slow after an update",
+     "text": "Laptop Performance and Updates > Slow after an update\n\nAfter a major update the laptop rebuilds its search index and scans files for the security agent. This takes between 30 and 90 minutes depending on how much data is on the disk, and the laptop will feel sluggish during that period. The fix is patience plus two restarts: restart once immediately after the update finishes, then again an hour later. If the laptop is still slow the following day, file a ticket and include a screenshot of Task Manager or Activity Monitor sorted by CPU.",
+     "label": null,
+     "distance": 0.630615234375
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > General slowness",
+     "text": "Laptop Performance and Updates > General slowness\n\nBefore filing a ticket, check these in order:\n1. How many browser tabs are open. More than 40 tabs is the most common cause of slowness we see.\n2. Whether the disk is more than 90 percent full. Empty the Downloads folder and the Recycle Bin or Trash.\n3. How long since the last full restart. Sleeping the laptop for two weeks is not a restart. Shut it down fully once a week.\n4. Whether a backup or sync is running. The cloud drive client shows a progress indicator in the system tray or menu bar.",
+     "label": null,
+     "distance": 0.7607226371765137
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Fans running constantly",
+     "text": "Laptop Performance and Updates > Fans running constantly\n\nUsually the security agent or a stuck browser tab. Restart first. If the fans run loud at idle for more than a day after a restart, file a ticket; the fan may be clogged with dust and Facilities can clean it.",
+     "label": null,
+     "distance": 0.7689676880836487
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > General slowness",
+     "text": "Laptop Performance and Updates > General slowness\n\nIf none of those apply and the laptop is more than three years old, it may be eligible for replacement. Ask your manager to raise a hardware refresh request.",
+     "label": null,
+     "distance": 0.8147401809692383
+    }
+   ]
+  },
+  {
+   "qid": 21,
+   "kind": "paraphrase",
+   "question": "Laptop is crawling since this morning's update. Is something broken?",
+   "held_out": false,
+   "ms": 1.3439999893307686,
+   "gold": {
+    "04/Slow after an update": 2
+   },
+   "labels": [
+    "04/Slow after an update",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Slow after an update",
+     "text": "Laptop Performance and Updates > Slow after an update\n\nAfter a major update the laptop rebuilds its search index and scans files for the security agent. This takes between 30 and 90 minutes depending on how much data is on the disk, and the laptop will feel sluggish during that period. The fix is patience plus two restarts: restart once immediately after the update finishes, then again an hour later. If the laptop is still slow the following day, file a ticket and include a screenshot of Task Manager or Activity Monitor sorted by CPU.",
+     "label": "04/Slow after an update",
+     "distance": 0.4284118413925171
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Fans running constantly",
+     "text": "Laptop Performance and Updates > Fans running constantly\n\nUsually the security agent or a stuck browser tab. Restart first. If the fans run loud at idle for more than a day after a restart, file a ticket; the fan may be clogged with dust and Facilities can clean it.",
+     "label": null,
+     "distance": 0.5738189816474915
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > General slowness",
+     "text": "Laptop Performance and Updates > General slowness\n\nBefore filing a ticket, check these in order:\n1. How many browser tabs are open. More than 40 tabs is the most common cause of slowness we see.\n2. Whether the disk is more than 90 percent full. Empty the Downloads folder and the Recycle Bin or Trash.\n3. How long since the last full restart. Sleeping the laptop for two weeks is not a restart. Shut it down fully once a week.\n4. Whether a backup or sync is running. The cloud drive client shows a progress indicator in the system tray or menu bar.",
+     "label": null,
+     "distance": 0.629246711730957
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > General slowness",
+     "text": "Laptop Performance and Updates > General slowness\n\nIf none of those apply and the laptop is more than three years old, it may be eligible for replacement. Ask your manager to raise a hardware refresh request.",
+     "label": null,
+     "distance": 0.6446189880371094
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Update policy",
+     "text": "Laptop Performance and Updates > Update policy\n\nOperating system updates are pushed on the second Tuesday of each month. You will see a notification with a seven-day window to restart at a convenient time. After seven days the laptop restarts automatically outside working hours. Security patches rated critical may be pushed outside this schedule with a 24-hour window.",
+     "label": null,
+     "distance": 0.6508746147155762
+    }
+   ]
+  },
+  {
+   "qid": 22,
+   "kind": "procedure",
+   "question": "What should I check before opening a ticket about a slow laptop?",
+   "held_out": false,
+   "ms": 1.4411001466214657,
+   "gold": {
+    "04/General slowness": 2
+   },
+   "labels": [
+    "04/General slowness",
+    "04/General slowness",
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > General slowness",
+     "text": "Laptop Performance and Updates > General slowness\n\nBefore filing a ticket, check these in order:\n1. How many browser tabs are open. More than 40 tabs is the most common cause of slowness we see.\n2. Whether the disk is more than 90 percent full. Empty the Downloads folder and the Recycle Bin or Trash.\n3. How long since the last full restart. Sleeping the laptop for two weeks is not a restart. Shut it down fully once a week.\n4. Whether a backup or sync is running. The cloud drive client shows a progress indicator in the system tray or menu bar.",
+     "label": "04/General slowness",
+     "distance": 0.3433290719985962
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > General slowness",
+     "text": "Laptop Performance and Updates > General slowness\n\nIf none of those apply and the laptop is more than three years old, it may be eligible for replacement. Ask your manager to raise a hardware refresh request.",
+     "label": "04/General slowness",
+     "distance": 0.48250144720077515
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Slow after an update",
+     "text": "Laptop Performance and Updates > Slow after an update\n\nAfter a major update the laptop rebuilds its search index and scans files for the security agent. This takes between 30 and 90 minutes depending on how much data is on the disk, and the laptop will feel sluggish during that period. The fix is patience plus two restarts: restart once immediately after the update finishes, then again an hour later. If the laptop is still slow the following day, file a ticket and include a screenshot of Task Manager or Activity Monitor sorted by CPU.",
+     "label": null,
+     "distance": 0.5261131525039673
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Fans running constantly",
+     "text": "Laptop Performance and Updates > Fans running constantly\n\nUsually the security agent or a stuck browser tab. Restart first. If the fans run loud at idle for more than a day after a restart, file a ticket; the fan may be clogged with dust and Facilities can clean it.",
+     "label": null,
+     "distance": 0.5866173505783081
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Battery",
+     "text": "Laptop Performance and Updates > Battery\n\nBatteries are consumables and are expected to lose about 20 percent of capacity after two years. A laptop that no longer lasts a two-hour meeting on battery can have the battery replaced under a low-priority ticket. Keep the laptop plugged in when at a desk, but let it run down to below 20 percent at least once a month to keep the battery gauge calibrated.",
+     "label": null,
+     "distance": 0.6542373895645142
+    }
+   ]
+  },
+  {
+   "qid": 23,
+   "kind": "context",
+   "question": "My battery does not last a two hour meeting anymore. What can I do?",
+   "held_out": false,
+   "ms": 1.285600010305643,
+   "gold": {
+    "04/Battery": 2
+   },
+   "labels": [
+    "04/Battery",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Battery",
+     "text": "Laptop Performance and Updates > Battery\n\nBatteries are consumables and are expected to lose about 20 percent of capacity after two years. A laptop that no longer lasts a two-hour meeting on battery can have the battery replaced under a low-priority ticket. Keep the laptop plugged in when at a desk, but let it run down to below 20 percent at least once a month to keep the battery gauge calibrated.",
+     "label": "04/Battery",
+     "distance": 0.425006628036499
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > General slowness",
+     "text": "Laptop Performance and Updates > General slowness\n\nIf none of those apply and the laptop is more than three years old, it may be eligible for replacement. Ask your manager to raise a hardware refresh request.",
+     "label": null,
+     "distance": 0.770487368106842
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > General slowness",
+     "text": "Laptop Performance and Updates > General slowness\n\nBefore filing a ticket, check these in order:\n1. How many browser tabs are open. More than 40 tabs is the most common cause of slowness we see.\n2. Whether the disk is more than 90 percent full. Empty the Downloads folder and the Recycle Bin or Trash.\n3. How long since the last full restart. Sleeping the laptop for two weeks is not a restart. Shut it down fully once a week.\n4. Whether a backup or sync is running. The cloud drive client shows a progress indicator in the system tray or menu bar.",
+     "label": null,
+     "distance": 0.781758189201355
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Slow after an update",
+     "text": "Laptop Performance and Updates > Slow after an update\n\nAfter a major update the laptop rebuilds its search index and scans files for the security agent. This takes between 30 and 90 minutes depending on how much data is on the disk, and the laptop will feel sluggish during that period. The fix is patience plus two restarts: restart once immediately after the update finishes, then again an hour later. If the laptop is still slow the following day, file a ticket and include a screenshot of Task Manager or Activity Monitor sorted by CPU.",
+     "label": null,
+     "distance": 0.8191844820976257
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > VPN disconnects every few minutes",
+     "text": "VPN Access Guide > Troubleshooting > VPN disconnects every few minutes\n\nThis is almost always a protocol issue on home networks. Open the VPN client, go to Settings, then Connection, and switch the protocol from UDP to TCP. Reconnect. If it still drops, restart the laptop once. If the problem continues on a wired connection too, file a ticket and include the time of the last three disconnects.",
+     "label": null,
+     "distance": 0.8235704898834229
+    }
+   ]
+  },
+  {
+   "qid": 24,
+   "kind": "paraphrase",
+   "question": "Other people cannot hear me in Teams but I can hear them",
+   "held_out": false,
+   "ms": 1.4669997617602348,
+   "gold": {
+    "05/Audio not working in meetings": 2
+   },
+   "labels": [
+    "05/Audio not working in meetings",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Teams > Audio not working in meetings",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Teams > Audio not working in meetings\n\nOpen Teams, go to Settings, then Devices, and check that the correct microphone and speaker are selected. Headsets sometimes register as two devices; pick the one with \"Hands-Free\" in the name for calls. On macOS, also open System Settings, Privacy and Security, Microphone, and confirm Teams is allowed. If other people cannot hear you but you can hear them, it is almost always the microphone permission.",
+     "label": "05/Audio not working in meetings",
+     "distance": 0.30394411087036133
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Teams > Camera shows a black screen",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Teams > Camera shows a black screen\n\nClose every other application that could be using the camera, especially browser tabs with video. On Windows, open Settings, Privacy, Camera, and confirm desktop apps are allowed. If the camera works in another app but not Teams, sign out of Teams and sign back in.",
+     "label": null,
+     "distance": 0.4932734966278076
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder\n\nFolder permissions are managed by the owner team listed in the table, not by IT. Ask the team lead to add you. IT can tell you who the owner is but cannot grant access.",
+     "label": null,
+     "distance": 0.6269360780715942
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping\n\nShared drives require the VPN when you are outside the office. Connect to the VPN first, then open File Explorer and reconnect the drive. If the drive letter is missing, open File Explorer, right-click This PC, choose Map network drive, and enter the path from the table below. On macOS, use Finder, Go, Connect to Server, and enter the smb path.\n| Drive | Windows path | macOS path | Owner team |\n|---|---|---|---|",
+     "label": null,
+     "distance": 0.7113608121871948
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping\n\n| Drive | Windows path | macOS path | Owner team |\n|---|---|---|---|\n| Ops shared | \\\\\\\\files.example.com\\\\ops | smb://files.example.com/ops | Supply Chain Ops |\n| Finance | \\\\\\\\files.example.com\\\\finance | smb://files.example.com/finance | Finance Ops |\n| Logistics | \\\\\\\\files.example.com\\\\logistics | smb://files.example.com/logistics | Logistics |\n| Warehouse | \\\\\\\\files.example.com\\\\wh | smb://files.example.com/wh | Warehouse |",
+     "label": null,
+     "distance": 0.7160675525665283
+    }
+   ]
+  },
+  {
+   "qid": 25,
+   "kind": "fact",
+   "question": "What is the Outlook mailbox size limit and when does it warn?",
+   "held_out": false,
+   "ms": 1.2089000083506107,
+   "gold": {
+    "05/Mailbox full": 2
+   },
+   "labels": [
+    "05/Mailbox full",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Mailbox full",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Mailbox full\n\nThe mailbox limit is 50 GB. Outlook warns at 45 GB. Empty Deleted Items and Junk first, then sort the inbox by size and remove large attachments you no longer need. Archive folders do not count against the limit; move old mail there.",
+     "label": "05/Mailbox full",
+     "distance": 0.2822887897491455
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Keeps asking for password",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Keeps asking for password\n\nClose Outlook. On Windows, open Credential Manager, choose Windows Credentials, and remove every entry that starts with MicrosoftOffice. Reopen Outlook and sign in once. On macOS, open Keychain Access and delete the entries for Exchange, then reopen Outlook. If you changed your password recently and skipped the lock-and-unlock step, that is the cause.",
+     "label": null,
+     "distance": 0.6499733924865723
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Phishing",
+     "text": "Password and Account Security > Phishing\n\nNever enter your password on a page you reached from an email link. The real sign-in page always shows the company logo and the address ends in example.com. Report suspicious emails with the Report Phishing button in Outlook. Do not forward them. If you did enter your password on a suspicious page, change it immediately using the steps above and inform the security team the same day.",
+     "label": null,
+     "distance": 0.7514293789863586
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On macOS",
+     "text": "Password and Account Security > Changing your password > On macOS\n\n1. Open System Settings, then Users and Groups.\n2. Click Change Password next to your account.\n3. Enter the old and new passwords.\n4. Open Keychain Access and update the saved entries for Outlook and the VPN client, otherwise they will keep failing silently.",
+     "label": null,
+     "distance": 0.7816821336746216
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder\n\nFolder permissions are managed by the owner team listed in the table, not by IT. Ask the team lead to add you. IT can tell you who the owner is but cannot grant access.",
+     "label": null,
+     "distance": 0.7847012877464294
+    }
+   ]
+  },
+  {
+   "qid": 26,
+   "kind": "exact_token",
+   "question": "What is the smb path for the Finance shared drive on a Mac?",
+   "held_out": false,
+   "ms": 1.2722001411020756,
+   "gold": {
+    "05/Drive not mapping": 2,
+    "05/Shared drives": 1
+   },
+   "labels": [
+    "05/Drive not mapping",
+    "05/Shared drives",
+    null,
+    "05/Shared drives",
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping\n\n| Drive | Windows path | macOS path | Owner team |\n|---|---|---|---|\n| Ops shared | \\\\\\\\files.example.com\\\\ops | smb://files.example.com/ops | Supply Chain Ops |\n| Finance | \\\\\\\\files.example.com\\\\finance | smb://files.example.com/finance | Finance Ops |\n| Logistics | \\\\\\\\files.example.com\\\\logistics | smb://files.example.com/logistics | Logistics |\n| Warehouse | \\\\\\\\files.example.com\\\\wh | smb://files.example.com/wh | Warehouse |",
+     "label": "05/Drive not mapping",
+     "distance": 0.4664496183395386
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping\n\nShared drives require the VPN when you are outside the office. Connect to the VPN first, then open File Explorer and reconnect the drive. If the drive letter is missing, open File Explorer, right-click This PC, choose Map network drive, and enter the path from the table below. On macOS, use Finder, Go, Connect to Server, and enter the smb path.\n| Drive | Windows path | macOS path | Owner team |\n|---|---|---|---|",
+     "label": "05/Shared drives",
+     "distance": 0.581972599029541
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > Connected but cannot reach shared drives",
+     "text": "VPN Access Guide > Troubleshooting > Connected but cannot reach shared drives\n\nConfirm the status shows Connected and not Connecting. Then open File Explorer and reconnect the drive. Shared drives are only reachable while the VPN is up or when you are in the office. If the drive letter is missing entirely, see the Shared Drive article.",
+     "label": null,
+     "distance": 0.7076867818832397
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder\n\nFolder permissions are managed by the owner team listed in the table, not by IT. Ask the team lead to add you. IT can tell you who the owner is but cannot grant access.",
+     "label": "05/Shared drives",
+     "distance": 0.7575241327285767
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "1. Open Settings, then Bluetooth and devices, then Printers and scanners.\n2. Click Add device, wait ten seconds, then click Add manually.\n3. Choose Add a printer using an IP address or hostname.\n4. Enter the IP address from the label. Leave the port name as suggested.\n5. When asked for a driver, choose the generic PCL6 driver. Do not download a manufacturer driver; the generic one is faster and is the only one the print server supports.\n6. Print a test page. macOS",
+     "label": null,
+     "distance": 0.7831152677536011
+    }
+   ]
+  },
+  {
+   "qid": 27,
+   "kind": "context",
+   "question": "I get access denied on a folder in the Logistics drive. Can IT fix it?",
+   "held_out": false,
+   "ms": 1.1956999078392982,
+   "gold": {
+    "05/Access denied on a folder": 2,
+    "05/Drive not mapping": 1
+   },
+   "labels": [
+    "05/Access denied on a folder",
+    "05/Drive not mapping",
+    null,
+    null,
+    "05/Drive not mapping"
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder\n\nFolder permissions are managed by the owner team listed in the table, not by IT. Ask the team lead to add you. IT can tell you who the owner is but cannot grant access.",
+     "label": "05/Access denied on a folder",
+     "distance": 0.41482973098754883
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping\n\n| Drive | Windows path | macOS path | Owner team |\n|---|---|---|---|\n| Ops shared | \\\\\\\\files.example.com\\\\ops | smb://files.example.com/ops | Supply Chain Ops |\n| Finance | \\\\\\\\files.example.com\\\\finance | smb://files.example.com/finance | Finance Ops |\n| Logistics | \\\\\\\\files.example.com\\\\logistics | smb://files.example.com/logistics | Logistics |\n| Warehouse | \\\\\\\\files.example.com\\\\wh | smb://files.example.com/wh | Warehouse |",
+     "label": "05/Drive not mapping",
+     "distance": 0.630893349647522
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > Connected but cannot reach shared drives",
+     "text": "VPN Access Guide > Troubleshooting > Connected but cannot reach shared drives\n\nConfirm the status shows Connected and not Connecting. Then open File Explorer and reconnect the drive. Shared drives are only reachable while the VPN is up or when you are in the office. If the drive letter is missing entirely, see the Shared Drive article.",
+     "label": null,
+     "distance": 0.710668683052063
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Keeps asking for password",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Keeps asking for password\n\nClose Outlook. On Windows, open Credential Manager, choose Windows Credentials, and remove every entry that starts with MicrosoftOffice. Reopen Outlook and sign in once. On macOS, open Keychain Access and delete the entries for Exchange, then reopen Outlook. If you changed your password recently and skipped the lock-and-unlock step, that is the cause.",
+     "label": null,
+     "distance": 0.7335205674171448
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping\n\nShared drives require the VPN when you are outside the office. Connect to the VPN first, then open File Explorer and reconnect the drive. If the drive letter is missing, open File Explorer, right-click This PC, choose Map network drive, and enter the path from the table below. On macOS, use Finder, Go, Connect to Server, and enter the smb path.\n| Drive | Windows path | macOS path | Owner team |\n|---|---|---|---|",
+     "label": "05/Drive not mapping",
+     "distance": 0.7378839254379272
+    }
+   ]
+  },
+  {
+   "qid": 28,
+   "kind": "fact",
+   "question": "How long does a software request take to be approved?",
+   "held_out": false,
+   "ms": 1.9983001984655857,
+   "gold": {
+    "06/Requesting software not in the catalogue": 2
+   },
+   "labels": [
+    "06/Requesting software not in the catalogue",
+    "06/Requesting software not in the catalogue",
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Requesting software not in the catalogue",
+     "text": "Software Requests and Policy > Requesting software not in the catalogue\n\n1. Check the catalogue twice. Many applications are listed under a different name than you expect.\n2. File a ticket with the application name, version, vendor website, and a one-paragraph business justification.\n3. The request goes to the security team for a licence and risk review. This takes three to five working days for well-known software and up to three weeks for anything new.",
+     "label": "06/Requesting software not in the catalogue",
+     "distance": 0.3987584710121155
+    },
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Requesting software not in the catalogue",
+     "text": "Software Requests and Policy > Requesting software not in the catalogue\n\n4. If approved, the application is added to the catalogue and you will be notified. If rejected, the ticket will say why and suggest an approved alternative.",
+     "label": "06/Requesting software not in the catalogue",
+     "distance": 0.4938412308692932
+    },
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Installing software",
+     "text": "Software Requests and Policy > Installing software\n\nStandard users cannot install software directly. This is deliberate. Open the Software Center on Windows or Self Service on macOS and search for the application. If it is listed, click Install and it will be set up within a few minutes without needing administrator rights. The catalogue includes browsers, PDF tools, developer tools, and the standard office suite.",
+     "label": null,
+     "distance": 0.5799086093902588
+    },
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Open source",
+     "text": "Software Requests and Policy > Open source\n\nOpen source libraries for development are not restricted. Open source desktop applications go through the normal request process, usually on the fast track.",
+     "label": null,
+     "distance": 0.6218956708908081
+    },
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Temporary administrator rights",
+     "text": "Software Requests and Policy > Temporary administrator rights\n\nFor installers that genuinely need administrator rights, you can request a 60-minute elevation through the Admin Request tool. Your manager receives an approval prompt. Elevations are logged and audited. Do not use elevation to install software that was rejected in a request; this is a policy violation.",
+     "label": null,
+     "distance": 0.6355020403862
+    }
+   ]
+  },
+  {
+   "qid": 29,
+   "kind": "fact",
+   "question": "How long does temporary admin access last and who approves it?",
+   "held_out": false,
+   "ms": 1.3685999438166618,
+   "gold": {
+    "06/Temporary administrator rights": 2
+   },
+   "labels": [
+    "06/Temporary administrator rights",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Temporary administrator rights",
+     "text": "Software Requests and Policy > Temporary administrator rights\n\nFor installers that genuinely need administrator rights, you can request a 60-minute elevation through the Admin Request tool. Your manager receives an approval prompt. Elevations are logged and audited. Do not use elevation to install software that was rejected in a request; this is a policy violation.",
+     "label": "06/Temporary administrator rights",
+     "distance": 0.5234522819519043
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nby default because their tools are available on the local network only; they can request access through a ticket with manager approval.",
+     "label": null,
+     "distance": 0.7103440761566162
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Locked account",
+     "text": "Password and Account Security > Locked account\n\nAn account locks after five failed sign-in attempts within 15 minutes. The lock clears automatically after 30 minutes. If you need access sooner, go to the self-service password portal, choose Unlock account, and enter the one-time code sent to your registered phone. If your registered phone is not available, the helpdesk can unlock your account after verifying your identity with your employee id and manager's name.",
+     "label": null,
+     "distance": 0.7251091599464417
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder\n\nFolder permissions are managed by the owner team listed in the table, not by IT. Ask the team lead to add you. IT can tell you who the owner is but cannot grant access.",
+     "label": null,
+     "distance": 0.7823634147644043
+    },
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Installing software",
+     "text": "Software Requests and Policy > Installing software\n\nStandard users cannot install software directly. This is deliberate. Open the Software Center on Windows or Self Service on macOS and search for the application. If it is listed, click Install and it will be set up within a few minutes without needing administrator rights. The catalogue includes browsers, PDF tools, developer tools, and the standard office suite.",
+     "label": null,
+     "distance": 0.782986044883728
+    }
+   ]
+  },
+  {
+   "qid": 30,
+   "kind": "paraphrase",
+   "question": "I got a new laptop and my paid software will not activate. What happened?",
+   "held_out": false,
+   "ms": 1.4489996246993542,
+   "gold": {
+    "06/Licences": 2
+   },
+   "labels": [
+    "06/Licences",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Licences",
+     "text": "Software Requests and Policy > Licences\n\nPaid software is licensed per user, not per device. If you receive a new laptop, uninstall paid software from the old one before returning it, otherwise the licence stays assigned to the old device and you will be blocked from activating on the new one. If that has already happened, file a ticket and include the old laptop's asset tag.",
+     "label": "06/Licences",
+     "distance": 0.3512469530105591
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > General slowness",
+     "text": "Laptop Performance and Updates > General slowness\n\nIf none of those apply and the laptop is more than three years old, it may be eligible for replacement. Ask your manager to raise a hardware refresh request.",
+     "label": null,
+     "distance": 0.7211692929267883
+    },
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Installing software",
+     "text": "Software Requests and Policy > Installing software\n\nStandard users cannot install software directly. This is deliberate. Open the Software Center on Windows or Self Service on macOS and search for the application. If it is listed, click Install and it will be set up within a few minutes without needing administrator rights. The catalogue includes browsers, PDF tools, developer tools, and the standard office suite.",
+     "label": null,
+     "distance": 0.7245246767997742
+    },
+    {
+     "source": "kb/02-password-and-account-security.md",
+     "header_path": "Password and Account Security > Changing your password > On Windows",
+     "text": "Password and Account Security > Changing your password > On Windows\n\n1. Press Ctrl+Alt+Delete.\n2. Choose Change a password.\n3. Enter the old password, then the new password twice.\n4. Lock and unlock the laptop once so cached credentials refresh. If you skip this step, Outlook and Teams will keep prompting with the old password for up to an hour.",
+     "label": null,
+     "distance": 0.7322421073913574
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Slow after an update",
+     "text": "Laptop Performance and Updates > Slow after an update\n\nAfter a major update the laptop rebuilds its search index and scans files for the security agent. This takes between 30 and 90 minutes depending on how much data is on the disk, and the laptop will feel sluggish during that period. The fix is patience plus two restarts: restart once immediately after the update finishes, then again an hour later. If the laptop is still slow the following day, file a ticket and include a screenshot of Task Manager or Activity Monitor sorted by CPU.",
+     "label": null,
+     "distance": 0.7449722290039062
+    }
+   ]
+  },
+  {
+   "qid": 31,
+   "kind": "paraphrase",
+   "question": "My laptop sounds like a jet engine even when I'm not doing anything. Should I report it?",
+   "held_out": true,
+   "ms": 1.1654999107122421,
+   "gold": {
+    "04/Fans running constantly": 2
+   },
+   "labels": [
+    "04/Fans running constantly",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Fans running constantly",
+     "text": "Laptop Performance and Updates > Fans running constantly\n\nUsually the security agent or a stuck browser tab. Restart first. If the fans run loud at idle for more than a day after a restart, file a ticket; the fan may be clogged with dust and Facilities can clean it.",
+     "label": "04/Fans running constantly",
+     "distance": 0.5627470016479492
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > General slowness",
+     "text": "Laptop Performance and Updates > General slowness\n\nIf none of those apply and the laptop is more than three years old, it may be eligible for replacement. Ask your manager to raise a hardware refresh request.",
+     "label": null,
+     "distance": 0.6969498991966248
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > General slowness",
+     "text": "Laptop Performance and Updates > General slowness\n\nBefore filing a ticket, check these in order:\n1. How many browser tabs are open. More than 40 tabs is the most common cause of slowness we see.\n2. Whether the disk is more than 90 percent full. Empty the Downloads folder and the Recycle Bin or Trash.\n3. How long since the last full restart. Sleeping the laptop for two weeks is not a restart. Shut it down fully once a week.\n4. Whether a backup or sync is running. The cloud drive client shows a progress indicator in the system tray or menu bar.",
+     "label": null,
+     "distance": 0.7114682793617249
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Battery",
+     "text": "Laptop Performance and Updates > Battery\n\nBatteries are consumables and are expected to lose about 20 percent of capacity after two years. A laptop that no longer lasts a two-hour meeting on battery can have the battery replaced under a low-priority ticket. Keep the laptop plugged in when at a desk, but let it run down to below 20 percent at least once a month to keep the battery gauge calibrated.",
+     "label": null,
+     "distance": 0.7385197877883911
+    },
+    {
+     "source": "kb/04-laptop-performance-and-updates.md",
+     "header_path": "Laptop Performance and Updates > Slow after an update",
+     "text": "Laptop Performance and Updates > Slow after an update\n\nAfter a major update the laptop rebuilds its search index and scans files for the security agent. This takes between 30 and 90 minutes depending on how much data is on the disk, and the laptop will feel sluggish during that period. The fix is patience plus two restarts: restart once immediately after the update finishes, then again an hour later. If the laptop is still slow the following day, file a ticket and include a screenshot of Task Manager or Activity Monitor sorted by CPU.",
+     "label": null,
+     "distance": 0.7494611740112305
+    }
+   ]
+  },
+  {
+   "qid": 32,
+   "kind": "exact_token",
+   "question": "Which VPN gateway has a maintenance window on Sundays?",
+   "held_out": true,
+   "ms": 1.2934999540448189,
+   "gold": {
+    "01/Regional gateways": 2
+   },
+   "labels": [
+    "01/Regional gateways",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Regional gateways",
+     "text": "VPN Access Guide > Regional gateways\n\n| Region | Gateway | Protocol default | Notes |\n|---|---|---|---|\n| Americas | vpn-us.example.com | UDP | Highest capacity |\n| Europe | vpn-eu.example.com | UDP | Maintenance window Sundays 02:00 to 04:00 CET |\n| India | vpn-in.example.com | TCP | TCP default because of ISP filtering |\n| APAC | vpn-apac.example.com | UDP | Serves Taipei and Seoul |",
+     "label": "01/Regional gateways",
+     "distance": 0.4359394907951355
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Connecting for the first time",
+     "text": "VPN Access Guide > Connecting for the first time\n\n1. Open the VPN client from the Start menu on Windows or the Applications folder on macOS.\n2. Enter the gateway address shown on your onboarding card. Do not use a gateway from another region; it will connect but be slow.\n3. Sign in with your work email and password.\n4. Approve the push notification on your registered phone. If you do not receive it within 30 seconds, open the authenticator app and use the six-digit code instead.",
+     "label": null,
+     "distance": 0.7213858366012573
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > VPN disconnects every few minutes",
+     "text": "VPN Access Guide > Troubleshooting > VPN disconnects every few minutes\n\nThis is almost always a protocol issue on home networks. Open the VPN client, go to Settings, then Connection, and switch the protocol from UDP to TCP. Reconnect. If it still drops, restart the laptop once. If the problem continues on a wired connection too, file a ticket and include the time of the last three disconnects.",
+     "label": null,
+     "distance": 0.743515133857727
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nby default because their tools are available on the local network only; they can request access through a ticket with manager approval.",
+     "label": null,
+     "distance": 0.7474572062492371
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > Authentication loop",
+     "text": "VPN Access Guide > Troubleshooting > Authentication loop\n\nIf the client keeps asking for your password after you have entered it correctly, your account may be locked. Use the self-service password portal to unlock it, wait five minutes, then try again.",
+     "label": null,
+     "distance": 0.7524411678314209
+    }
+   ]
+  },
+  {
+   "qid": 33,
+   "kind": "procedure",
+   "question": "Teams shows a black screen instead of my camera. What should I try?",
+   "held_out": true,
+   "ms": 1.2554996646940708,
+   "gold": {
+    "05/Camera shows a black screen": 2
+   },
+   "labels": [
+    "05/Camera shows a black screen",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Teams > Camera shows a black screen",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Teams > Camera shows a black screen\n\nClose every other application that could be using the camera, especially browser tabs with video. On Windows, open Settings, Privacy, Camera, and confirm desktop apps are allowed. If the camera works in another app but not Teams, sign out of Teams and sign back in.",
+     "label": "05/Camera shows a black screen",
+     "distance": 0.18296343088150024
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Teams > Audio not working in meetings",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Teams > Audio not working in meetings\n\nOpen Teams, go to Settings, then Devices, and check that the correct microphone and speaker are selected. Headsets sometimes register as two devices; pick the one with \"Hands-Free\" in the name for calls. On macOS, also open System Settings, Privacy and Security, Microphone, and confirm Teams is allowed. If other people cannot hear you but you can hear them, it is almost always the microphone permission.",
+     "label": null,
+     "distance": 0.4971524477005005
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Keeps asking for password",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Outlook > Keeps asking for password\n\nClose Outlook. On Windows, open Credential Manager, choose Windows Credentials, and remove every entry that starts with MicrosoftOffice. Reopen Outlook and sign in once. On macOS, open Keychain Access and delete the entries for Exchange, then reopen Outlook. If you changed your password recently and skipped the lock-and-unlock step, that is the cause.",
+     "label": null,
+     "distance": 0.711222767829895
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Access denied on a folder\n\nFolder permissions are managed by the owner team listed in the table, not by IT. Ask the team lead to add you. IT can tell you who the owner is but cannot grant access.",
+     "label": null,
+     "distance": 0.7274683713912964
+    },
+    {
+     "source": "kb/03-printer-setup-and-issues.md",
+     "header_path": "Printer Setup and Issues > Common problems > Prints are blank or streaked",
+     "text": "Printer Setup and Issues > Common problems > Prints are blank or streaked\n\nThis is a hardware issue. Do not try to fix it yourself. Note the printer name and file a ticket with priority low. Facilities replaces toner and drums on a schedule and will pull it forward if a ticket is open.",
+     "label": null,
+     "distance": 0.7313045263290405
+    }
+   ]
+  },
+  {
+   "qid": 34,
+   "kind": "context",
+   "question": "The VPN says I'm connected but my shared drive still won't open. What now?",
+   "held_out": true,
+   "ms": 1.2302999384701252,
+   "gold": {
+    "01/Connected but cannot reach shared drives": 2,
+    "05/Drive not mapping": 1
+   },
+   "labels": [
+    "01/Connected but cannot reach shared drives",
+    "05/Drive not mapping",
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > Connected but cannot reach shared drives",
+     "text": "VPN Access Guide > Troubleshooting > Connected but cannot reach shared drives\n\nConfirm the status shows Connected and not Connecting. Then open File Explorer and reconnect the drive. Shared drives are only reachable while the VPN is up or when you are in the office. If the drive letter is missing entirely, see the Shared Drive article.",
+     "label": "01/Connected but cannot reach shared drives",
+     "distance": 0.22633427381515503
+    },
+    {
+     "source": "kb/05-collaboration-tools.md",
+     "header_path": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping",
+     "text": "Collaboration Tools: Teams, Outlook, and Shared Drives > Shared drives > Drive not mapping\n\nShared drives require the VPN when you are outside the office. Connect to the VPN first, then open File Explorer and reconnect the drive. If the drive letter is missing, open File Explorer, right-click This PC, choose Map network drive, and enter the path from the table below. On macOS, use Finder, Go, Connect to Server, and enter the smb path.\n| Drive | Windows path | macOS path | Owner team |\n|---|---|---|---|",
+     "label": "05/Drive not mapping",
+     "distance": 0.3993520140647888
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Overview",
+     "text": "VPN Access Guide > Overview\n\nThe VPN uses split tunnelling. Traffic to internal addresses goes through the tunnel; everything else uses your normal internet connection. This is why video calls still work when the VPN is slow, and why you cannot reach shared drives when the VPN is disconnected.",
+     "label": null,
+     "distance": 0.5179412961006165
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > VPN disconnects every few minutes",
+     "text": "VPN Access Guide > Troubleshooting > VPN disconnects every few minutes\n\nThis is almost always a protocol issue on home networks. Open the VPN client, go to Settings, then Connection, and switch the protocol from UDP to TCP. Reconnect. If it still drops, restart the laptop once. If the problem continues on a wired connection too, file a ticket and include the time of the last three disconnects.",
+     "label": null,
+     "distance": 0.5775550603866577
+    },
+    {
+     "source": "kb/01-vpn-access-guide.md",
+     "header_path": "VPN Access Guide > Troubleshooting > Authentication loop",
+     "text": "VPN Access Guide > Troubleshooting > Authentication loop\n\nIf the client keeps asking for your password after you have entered it correctly, your account may be locked. Use the self-service password portal to unlock it, wait five minutes, then try again.",
+     "label": null,
+     "distance": 0.6046600341796875
+    }
+   ]
+  },
+  {
+   "qid": 35,
+   "kind": "fact",
+   "question": "Can I add a grammar checker extension to my browser?",
+   "held_out": true,
+   "ms": 1.3703000731766224,
+   "gold": {
+    "06/Browser extensions": 2
+   },
+   "labels": [
+    "06/Browser extensions",
+    null,
+    null,
+    null,
+    null
+   ],
+   "scores": {
+    "hit@3": 1,
+    "hit@5": 1,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "MRR": 1.0,
+    "nDCG@3": 1.0,
+    "nDCG@5": 1.0
+   },
+   "top": [
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Browser extensions",
+     "text": "Software Requests and Policy > Browser extensions\n\nExtensions are controlled by an allow list. If an extension is blocked, request it through the same process as software. Ad blockers are allowed. Extensions that read page content on every site, such as grammar checkers, require a security review.",
+     "label": "06/Browser extensions",
+     "distance": 0.5158602595329285
+    },
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Installing software",
+     "text": "Software Requests and Policy > Installing software\n\nStandard users cannot install software directly. This is deliberate. Open the Software Center on Windows or Self Service on macOS and search for the application. If it is listed, click Install and it will be set up within a few minutes without needing administrator rights. The catalogue includes browsers, PDF tools, developer tools, and the standard office suite.",
+     "label": null,
+     "distance": 0.8351845741271973
+    },
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Open source",
+     "text": "Software Requests and Policy > Open source\n\nOpen source libraries for development are not restricted. Open source desktop applications go through the normal request process, usually on the fast track.",
+     "label": null,
+     "distance": 0.8739936351776123
+    },
+    {
+     "source": "kb/06-software-requests-and-policy.md",
+     "header_path": "Software Requests and Policy > Temporary administrator rights",
+     "text": "Software Requests and Policy > Temporary administrator rights\n\nFor installers that genuinely need administrator rights, you can request a 60-minute elevation through the Admin Request tool. Your manager receives an approval prompt. Elevations are logged and audited. Do not use elevation to install software that was rejected in a request; this is a policy violation.",
+     "label": null,
+     "distance": 0.8867406249046326
+    },
+    {
+     "source": "kb_other_formats/03-printer-setup-and-issues.pdf",
+     "header_path": "",
+     "text": "open. Printing from a personal device Not supported. Email the document to yourself and print from your company laptop.",
+     "label": null,
+     "distance": 0.8964731097221375
+    }
+   ]
+  }
+ ]
+}
