@@ -30,15 +30,18 @@ Chosen baseline: markdown_headers
 "Wins on": the kinds where this technique alone has the best nDCG@5 (ties broken by MRR). A kind where several techniques share the best score has no winner.
 
 ## Day 3: Rerank and query transforms
-| Technique | hit@3 | recall@5 | MRR | nDCG@5 | p50 ms | Extra LLM calls / q |
-|---|---|---|---|---|---|---|
-| Day 2 winner | | | | | | 0 |
-| + rerank, pool 10, top 3 | | | | | | 0 |
-| + rerank, pool 20, top 3 | | | | | | 0 |
-| + rerank, pool 40, top 3 | | | | | | 0 |
-| Multi-query (3) + RRF | | | | | | 1 |
-| HyDE | | | | | | 1 |
-| Rewrite / step-back | | | | | | 1 |
+| Technique | hit@3 | recall@3 | recall@5 | MRR | nDCG@5 | p50 ms | p95 ms | Extra LLM calls / q | Reranker calls / q |
+|---|---|---|---|---|---|---|---|---|---|
+| Day 2 winner (hybrid alpha=0.7) | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 4.4 | 6.5 | 0 | 0 |
+| + rerank, pool 10, top 3 | 1.000 | 0.986 | 0.986 | 1.000 | 0.992 | 339.8 | 853.8 | 0 | 1 |
+| + rerank, pool 20, top 3 | 1.000 | 0.986 | 0.986 | 1.000 | 0.992 | 388.9 | 478.1 | 0 | 1 |
+| + rerank, pool 40, top 3 | 1.000 | 0.986 | 0.986 | 1.000 | 0.992 | 785.8 | 810.1 | 0 | 1 |
+| + rerank, pool 20, top 5 | 1.000 | 0.986 | 1.000 | 1.000 | 0.996 | 396.1 | 420.3 | 0 | 1 |
+| Multi-query (3) + RRF | 1.000 | 1.000 | 1.000 | 1.000 | 0.999 | 4158.9 | 7720.5 | 1 | 0 |
+| HyDE | 1.000 | 0.986 | 0.986 | 0.986 | 0.986 | 3951.5 | 8448.1 | 1 | 0 |
+| Rewrite / step-back | 1.000 | 0.986 | 1.000 | 0.971 | 0.982 | 4593.7 | 16443.7 | 1 | 0 |
+
+A "top 3" reranker returns only 3 chunks, so its recall@5 is the same as its recall@3.
 
 ## Day 4: Small-to-big, grid, ablation
 | Config | hit@3 | recall@5 | MRR | nDCG@5 | p50 ms |

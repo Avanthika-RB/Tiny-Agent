@@ -61,6 +61,17 @@ def embed_query(text):
     return cache["vectors"][text]
 
 
+_passage_cache = {}
+
+
+def embed_passage(text):
+    """Passage-mode embedding of a text that is not a question (HyDE's hypothetical answer).
+    Kept in memory for the run only: the text changes whenever the LLM's answer does."""
+    if text not in _passage_cache:
+        _passage_cache[text] = ingest.get_embeddings().embed_documents([text])[0]
+    return _passage_cache[text]
+
+
 def embedding_ms():
     """How long each question took to embed when it was first cached (the cost the cache hides)."""
     return list(_load_query_cache()["ms"].values())

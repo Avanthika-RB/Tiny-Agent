@@ -47,10 +47,13 @@ def make_rrf(collection=common.BASELINE, k=60):
     return retrieve
 
 
-def make_weighted(alpha, collection=common.BASELINE):
-    index = get_index(collection)
+def weighted_ranking(question, alpha, collection=common.BASELINE, vector=None):
+    """Every chunk, best first, by weighted fusion. vector: see dense_ranking."""
+    return weighted(dense_ranking(question, collection, vector), get_index(collection).ranking(question), alpha)
 
+
+def make_weighted(alpha, collection=common.BASELINE):
     def retrieve(question, top):
-        return weighted(dense_ranking(question, collection), index.ranking(question), alpha)[:top]
+        return weighted_ranking(question, alpha, collection)[:top]
     retrieve.__name__ = f"hybrid_alpha_{alpha}"
     return retrieve

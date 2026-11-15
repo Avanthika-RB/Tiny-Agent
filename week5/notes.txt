@@ -2,8 +2,30 @@ Day 2
 Did BM25 win on exact-token questions and lose on paraphrases? Use the “Dense vs BM25, per question” table.
 BM25 lost on q31 because "jet engine" and fans running loud arent the same thing.
 The question about bangalore and india as well. BM24 didnt win on these questions, but every other one is fine. 
+
 Did the LLM prefilter help or hurt?
 LLM prefilter hurt because nDCG@5 dropped about .050 and longer LLM calls, answered right 32/35 questions. 
+
 Where did MMR help, and where did it hurt?
 It helped make results varied like q1  counting many different files the top 5 chunks came from, returned 5 chunks from 4 files with MMR isntead of dense returning 5 chunks from 1 file. 
 This could help having different results, but it did hurt overall with dropping nDCG@5 about .050 score.
+
+day 3
+Where’s the knee? (Pool 10, or no reranker at all.)
+Knee is at pool 10 because recall@3 is the same at .986. reranked also made it slower from 1 to .986 
+Your judgement of the rephrasings for q2, q10 and q31.
+
+rephrasings were good and kept "bangalore", q10 kept its meaning and q31 used better words like "loud fan noise"
+score barely changed 0.999 vs 1.000 but it took about 4 seconds per question instead of 4ms.
+
+Where HyDE helped and where it hallucinated (q1’s error code, q2’s gateway name).
+it hallucinated details like q1 error code was 0x80070005" instead of 1103. q2 it made up a gateway "vpn-ap-south.company.com" instead of vpn-in.example.com.
+it helps when guess is close to article like q10 (clear saved password in Credential Manager)
+
+How rewrite did (q22 got worse because it was too general).
+q22 got hurt the most, making the question too general lost the important details. 
+"What should I check before opening a ticket about a slow laptop?" became "slow laptop", which found the wrongsection first (score 0.631)
+
+The cost: about 4 seconds per LLM call against 4 ms.
+multiquery, HyDE and rewrite add 1 llm call per question, reranker adds 1 reranker call. plain search is 4ms.
+nothing improved score. 

@@ -14,10 +14,12 @@ def make_dense(collection=common.BASELINE):
     return retrieve
 
 
-def dense_ranking(question, collection=common.BASELINE):
+def dense_ranking(question, collection=common.BASELINE, vector=None):
     """EVERY chunk of the collection, best first, with its cosine similarity (1 - distance).
-    Hybrid search needs the dense score of every chunk, not just the top k."""
-    chunks = common.query(collection, common.embed_query(question), common.count(collection))
+    Hybrid search needs the dense score of every chunk, not just the top k.
+    vector: search with this vector instead of the question's (HyDE passes its own)."""
+    vector = vector if vector is not None else common.embed_query(question)
+    chunks = common.query(collection, vector, common.count(collection))
     for c in chunks:
         c["score"] = 1 - c["distance"]
     return chunks
