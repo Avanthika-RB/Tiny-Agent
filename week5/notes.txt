@@ -1,0 +1,9 @@
+Day 2
+Did BM25 win on exact-token questions and lose on paraphrases? Use the “Dense vs BM25, per question” table.
+BM25 lost on q31 because "jet engine" and fans running loud arent the same thing.
+The question about bangalore and india as well. BM24 didnt win on these questions, but every other one is fine. 
+Did the LLM prefilter help or hurt?
+LLM prefilter hurt because nDCG@5 dropped about .050 and longer LLM calls, answered right 32/35 questions. 
+Where did MMR help, and where did it hurt?
+It helped make results varied like q1  counting many different files the top 5 chunks came from, returned 5 chunks from 4 files with MMR isntead of dense returning 5 chunks from 1 file. 
+This could help having different results, but it did hurt overall with dropping nDCG@5 about .050 score.
