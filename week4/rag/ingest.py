@@ -55,6 +55,8 @@ SOURCE_DIRS = [WEEK4 / "kb", WEEK4 / "kb_other_formats"]
 BUILD = Path(__file__).resolve().parent / "build"
 CHROMA_PATH = WEEK4 / "chroma_db"
 EMBED_MODEL = "nvidia/nemotron-3.5-embed-1b"
+#know different embedding models in the market
+#hugging face
 
 
 # ===========================================================================
@@ -82,7 +84,7 @@ def load_text(path):
     text = path.read_text(encoding="utf-8")
     return make_doc(path, "txt", text, first_heading(text))
 
-
+#data transformation for RAG architecture 
 def load_html(path):
     """HTML -> markdown-style text. <h1>..<h3> become #..###, <li> become '1.' or '-' items,
     <p> become paragraphs. <head>, <style> and <script> are dropped. Each element's text is

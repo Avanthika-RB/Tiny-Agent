@@ -24,3 +24,5 @@ A lot of my predictions were wrong, i didnt account for all 6 to hit for the fir
 7. If you had to pick one strategy for the helpdesk knowledge base, which and why?
 I would use markdown headers because it seems the most intuitive for me, also it was ranked a 10/10.
 
+Know difference between different types of chunking methods
+
