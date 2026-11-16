@@ -147,6 +147,7 @@ def outage_matches_problem(outage, text):
 
 
 #nodes
+# could remove nodes where LLM can handle it
 def identify(state: State):
     """Find an email in the employee's latest message and look it up."""
     match = re.search(EMAIL_PATTERN, last_user_text(state))

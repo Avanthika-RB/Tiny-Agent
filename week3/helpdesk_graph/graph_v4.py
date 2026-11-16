@@ -245,6 +245,7 @@ def record_failure(state: State):
 #triage subgraph
 def check_outage(state: TriageState):
     """Branch 1 of the fan-out: is there an active outage that explains the problem?"""
+    #time.sleep(3)
     location = state["employee"]["location"]
     relevant = [
         o for o in find_active_outages(location)
@@ -720,3 +721,20 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+#python graph_v4.py --timing
+#PS C:\Users\avant\Desktop\CS\Tiny-Agent\week3\helpdesk_graph> python graph_v4.py --timing
+ # parallel     2.58s  priya.menon@example.com: Outlook keeps asking for my password
+ # sequential   3.94s  priya.menon@example.com: Outlook keeps asking for my password
+ # parallel     4.86s  james.okafor@example.com: wifi is dead at my desk
+ # sequential   2.60s  james.okafor@example.com: wifi is dead at my desk
+ # parallel     3.02s  aisha.khan@example.com: my shared drive is not mapping
+ # sequential   2.94s  aisha.khan@example.com: my shared drive is not mapping
+#parallel total: 10.47s
+#sequential total: 9.49s
+
+#Notes to write: Checkpointer memory vs Store memory. One sentence each, then when you would use which.
+#checkpointer memory saves the whole state like msgs, employee, last_suggested with sqliteSaver and survives a restart.
+#inmemoryStore doesnt save whole state and only facts chosen to save, it doesnt survive a restart but can look up info about the person.
+#use checkpointer if you need message history for current convo, store for needing saved info about the person and their fix/issues. 

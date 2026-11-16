@@ -40,6 +40,7 @@ Rules:
 6. If the user says they already tried something that matches the known fix (even in different words), do not repeat the fix or ask if they tried it. Go straight to offering a ticket.
 Keep replies short and friendly."""
 
+#have a better idea on understanding the rules
 TOOLS = [lookup_employee, search_known_issues, create_ticket]
 
 #State: the data that flows through the graph.
@@ -182,8 +183,8 @@ if __name__ == "__main__":
 # State class has a field messages. create_agent had its own state with list i never saw
 # reducer tells langgraph to append new messages, instead of messages.append from before. 
 # call_model is the model node that sends convo to model and returns reply, it has system prompt on each call wit messages instead of just system prompt before. 
-# binding tools makes each request include tool descriptions, create agents did tis when passed tools=
-# tools node runs every tool call te model asks for and returns result.
+# binding tools makes each request include tool descriptions, create agents did this when passed tools=
+# tools node runs every tool call the model asks for and returns result.
 # edges like state, conditional edge, end having a tool loop. this is like if not messages.tool_calls: break
 # compiling graph with checkpointer turns this into something runnable with memory. 
 # instead of middleware to print, stream with stream_mode = updates and print what each node returns. 
