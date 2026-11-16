@@ -1,0 +1,23 @@
+# Day 4: the 15 helpdesk test cases, search backend = keyword
+
+Made by `python langsmith_eval.py all --backend keyword` in week3/helpdesk_graph.
+
+| Case | Expected tools | Got | tool_order | retrieval_hit | Top search result | Reply |
+|---|---|---|---|---|---|---|
+| 1 | lookup_employee, check_outages, search_known_issues | lookup_employee, check_outages, search_known_issues | 1 | 1 | KI-001 VPN disconnects every few minutes | There's a known fix for this (KI-001: VPN disconnects every few minutes), and it applies to your Windows 11: Open the VPN client, go to Settings, and switch the |
+| 2 | lookup_employee, check_outages, search_known_issues | lookup_employee, check_outages, search_known_issues | 1 | 1 | KI-002 Cannot connect to office printer | There's a known fix for this (KI-002: Cannot connect to office printer), and it applies to your macOS 15: Remove the printer and re-add it using its IP address, |
+| 3 | lookup_employee, check_outages, search_known_issues | lookup_employee, check_outages, search_known_issues | 1 | 1 | KI-003 Password expired or account locked | There's a known fix for this (KI-003: Password expired or account locked), and it applies to your Windows 11: Go to the self-service password portal and choose  |
+| 4 | lookup_employee, check_outages, search_known_issues, create_ticket | lookup_employee, check_outages, search_known_issues, create_ticket | 1 | - | KI-007 Second monitor not detected | I couldn't find a known fix that applies here, so I'd like to file a ticket: - Summary: Laptop screen has a crack and requires replacement. - Priority: medium H |
+| 5 | - | - | 1 | - | - | Hi! Before I can help, I need to identify you. What's your work email? |
+| 6 | lookup_employee | lookup_employee | 1 | - | - | I couldn't find an employee with that email. Could you double-check it and send it again? |
+| 7 | lookup_employee, check_outages, search_known_issues, create_ticket | lookup_employee, check_outages, search_known_issues, create_ticket | 1 | 1 | KI-009 Shared drive not mapping | I couldn't find a known fix that applies here, so I'd like to file a ticket: - Summary: Shared drive not mapping for Aisha Khan - Priority: medium Hi! I've crea |
+| 8 | lookup_employee, check_outages, search_known_issues, create_ticket | lookup_employee, check_outages, search_known_issues, create_ticket | 1 | - | - | I couldn't find a known fix that applies here, so I'd like to file a ticket: - Summary: Laptop stolen from employee's car - Priority: high I've created a high-p |
+| 9 | lookup_employee, check_outages, search_known_issues, create_ticket | lookup_employee, check_outages, search_known_issues, create_ticket | 1 | 1 | KI-005 Teams audio not working in meetings | I couldn't find a known fix that applies here, so I'd like to file a ticket: - Summary: Teams microphone not working after device settings check - Priority: med |
+| 10 | lookup_employee, check_outages, search_known_issues, create_ticket | lookup_employee, check_outages, search_known_issues | 0 | - | KI-007 Second monitor not detected | There's a known fix for this (KI-007: Second monitor not detected), and it applies to your macOS 15: Unplug the dock from the laptop, wait 10 seconds, plug it b |
+| 11 | lookup_employee, check_outages, search_known_issues | lookup_employee, check_outages, search_known_issues | 1 | - | KI-008 Wi-Fi connected but no internet | There's an active outage that explains this: Office Wi-Fi in Austin (OUT-101). Wi-Fi is down on floors 2 and 3 in the Austin office. Network team is on site. Us |
+| 12 | lookup_employee, get_ticket_status | lookup_employee, get_ticket_status | 1 | - | - | TKT-1001 is currently open with medium priority. The laptop won't turn on, and we're looking into it. We'll keep you posted! |
+| 13 | lookup_employee, reset_password | lookup_employee, reset_password | 1 | - | - | Hi! I've initiated a password reset for your account. You can set a new password here: https://reset.example.com/MLMEazZ-daY. Let me know if you need any help w |
+| 14 | lookup_employee | lookup_employee, check_outages, search_known_issues | 0 | - | KI-003 Password expired or account locked | There's a known fix for this (KI-003: Password expired or account locked), and it applies to your Windows 11: Go to the self-service password portal and choose  |
+| 15 | lookup_employee, lookup_employee | lookup_employee, lookup_employee | 1 | - | - | I couldn't find an employee with that email. Could you double-check it and send it again? I wasn't able to verify your email after two tries, so I can't continu |
+
+tool_order 13/15, retrieval_hit 5/5 (retrieval_hit only for cases 1, 2, 3, 7, 9, which have a help-article section with the fix).

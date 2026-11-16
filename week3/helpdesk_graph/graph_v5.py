@@ -21,8 +21,23 @@ Day 5 adds:
     python graph_v5.py --draw              save graph_v5.png, graph_v5_triage.png, graph_v5_ticketops.png
 
     In the chat: 'state', 'history', 'memory', 'travel <n> <low|medium|high>', 'new', 'quit'
+
+Day 6 (LangSmith) adds:
+  - Tracing: with LANGSMITH_TRACING=true in .env every run is sent to LangSmith. Each
+    message is tagged "graph_v5" and carries metadata (thread_id, employee). The supervisor
+    adds the intent it chose (route, ops_task) to its own span, so you can find it in the trace.
+  - Prompt Hub: with PROMPT_FROM_HUB=1 the supervisor's prompt is pulled from LangSmith by
+    name (helpdesk-supervisor) instead of the copy in this file. Push it with hub_prompt.py.
+  - A variant for the experiments: HELPDESK_VARIANT=prompt_os_rule puts the OS rule back in
+    the prompt (rule 2 from Week 2) and removes the OS check from the after_join edge.
+    The evaluation (langsmith_eval.py) compares this variant with the normal graph.
+
+Week 5 Day 4 (RAG): search_known_issues now searches the help articles with the Week 5
+production retrieval (see rag_search.py) and returns chunks with their source and section.
+Set SEARCH_BACKEND=keyword to get the old keyword search over known_issues.json back.
 """
 
+#fan-in review
 import os
 import random
 import re
@@ -34,6 +49,7 @@ from typing import Annotated, Literal
 
 from dotenv import load_dotenv
 from langchain_core.messages import AIMessage, AnyMessage, HumanMessage, SystemMessage
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.tools import tool
 from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.sqlite import SqliteSaver
@@ -45,6 +61,7 @@ from langgraph.prebuilt import ToolNode
 from langgraph.runtime import get_runtime
 from langgraph.store.memory import InMemoryStore
 from langgraph.types import Command, RetryPolicy, Send, interrupt
+from langsmith.run_helpers import get_current_run_tree
 from pydantic import BaseModel, Field
 from typing_extensions import TypedDict
 
@@ -67,6 +84,10 @@ MAX_EMAIL_ATTEMPTS = 2
 SEARCH_FAILURE_RATE = 0.3
 SEARCH_ATTEMPTS = 3
 CHECKPOINT_DB = str(Path(__file__).parent / "checkpoints.db")
+
+# Day 6. Both are read from the environment, so the evaluation can switch them without code changes.
+VARIANT = os.environ.get("HELPDESK_VARIANT", "")          # "" = graph_v5 as built, "prompt_os_rule" = the reverted variant
+PROMPT_NAME = "helpdesk-supervisor"                        # the supervisor prompt's name in the Prompt Hub
 
 
 # ===========================================================================
@@ -189,6 +210,37 @@ issue_picker = structured(RelevantIssues)
 ticket_writer = structured(TicketDraft)
 
 
+# The supervisor's prompt as a template, so it can live in the LangSmith Prompt Hub.
+# {conversation} and {worked} are filled in by the supervisor node.
+SUPERVISOR_PROMPT = ChatPromptTemplate.from_messages(
+    [
+        ("system",
+         "You are the supervisor of an IT helpdesk with two specialist agents. "
+         "Decide who handles the employee's LATEST message next, or whether it is done. "
+         "An app or Outlook that keeps asking for a password is a triage problem, not a password reset."),
+        ("human",
+         "Conversation:\n{conversation}\n\n"
+         "Specialists that have already worked on the latest message: {worked}"),
+    ]
+)
+
+
+def load_supervisor_prompt():
+    """PROMPT_FROM_HUB=1: pull the prompt from the Prompt Hub by name. Otherwise use the copy above.
+    Pulled once when the program starts, so after you edit it in the LangSmith UI, just run again."""
+    if os.environ.get("PROMPT_FROM_HUB") != "1":
+        return SUPERVISOR_PROMPT, "local"
+    from langsmith import Client
+    try:
+        return Client().pull_prompt(PROMPT_NAME), "hub"
+    except Exception as error:
+        print(f"(Could not pull {PROMPT_NAME} from the Prompt Hub: {error}. Using the copy in graph_v5.py.)")
+        return SUPERVISOR_PROMPT, "local"
+
+
+supervisor_prompt, SUPERVISOR_PROMPT_SOURCE = load_supervisor_prompt()
+
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -228,6 +280,9 @@ def outage_matches_problem(outage, text):
 
 
 def issue_by_id(issue_id):
+    if issue_id.startswith("KB-"):            # a help-article chunk from the RAG search
+        from rag_search import REGISTRY
+        return REGISTRY.get(issue_id)
     return next((i for i in load_json(KNOWN_ISSUES_FILE) if i["id"] == issue_id), None)
 
 
@@ -322,23 +377,22 @@ def supervisor(state: State) -> Command[Literal["triage", "ticketops", "finish"]
             goto="ticketops",
         )
 
-    decision = router.invoke(
-        [
-            SystemMessage(content=(
-                "You are the supervisor of an IT helpdesk with two specialist agents. "
-                "Decide who handles the employee's LATEST message next, or whether it is done. "
-                "An app or Outlook that keeps asking for a password is a triage problem, not a password reset."
-            )),
-            HumanMessage(content=(
-                f"Conversation:\n{conversation_text(state)}\n\n"
-                f"Specialists that have already worked on the latest message: {', '.join(worked) or 'none'}"
-            )),
-        ]
-    )
+    messages = supervisor_prompt.invoke(
+        {"conversation": conversation_text(state), "worked": ", ".join(worked) or "none"}
+    ).to_messages()
+    decision = router.invoke(messages)
 
     goto = decision.next
     if goto in worked or (goto == "ticketops" and decision.ops_task == "none"):
         goto = "done"
+
+    # Day 6: put the decision on this node's span in LangSmith, so it is easy to find in
+    # the trace and to filter on. (None when tracing is off.)
+    span = get_current_run_tree()
+    if span is not None:
+        span.add_metadata({"intent": goto, "ops_task": decision.ops_task,
+                           "fix_failed": decision.fix_failed, "model_said": decision.next,
+                           "prompt_source": SUPERVISOR_PROMPT_SOURCE})
     if goto == "done":
         return Command(update={"route": "done"}, goto="finish")
 
@@ -418,7 +472,7 @@ def pick_issues(state: TriageState):
     if result.status == "error":
         return {"found": {"known_issues": [], "skipped": [], "search_error": result.content}}
 
-    lines = {m.group(1): m.group(0) for m in re.finditer(r"^(KI-\d+):.*$", result.content, re.M)}
+    lines = {m.group(1): m.group(0) for m in re.finditer(r"^((?:KI|KB)-\w+):.*$", result.content, re.M)}
 
     past = get_store().search(memory_namespace(state["employee"]["email"]), limit=100)
     failed = {item.key: item.value["date"] for item in past if item.value["outcome"] == "failed"}
@@ -427,10 +481,16 @@ def pick_issues(state: TriageState):
 
     if not remaining:
         return {"found": {"known_issues": [], "skipped": skipped}}
+    rules = "Pick which candidate fixes match the employee's problem. Leave out any fix the employee says they already tried, even in different words."
+    employee_line = ""
+    if VARIANT == "prompt_os_rule":
+        # The reverted variant: the OS rule lives in the prompt (Week 2 rule 2), not in code.
+        rules += " Only keep a fix if its 'applies to' list includes the employee's OS."
+        employee_line = f"Employee's OS: {state['employee']['os']}\n"
     choice = issue_picker.invoke(
         [
-            SystemMessage(content="Pick which candidate fixes match the employee's problem. Leave out any fix the employee says they already tried, even in different words."),
-            HumanMessage(content=f"Employee's messages: {problem_text(state)}\n\nSearch results:\n" + "\n".join(remaining.values())),
+            SystemMessage(content=rules),
+            HumanMessage(content=employee_line + f"Employee's messages: {problem_text(state)}\n\nSearch results:\n" + "\n".join(remaining.values())),
         ]
     )
     kept = [issue_by_id(i) for i in remaining if i in choice.issue_ids]
@@ -447,6 +507,9 @@ def after_join(state: TriageState):
     found = state["found"]
     if found.get("outage"):
         return "inform_outage"
+    if VARIANT == "prompt_os_rule":
+        # The reverted variant: no OS check here. Trust whatever the model kept.
+        return "suggest_fix" if found.get("known_issues") else "propose_ticket"
     os_name = state["employee"]["os"]
     for issue in found.get("known_issues", []):
         if os_name in issue["applies_to"]:
@@ -465,7 +528,21 @@ def inform_outage(state: TriageState):
 
 def suggest_fix(state: TriageState):
     os_name = state["employee"]["os"]
+    if VARIANT == "prompt_os_rule":
+        issue = state["found"]["known_issues"][0]       # no OS check in the variant
+        text = (
+            f"There's a known fix for this ({issue['id']}: {issue['title']}):\n"
+            f"{issue['fix']}\n\nIf that doesn't help, tell me and I'll file a ticket."
+        )
+        return {"messages": [AIMessage(content=text)], "last_suggested": issue["id"]}
     issue = next(i for i in state["found"]["known_issues"] if os_name in i["applies_to"])
+    if "source" in issue:                     # a help-article chunk: say where it comes from
+        where = f"{issue['source']}" + (f", section \"{issue['section']}\"" if issue["section"] else "")
+        text = (
+            f"The help articles have a fix for this that applies to your {os_name} ({where}):\n"
+            f"{issue['fix']}\n\nIf that doesn't help, tell me and I'll file a ticket."
+        )
+        return {"messages": [AIMessage(content=text)], "last_suggested": issue["id"]}
     text = (
         f"There's a known fix for this ({issue['id']}: {issue['title']}), and it applies to your {os_name}:\n"
         f"{issue['fix']}\n\nIf that doesn't help, tell me and I'll file a ticket."
@@ -658,6 +735,21 @@ def make_config(thread_id):
     return {"configurable": {"thread_id": thread_id}, "recursion_limit": RECURSION_LIMIT}
 
 
+def traced_config(graph, config, user_input):
+    """Day 6: tags and metadata for LangSmith. They are attached to this run's trace,
+    so in LangSmith you can filter by tag (graph_v5) or by employee."""
+    employee = (graph.get_state(config).values or {}).get("employee")
+    if employee:
+        email = employee["email"]
+    else:
+        match = re.search(EMAIL_PATTERN, user_input)
+        email = match.group() if match else "unknown"
+    tags = ["graph_v5", f"variant:{VARIANT or 'v5'}", f"prompt:{SUPERVISOR_PROMPT_SOURCE}"]
+    metadata = {"thread_id": config["configurable"]["thread_id"], "employee": email,
+                "variant": VARIANT or "v5"}
+    return {**config, "tags": tags, "metadata": metadata, "run_name": "helpdesk"}
+
+
 def describe(node_name, update):
     if not update:
         return ""
@@ -785,6 +877,9 @@ def chat(graph, thread_id, store):
     if BROKEN_PRIMARY:
         print(f"(Primary model is set to {PRIMARY_MODEL}, which does not exist. Every answer comes from the backup, {BACKUP_MODEL}.)")
     print("Commands: 'state', 'history', 'memory', 'travel <n> <low|medium|high>', 'new', 'quit'.")
+    if os.environ.get("LANGSMITH_TRACING") == "true":
+        print(f"(Tracing to LangSmith project '{os.environ.get('LANGSMITH_PROJECT', 'default')}'. "
+              f"Supervisor prompt: {SUPERVISOR_PROMPT_SOURCE}. Variant: {VARIANT or 'v5'}.)")
 
     snapshot = graph.get_state(config)
     if snapshot.interrupts:
@@ -822,8 +917,9 @@ def chat(graph, thread_id, store):
             ask_human(graph, paused, config)
             continue
         try:
-            paused = run(graph, {"messages": [{"role": "user", "content": user_input}]}, config)
-            ask_human(graph, paused, config)
+            run_config = traced_config(graph, config, user_input)
+            paused = run(graph, {"messages": [{"role": "user", "content": user_input}]}, run_config)
+            ask_human(graph, paused, run_config)
         except GraphRecursionError:
             print(f"\nAgent: Sorry, I couldn't finish that within {RECURSION_LIMIT} steps.")
 
@@ -865,3 +961,6 @@ if __name__ == "__main__":
 #Notes to write: When is multi-agent worth it, and when is it just a bigger single graph?
 # its worth it if you need agents that each have its own small set of tools and each agent has a specific purpose.
 #  bigger single graph is worth it when you can see all the routing/flow 
+
+#python graph_v5.py --thread NAME  "--fallback-demo" "--broken-primary"
+# python -m langgraph_cli dev

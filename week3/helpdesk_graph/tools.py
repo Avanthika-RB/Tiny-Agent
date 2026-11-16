@@ -5,12 +5,14 @@ file so graph_v1 to graph_v5 can all import them instead of copying them.
 """
 
 import json
+import os
 import re
 import secrets
 from datetime import datetime
 from pathlib import Path
 
 from langchain.tools import tool
+from langsmith import traceable
 
 # The data files live next to this file, so it works from any folder.
 DATA_DIR = Path(__file__).parent / "data"
@@ -51,29 +53,47 @@ def lookup_employee(email: str) -> str:
     return f"No employee found with email {email}."
 
 
-@tool(parse_docstring=True)
-def search_known_issues(query: str) -> str:
-    """Search the list of known IT issues for fixes that match a problem description.
+@traceable(name="keyword_scorer")
+def score_known_issues(query):
+    """The keyword scorer used by search_known_issues and find_known_issues.
 
-    Args:
-        query: A short description of the problem, for example "vpn keeps disconnecting".
+    For every known issue, count how many of its keywords appear as whole words in the
+    query, keep the issues with at least one hit, and sort them best first.
+    @traceable makes this plain Python function show up as its own span in LangSmith,
+    with its input (the query) and output (the scored issues), even though it is not
+    a LangChain tool or model call.
     """
     query = query.lower()
     scored = []
     for issue in load_json(KNOWN_ISSUES_FILE):
-        # Count how many of the issue's keywords appear as whole words in the query.
         hits = sum(
             1 for keyword in issue["keywords"]
             if re.search(r"\b" + re.escape(keyword) + r"\b", query)
         )
         if hits > 0:
             scored.append((hits, issue))
+    scored.sort(key=lambda pair: pair[0], reverse=True)
+    return scored
+
+
+@tool(parse_docstring=True)
+def search_known_issues(query: str) -> str:
+    """Search the IT help articles for fixes that match a problem description.
+
+    Args:
+        query: A short description of the problem, for example "vpn keeps disconnecting".
+    """
+    # Week 5 Day 4: SEARCH_BACKEND=rag (the default) uses the Week 5 production retrieval over
+    # the help articles (rag_search.py). SEARCH_BACKEND=keyword is the old keyword search below.
+    if os.environ.get("SEARCH_BACKEND", "rag") == "rag":
+        from rag_search import search_text
+        return search_text(query)
+
+    scored = score_known_issues(query)
 
     if not scored:
         return "No known issues match that description."
 
-    # Highest number of keyword hits first, then keep the top 3.
-    scored.sort(key=lambda pair: pair[0], reverse=True)
     lines = []
     for hits, issue in scored[:3]:
         lines.append(
@@ -148,17 +168,7 @@ def find_known_issues(query, top=3):
 
     Same keyword scoring as search_known_issues: count whole-word keyword hits.
     """
-    query = query.lower()
-    scored = []
-    for issue in load_json(KNOWN_ISSUES_FILE):
-        hits = sum(
-            1 for keyword in issue["keywords"]
-            if re.search(r"\b" + re.escape(keyword) + r"\b", query)
-        )
-        if hits > 0:
-            scored.append((hits, issue))
-    scored.sort(key=lambda pair: pair[0], reverse=True)
-    return [issue for hits, issue in scored[:top]]
+    return [issue for hits, issue in score_known_issues(query)[:top]]
 
 
 def find_ticket(ticket_id):

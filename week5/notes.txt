@@ -29,3 +29,46 @@ q22 got hurt the most, making the question too general lost the important detail
 The cost: about 4 seconds per LLM call against 4 ms.
 multiquery, HyDE and rewrite add 1 llm call per question, reranker adds 1 reranker call. plain search is 4ms.
 nothing improved score. 
+
+day4
+Parent-Document: Usually the single biggest win on this corpus. Confirm or refute.
+Refute, nDCG@5 scored 0.987 against 0.999 for plain dense. It helped q10,27,34 and hurt 15 (PDF copy had no headings)
+it didnt win because markdown_headers chunks are whole sections. 
+
+What did compression do to answer quality? 
+The same, 19/20, with 85% less text, for one extra LLM call.
+
+Which component matters most in the ablation?
+None made a real difference. Removing the reranker was the only change, and it helped.
+
+Pick a production config. Three sentences defending it, including latency.
+hybrid alpha 0.6, top 5, no reranker.
+Production is hybrid search (0.6 dense + 0.4 BM25) returning the top 5, with no reranker. 
+It scores recall@5 1.000 and nDCG@5 0.998 on the 30 tuning questions and 1.000 on my 5 held-out questions, at 3.5 ms p50. 
+The best grid run with a reranker scored slightly lower (0.996) and took 334 ms, about 100 times slower for no gain,
+so the reranker isn’t worth its cost on this small knowledge base.
+
+day 5
+i ran week3 agent with new week5 search
+python langsmith_eval.py all --backend keyword
+python langsmith_eval.py all --backend rag    
+
+	            tool_order	retrieval_hit
+Keyword (old)	13/15	    5/5
+RAG (new)	    13/15	    5/5
+
+Seeing the cases, RAG fixed keyword search's word matching mistake(case10) and found a real macOS fix the old list didnt have (case7)
+RAG made a new mistake in case 8 where vector search always returns top 5, even for a question the articles dont cover. agent 
+can be handed something irrelevant and suggest it. 
+
+now run for langsmith comparison:
+python langsmith_eval.py run --backend keyword
+python langsmith_eval.py run --backend rag
+
+screenshot.png is the comparison of keyword and rag
+LangSmith, keyword vs RAG on the 15 helpdesk cases: RAG improved retrieval_hit (0.80 → 1.00) and groundedness
+(0.20 → 0.50) but lowered tool_order (0.93 → 0.71). 
+The drops come from RAG giving a fix where the dataset expects a ticket:
+a real macOS fix for Aisha (better), but an irrelevant “Licences” chunk for a stolen laptop 
+(worse, because vector search always returns 5 chunks even when no article covers the problem). 
+Latency was similar (about 11–12 s, mostly the chat model).
