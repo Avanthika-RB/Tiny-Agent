@@ -72,3 +72,57 @@ The drops come from RAG giving a fix where the dataset expects a ticket:
 a real macOS fix for Aisha (better), but an irrelevant “Licences” chunk for a stolen laptop 
 (worse, because vector search always returns 5 chunks even when no article covers the problem). 
 Latency was similar (about 11–12 s, mostly the chat model).
+
+
+Reflection
+Explain to a non-engineer why keyword search and vector search find different things.
+keyword search like ctrl+f finds chunks with the same words. vector search finds chunks with same meaning 
+even when words are different, because it finds the similarity. like the prompt of "my laptop sounds like 
+a jet engine" in vector found "fans running constantly" but keyword search didnt have that. same with "bangalore"
+being worse in keyword than vector because only "india" is in the article.
+
+
+When would you NOT add a reranker?
+i would not add a reranker when first search is already almost perfect like 1.000 or .999. reranker never helped
+in my data as well as bigger pool. i would only add reranker if the numbers were low and has a bigger knowledge 
+base. 
+
+A stakeholder says "just increase k to 20 and the answers will be better". Respond with your data.
+my recall@5 is at 1.0 and k=20 will not be better because itll just add more noise on top of what i have which 
+is a waste of tokens and cost. 
+
+What is still confusing?
+if recall@5 is 1.0 and almost everything scored about 1.0 how would i write harder eval questions and make these
+scores better? 
+most of my code is from claude because there was a lot to work on for this week, ive been learning about the topic and
+concepts but knowing everything about the code is something that will take me time. 
+
+
+
+# Concept checklist
+
+Rate each 1 to 3. 1 = heard of it. 2 = used it but shaky. 3 = can explain without notes, point to the code, and quote a number from your results.
+
+- 2 hit@k, recall@k, MRR, nDCG, and when each is the right metric
+- 2 Graded relevance and building an evaluation set
+- 2 Baseline and why you need one before changing anything
+- 2 Dense vs sparse retrieval and the kinds of questions each wins
+- 2 BM25 tokenisation choices
+- 2 Reciprocal rank fusion and weighted hybrid
+- 2 Metadata prefiltering, when it helps, when it hurts
+- 2 MMR and diversity
+- 2 Bi-encoder vs cross-encoder, two-stage retrieval
+- 2 Candidate pool size vs latency
+- 2 Multi-query and RAG fusion
+- 2 HyDE
+- 2 Query rewriting and step-back
+- 2 Parent-document / small-to-big
+- 2 Contextual compression
+- 2 Grid search and ablation
+- 2 Retrieval metrics vs answer quality, groundedness
+- 1/2 Failure analysis categories
+- 1/2 Latency and cost accounting per technique
+
+
+
+
